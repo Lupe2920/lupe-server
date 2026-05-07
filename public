@@ -1394,6 +1394,7 @@ function applyPromo() {
 
 function initStripe() {
   if (stripeInited) return;
+  try {
     stripe = Stripe('pk_test_51TUFzeRq0XCTLGq5yFm7224pFyowU9ozSTTKhxPckvjY0t5QcKzsMS2XB6VQxFGTRDGRNSV01iWKpO6hto6jLcsd00WSMXFowT');
     elements = stripe.elements();
     cardEl = elements.create('card', {
@@ -1408,7 +1409,6 @@ function initStripe() {
     });
     stripeInited = true;
   } catch(e) { console.log('Stripe init error:', e); }
-}
 }
 
 // No backend server needed — using Stripe Payment Links
