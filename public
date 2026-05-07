@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Lupe Accommodations · Samoa Holiday Homes</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --ink:#0F1923;--ink2:#1E2D3D;--fog:#F7F4EF;--fog2:#EDE9E1;
+  --gold:#B8863C;--gold2:#D4A055;--sage:#2C5F4A;--sky:#1B4F72;
+  --ember:#C0392B;--white:#FFFFFF;--muted:#8A8278;--border:rgba(15,25,35,0.10);--r:16px;
+}
+body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px;background:rgba(247,244,239,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--ink);font-weight:500}
+.nav-logo b{color:var(--gold);font-weight:600}
+.nav-book-btn{background:var(--ink);color:white;border:none;border-radius:100px;padding:9px 22px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
+.nav-book-btn:hover{background:var(--ink2)}
+.hero{position:relative;height:100svh;min-height:620px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--ink)}
+.hero-bg-art{position:absolute;inset:0;width:100%;height:100%;background:linear-gradient(160deg,#0F2027 0%,#203A43 45%,#2C5364 100%)}
+.hero-bg-art::before{content:'';position:absolute;top:-20%;right:-10%;width:70%;height:140%;background:radial-gradient(ellipse,rgba(44,95,74,0.4) 0%,transparent 70%)}
+.hero-bg-art::after{content:'';position:absolute;bottom:-30%;left:-5%;width:80%;height:100%;background:radial-gradient(ellipse,rgba(184,134,60,0.15) 0%,transparent 65%)}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,25,35,0.2) 0%,rgba(15,25,35,0.05) 30%,rgba(15,25,35,0.55) 70%,rgba(15,25,35,0.9) 100%)}
+.hero-content{position:relative;z-index:2;padding:0 28px 48px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.2);border-radius:100px;padding:6px 14px;font-size:11px;color:rgba(255,255,255,0.85);letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:1.2rem}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:#4CAF50;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,9vw,5.5rem);line-height:1.05;color:white;font-weight:400;margin-bottom:1rem}
+.hero h1 em{font-style:italic;color:#A8D8C8}
+.hero-desc{font-size:16px;color:rgba(255,255,255,0.65);font-weight:300;line-height:1.6;margin-bottom:2rem;max-width:380px}
+.hero-cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn-hero{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:white;border:none;border-radius:100px;padding:16px 32px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none}
+.btn-hero:hover{background:var(--gold2);transform:translateY(-1px)}
+.hero-proof{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.55);font-size:13px}
+.stars{color:#F4C430;letter-spacing:1px;font-size:14px}
+.proof-strip{background:var(--ink);padding:20px 24px;display:flex;gap:32px;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
+.proof-strip::-webkit-scrollbar{display:none}
+.proof-item{display:flex;align-items:center;gap:10px;white-space:nowrap;flex-shrink:0}
+.proof-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;color:white}
+.proof-label{font-size:12px;color:rgba(255,255,255,.5);line-height:1.4}
+.search-bar-wrap{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:56px;z-index:100}
+.search-bar{max-width:900px;margin:0 auto;display:flex;align-items:stretch;padding:12px 20px;gap:0}
+.sb-cell{flex:1;padding:10px 18px;border-right:1px solid var(--border);cursor:pointer;transition:background .15s;border-radius:0;background:none;border-top:none;border-bottom:none;border-left:none;font-family:'Inter',sans-serif;text-align:left}
+.sb-cell:first-child{border-radius:12px 0 0 12px}
+.sb-cell:hover{background:var(--fog)}
+.sb-cell-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.sb-cell-val{font-size:14px;color:var(--ink);font-weight:500}
+.sb-cell-val.empty{color:var(--muted);font-weight:400}
+.sb-search-btn{background:var(--gold);color:white;border:none;border-radius:0 12px 12px 0;padding:0 28px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:background .2s;display:flex;align-items:center;gap:7px}
+.sb-search-btn:hover{background:var(--gold2)}
+@media(max-width:650px){.search-bar{flex-direction:column;padding:12px 16px;gap:0}.sb-cell{border-right:none;border-bottom:1px solid var(--border);border-radius:0!important}.sb-cell:last-of-type{border-bottom:none}.sb-search-btn{border-radius:0 0 12px 12px;padding:14px;justify-content:center;margin-top:10px}}
+.dropdown-overlay{display:none;position:fixed;inset:0;z-index:150;background:rgba(0,0,0,0.3);backdrop-filter:blur(2px)}
+.dropdown-overlay.show{display:block}
+.dropdown-panel{position:fixed;bottom:0;left:0;right:0;background:white;border-radius:24px 24px 0 0;z-index:160;transform:translateY(100%);transition:transform .35s cubic-bezier(.25,.46,.45,.94);max-height:90svh;overflow-y:auto;display:none}
+.dropdown-panel.open{transform:translateY(0)}
+.panel-handle{width:36px;height:4px;background:var(--fog2);border-radius:2px;margin:14px auto 0}
+.panel-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--ink);padding:20px 24px 0}
+.panel-body{padding:20px 24px 40px}
+.prop-pick{display:flex;flex-direction:column;gap:14px}
+.prop-pick-card{border:2px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .2s;background:var(--fog)}
+.prop-pick-card:hover{border-color:var(--gold)}
+.prop-pick-card.chosen{border-color:var(--ink);background:white;box-shadow:0 0 0 4px rgba(15,25,35,0.06)}
+.ppc-top{display:flex;gap:16px;padding:16px}
+.ppc-icon{width:72px;height:72px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0}
+.ppc-icon.h{background:linear-gradient(135deg,#0F2027,#2C5364)}
+.ppc-icon.n{background:linear-gradient(135deg,#1a3a2a,#2C5F4A)}
+.ppc-info{flex:1}
+.ppc-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--ink)}
+.ppc-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.ppc-rate{font-size:15px;font-weight:600;color:var(--ember);margin-top:6px}
+.ppc-check{width:26px;height:26px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;flex-shrink:0;margin-top:4px;transition:all .2s}
+.prop-pick-card.chosen .ppc-check{background:var(--ink);border-color:var(--ink);color:white}
+.panel-confirm{width:100%;background:var(--ink);color:white;border:none;border-radius:14px;padding:17px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;margin-top:1.5rem}
+.panel-confirm:hover{background:var(--ink2)}
+.panel-confirm:disabled{background:var(--muted);cursor:not-allowed}
+.guest-row{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border)}
+.guest-row:last-child{border-bottom:none}
+.guest-info strong{font-size:15px;font-weight:500;display:block}
+.guest-info span{font-size:12px;color:var(--muted)}
+.guest-ctrl{display:flex;align-items:center;gap:18px}
+.g-btn{width:38px;height:38px;border-radius:50%;border:2px solid var(--border);background:white;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:all .15s;color:var(--ink);line-height:1}
+.g-btn:hover:not(:disabled){border-color:var(--ink);background:var(--fog)}
+.g-btn:disabled{opacity:.28;cursor:not-allowed}
+.g-count{font-size:18px;font-weight:600;min-width:26px;text-align:center}
+.homes{padding:60px 20px;max-width:960px;margin:0 auto}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:400;color:var(--ink);line-height:1.15;margin-bottom:1.5rem}
+.homes-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:680px){.homes-grid{grid-template-columns:1fr}}
+.home-card{background:white;border-radius:20px;overflow:hidden;border:1px solid var(--border);transition:transform .2s,box-shadow .2s;cursor:pointer}
+.home-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(15,25,35,0.12)}
+.hc-gallery{position:relative;height:240px;overflow:hidden}
+.hc-gal-inner{display:flex;height:100%;transition:transform .4s ease}
+.hc-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:5rem}
+.hc-slide-h1{background:linear-gradient(145deg,#0F2027 0%,#203A43 50%,#2C5364 100%)}
+.hc-slide-h2{background:linear-gradient(145deg,#1a3040,#2a5060)}
+.hc-slide-h3{background:linear-gradient(145deg,#162030,#0F2027)}
+.hc-slide-n1{background:linear-gradient(145deg,#1a3a2a 0%,#2C5F4A 50%,#3a7a5a 100%)}
+.hc-slide-n2{background:linear-gradient(145deg,#2a4a38,#3a6a4e)}
+.hc-slide-n3{background:linear-gradient(145deg,#1a3a2a,#243e30)}
+.hc-nav-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
+.hc-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:all .2s}
+.hc-dot.on{background:white;width:14px;border-radius:3px}
+.hc-arr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.18);border:none;color:white;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:background .2s}
+.hc-arr:hover{background:rgba(255,255,255,.32)}
+.hc-arr.l{left:10px}.hc-arr.r{right:10px}
+.hc-badge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);color:white;font-size:10px;letter-spacing:.07em;padding:5px 11px;border-radius:100px;font-weight:500}
+.hc-body{padding:18px 20px 20px}
+.hc-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--ink);margin-bottom:3px}
+.hc-loc{font-size:12px;color:var(--muted);margin-bottom:12px}
+.hc-amenities{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.hc-tag{font-size:11.5px;background:var(--fog);color:var(--muted);padding:4px 10px;border-radius:100px}
+.hc-footer{display:flex;align-items:flex-end;justify-content:space-between}
+.hc-price{font-size:1.3rem;font-weight:600;color:var(--ink)}
+.hc-price small{font-size:12px;font-weight:400;color:var(--muted)}
+.hc-price sub{font-size:12px;font-weight:400;color:var(--muted);display:block;margin-top:2px}
+.hc-cta{background:var(--ink);color:white;border:none;border-radius:100px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
+.hc-cta:hover{background:var(--ink2)}
+
+/* ── CALENDAR ── */
+.cal-wrap{margin-top:16px}
+.cal-loading{text-align:center;padding:20px;font-size:13px;color:var(--muted)}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.cal-nav button{background:none;border:1.5px solid var(--border);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--ink)}
+.cal-nav button:hover{background:var(--fog);border-color:var(--ink)}
+.cal-month{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--ink)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-dow{text-align:center;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:6px 0}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;border-radius:8px;cursor:pointer;transition:all .15s;position:relative;font-weight:500;border:none;background:none;font-family:'Inter',sans-serif;color:var(--ink)}
+.cal-day:hover:not(.blocked):not(.past):not(.empty){background:var(--fog2)}
+.cal-day.today{font-weight:700;color:var(--gold)}
+.cal-day.past{color:var(--border);cursor:not-allowed;text-decoration:line-through}
+.cal-day.blocked{background:rgba(192,57,43,0.08);color:rgba(192,57,43,0.4);cursor:not-allowed;text-decoration:line-through}
+.cal-day.blocked::after{content:'';position:absolute;inset:4px;border-radius:4px;background:rgba(192,57,43,0.1)}
+.cal-day.selected-start,.cal-day.selected-end{background:var(--ink);color:white;border-radius:8px}
+.cal-day.selected-start{border-radius:8px 0 0 8px}
+.cal-day.selected-end{border-radius:0 8px 8px 0}
+.cal-day.in-range{background:rgba(15,25,35,0.07);border-radius:0}
+.cal-day.empty{cursor:default}
+.cal-legend{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
+.cal-legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.cal-legend-dot{width:10px;height:10px;border-radius:3px}
+.cal-two-months{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:580px){.cal-two-months{grid-template-columns:1fr}}
+.cal-single{background:var(--fog);border-radius:14px;padding:16px}
+.date-confirm-row{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.date-chip{flex:1;min-width:120px;background:white;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px}
+.date-chip-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.date-chip-val{font-size:14px;font-weight:500;color:var(--ink);margin-top:2px}
+.date-chip-val.empty{color:var(--muted);font-weight:400}
+.nights-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(44,95,74,0.1);color:var(--sage);padding:6px 14px;border-radius:100px;font-size:13px;font-weight:600}
+.discount-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(44,95,74,0.12);color:var(--sage);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600}
+
+/* ── BOOKING MODAL ── */
+.booking-modal{position:fixed;inset:0;z-index:300;display:none}
+.booking-modal.open{display:flex}
+.bm-backdrop{position:absolute;inset:0;background:rgba(15,25,35,0.6);backdrop-filter:blur(6px)}
+.bm-sheet{position:absolute;bottom:0;left:0;right:0;background:white;border-radius:24px 24px 0 0;max-height:92svh;overflow-y:auto;transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
+.bm-sheet.in{transform:translateY(0)}
+.bm-handle{width:36px;height:4px;background:var(--fog2);border-radius:2px;margin:14px auto 0}
+.bm-header{padding:20px 24px 0;display:flex;align-items:flex-start;justify-content:space-between}
+.bm-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--ink)}
+.bm-close{width:32px;height:32px;border-radius:50%;background:var(--fog2);border:none;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.bm-body{padding:16px 24px 48px}
+.flow-dots{display:flex;align-items:center;gap:6px;margin-bottom:24px}
+.flow-dot{width:8px;height:8px;border-radius:50%;background:var(--fog2);transition:all .3s}
+.flow-dot.on{background:var(--ink);width:24px;border-radius:4px}
+.flow-dot.done{background:var(--sage)}
+.flow-step{display:none}
+.flow-step.active{display:block;animation:slideUp .3s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.field{margin-bottom:16px}
+.field label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.field input,.field textarea{width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-family:'Inter',sans-serif;color:var(--ink);background:var(--fog);outline:none;transition:all .2s;-webkit-appearance:none}
+.field input:focus,.field textarea:focus{border-color:var(--ink);background:white;box-shadow:0 0 0 3px rgba(15,25,35,0.07)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sum-bar{background:var(--fog);border-radius:14px;padding:16px 18px;margin-bottom:20px}
+.sum-bar-prop{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--ink);margin-bottom:4px}
+.sum-bar-dates{font-size:13px;color:var(--muted)}
+.sum-bar-rule{height:1px;background:var(--border);margin:12px 0}
+.sum-line{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
+.sum-line:last-child{margin-bottom:0}
+.sum-line.total{font-size:15px;font-weight:700;color:var(--ink);margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.sum-line.savings span:last-child{color:var(--sage);font-weight:600}
+.deposit-callout{background:linear-gradient(135deg,rgba(184,134,60,0.08),rgba(184,134,60,0.04));border:1.5px solid rgba(184,134,60,0.2);border-radius:14px;padding:16px 18px;margin-bottom:20px}
+.dc-top{font-size:13px;font-weight:600;color:var(--gold);margin-bottom:4px}
+.dc-amount{font-size:2rem;font-weight:700;color:var(--ink);font-family:'Cormorant Garamond',serif}
+.dc-amount small{font-size:1rem;font-weight:400;color:var(--muted)}
+.dc-note{font-size:12px;color:var(--muted);margin-top:4px}
+.stripe-wrap{background:white;border:1.5px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.stripe-head{padding:14px 16px 0;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+#card-el{padding:14px 16px 16px}
+.stripe-secure{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--muted);padding-bottom:14px}
+#card-err{color:var(--ember);font-size:12px;padding:0 16px 12px;display:none}
+.btn-pay{width:100%;background:var(--ink);color:white;border:none;border-radius:14px;padding:18px;font-size:16px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-pay:hover{background:var(--ink2);transform:translateY(-1px)}
+.btn-pay:disabled{background:var(--muted);cursor:not-allowed;transform:none}
+.btn-wa{width:100%;background:#25D366;color:white;border:none;border-radius:14px;padding:16px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
+.btn-wa:hover{background:#20b958}
+.btn-back{background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;margin-top:14px;display:flex;align-items:center;gap:5px;padding:0}
+.btn-back:hover{color:var(--ink)}
+.btn-next{width:100%;background:var(--ink);color:white;border:none;border-radius:14px;padding:17px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-next:hover{background:var(--ink2)}
+.btn-next:disabled{background:var(--muted);cursor:not-allowed}
+.success-flow{display:none;text-align:center;padding:20px 0 40px}
+.suc-ring{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--sage),#4a8a6a);display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;font-size:2.2rem;box-shadow:0 8px 32px rgba(44,95,74,0.3)}
+.suc-title{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--ink);margin-bottom:.5rem}
+.suc-msg{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
+.suc-ref{font-size:12px;font-family:monospace;background:var(--fog);padding:10px 20px;border-radius:10px;color:var(--ink);font-weight:600;letter-spacing:.05em;display:inline-block;margin-bottom:1.5rem}
+.suc-balance{background:rgba(184,134,60,.08);border:1px solid rgba(184,134,60,.2);border-radius:12px;padding:14px 18px;font-size:14px;color:var(--muted);margin-bottom:1.5rem;text-align:left}
+.reviews{padding:60px 20px;background:white}
+.reviews-inner{max-width:960px;margin:0 auto}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:2rem}
+.rv-card{background:var(--fog);border-radius:16px;padding:20px}
+.rv-stars{color:#F4C430;font-size:13px;letter-spacing:2px;margin-bottom:10px}
+.rv-text{font-size:14px;line-height:1.7;color:var(--ink);margin-bottom:14px;font-style:italic}
+.rv-author{font-size:13px;font-weight:600;color:var(--ink)}
+.rv-when{font-size:11px;color:var(--muted);margin-top:2px}
+.amenities{padding:60px 20px;background:var(--fog)}
+.amenities-inner{max-width:960px;margin:0 auto}
+.ams-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:2.5rem}
+@media(max-width:620px){.ams-grid{grid-template-columns:1fr}}
+.am-home-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--ink);margin-bottom:.2rem}
+.am-home-sub{font-size:12px;color:var(--muted);margin-bottom:1.2rem}
+.am-list{list-style:none}
+.am-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--ink)}
+.am-item:last-child{border-bottom:none}
+.am-icon{width:36px;height:36px;border-radius:10px;background:white;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.policies{padding:40px 20px;max-width:960px;margin:0 auto}
+.pol-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:1.5rem}
+.pol-card{background:white;border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+.pol-card h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.pol-card p{font-size:12px;color:var(--muted);line-height:1.6}
+.footer-cta{background:var(--ink);padding:60px 24px;text-align:center}
+.footer-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,3.5rem);color:white;font-weight:400;margin-bottom:.7rem}
+.footer-cta h2 em{font-style:italic;color:#A8D8C8}
+.footer-cta p{color:rgba(255,255,255,.55);font-size:15px;margin-bottom:2rem}
+.footer-links-row{display:flex;justify-content:center;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap}
+.footer-links-row a{color:rgba(255,255,255,.4);font-size:12px;text-decoration:none;transition:color .2s}
+.footer-links-row a:hover{color:rgba(255,255,255,.8)}
+.loading-screen{display:none;position:fixed;inset:0;z-index:500;background:rgba(15,25,35,.7);backdrop-filter:blur(8px);align-items:center;justify-content:center;flex-direction:column;gap:16px}
+.loading-screen.show{display:flex}
+.spin{width:44px;height:44px;border:3px solid rgba(255,255,255,.2);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{color:white;font-size:15px;font-weight:500}
+.live-price-bar{display:none;background:linear-gradient(135deg,rgba(184,134,60,0.07),rgba(184,134,60,0.03));border:1.5px solid rgba(184,134,60,0.2);border-radius:14px;padding:14px 16px;margin-bottom:16px}
+.promo-wrap{margin-bottom:16px}
+.promo-row{display:flex;gap:8px}
+.promo-input{flex:1;padding:13px 15px;border:1.5px solid var(--border);border-radius:12px;font-size:14px;font-family:'Inter',sans-serif;color:var(--ink);background:var(--fog);outline:none;transition:all .2s;text-transform:uppercase;letter-spacing:.05em}
+.promo-input:focus{border-color:var(--ink);background:white}
+.promo-input.valid{border-color:var(--sage);background:rgba(44,95,74,0.04)}
+.promo-input.invalid{border-color:var(--ember);background:rgba(192,57,43,0.04)}
+.promo-btn{padding:13px 18px;border-radius:12px;border:1.5px solid var(--border);background:var(--fog);font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;color:var(--ink);transition:all .2s;white-space:nowrap}
+.promo-btn:hover{background:var(--fog2);border-color:var(--ink)}
+.promo-feedback{margin-top:8px;font-size:13px;display:none;align-items:center;gap:6px}
+.promo-feedback.show{display:flex}
+.promo-feedback.ok{color:var(--sage)}
+.promo-feedback.err{color:var(--ember)}
+.bond-notice{background:rgba(27,79,114,0.06);border:1.5px solid rgba(27,79,114,0.15);border-radius:12px;padding:12px 15px;margin-bottom:14px;font-size:13px;color:var(--sky)}
+.bond-notice strong{display:block;font-size:14px;margin-bottom:2px}
+.min-stay-warn{background:rgba(192,57,43,0.07);border:1.5px solid rgba(192,57,43,0.2);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--ember);margin-top:8px;display:none}
+.min-stay-warn.show{display:block}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">Lupe <b>Accommodations</b></div>
+  <button class="nav-book-btn" onclick="openBooking()">Book now</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-art"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-tag"><div class="hero-dot"></div> 2 homes available in Samoa</div>
+    <h1>Your family's<br><em>island escape</em><br>awaits</h1>
+    <p class="hero-desc">Private holiday homes in the heart of Samoa. AC, WiFi, full kitchen — everything your family needs.</p>
+    <div class="hero-cta-row">
+      <button class="btn-hero" onclick="openBooking()">Check availability →</button>
+      <div class="hero-proof"><span class="stars">★★★★★</span> 4.97 · 80+ reviews</div>
+    </div>
+  </div>
+</section>
+
+<div class="proof-strip">
+  <div class="proof-item"><div class="proof-num">2</div><div class="proof-label">Private<br>homes</div></div>
+  <div class="proof-item"><div class="proof-num">28K</div><div class="proof-label">Instagram<br>followers</div></div>
+  <div class="proof-item"><div class="proof-num">4.97</div><div class="proof-label">Average<br>rating</div></div>
+  <div class="proof-item"><div class="proof-num">80+</div><div class="proof-label">Happy<br>families</div></div>
+  <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Booking fees<br>(book direct)</div></div>
+</div>
+
+<div class="search-bar-wrap">
+  <div class="search-bar">
+    <button class="sb-cell" onclick="openPanel('prop-panel')">
+      <div class="sb-cell-label">Home</div>
+      <div class="sb-cell-val empty" id="sb-prop">Choose a home</div>
+    </button>
+    <button class="sb-cell" onclick="openPanel('date-panel')">
+      <div class="sb-cell-label">Check-in</div>
+      <div class="sb-cell-val empty" id="sb-cin">Add date</div>
+    </button>
+    <button class="sb-cell" onclick="openPanel('date-panel')">
+      <div class="sb-cell-label">Check-out</div>
+      <div class="sb-cell-val empty" id="sb-cout">Add date</div>
+    </button>
+    <button class="sb-cell" onclick="openPanel('guest-panel')" style="border-right:none">
+      <div class="sb-cell-label">Guests</div>
+      <div class="sb-cell-val" id="sb-guests">1 guest</div>
+    </button>
+    <button class="sb-search-btn" onclick="startSearch()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Book
+    </button>
+  </div>
+</div>
+
+<section class="homes">
+  <div class="section-eyebrow">Our homes</div>
+  <div class="section-title">Where will you stay?</div>
+  <div class="homes-grid">
+    <div class="home-card" onclick="quickBook('heavenly')">
+      <div class="hc-gallery">
+        <div class="hc-gal-inner" id="gal-h">
+          <div class="hc-slide" style="background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067043/IMG_5377_xvs4sk.jpg') center/cover no-repeat"></div>
+          <div class="hc-slide" style="background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067045/IMG_5376_k4odp5.jpg') center/cover no-repeat"></div>
+          <div class="hc-slide" style="background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067040/IMG_5369_lhiese.jpg') center/cover no-repeat"></div>
+        </div>
+        <div class="hc-badge">4 BED · UP TO 13</div>
+        <div class="hc-nav-dots" id="dots-h">
+          <div class="hc-dot on"></div><div class="hc-dot"></div><div class="hc-dot"></div>
+        </div>
+        <button class="hc-arr l" onclick="event.stopPropagation();shiftSlide('h',-1)">‹</button>
+        <button class="hc-arr r" onclick="event.stopPropagation();shiftSlide('h',1)">›</button>
+      </div>
+      <div class="hc-body">
+        <div class="hc-name">Heavenly Home</div>
+        <div class="hc-loc">📍 Vaitele · Mountain views</div>
+        <div class="hc-amenities">
+          <span class="hc-tag">🌬️ Full AC</span><span class="hc-tag">📺 65" TV</span>
+          <span class="hc-tag">📶 WiFi</span><span class="hc-tag">🍳 Kitchen</span><span class="hc-tag">🚿 Outdoor shower</span>
+        </div>
+        <div class="hc-footer">
+          <div class="hc-price">$375 AUD <small>/ night</small><sub>from · up to 4 guests · max 13</sub></div>
+          <button class="hc-cta">Book →</button>
+        </div>
+      </div>
+    </div>
+    <div class="home-card" onclick="quickBook('nua')">
+      <div class="hc-gallery">
+        <div class="hc-gal-inner" id="gal-n">
+          <div class="hc-slide" style="background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067581/IMG_6042_yp8aog.jpg') center/cover no-repeat"></div>
+          <div class="hc-slide" style="background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067579/IMG_6041_dubzcn.jpg') center/cover no-repeat"></div>
+          <div class="hc-slide" style="background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067577/IMG_6028_tz6z0x.jpg') center/cover no-repeat"></div>
+        </div>
+        <div class="hc-badge">3 BED · UP TO 7 GUESTS</div>
+        <div class="hc-nav-dots" id="dots-n">
+          <div class="hc-dot on"></div><div class="hc-dot"></div><div class="hc-dot"></div>
+        </div>
+        <button class="hc-arr l" onclick="event.stopPropagation();shiftSlide('n',-1)">‹</button>
+        <button class="hc-arr r" onclick="event.stopPropagation();shiftSlide('n',1)">›</button>
+      </div>
+      <div class="hc-body">
+        <div class="hc-name">Nua's Oasis</div>
+        <div class="hc-loc">📍 Vailele · Private garden</div>
+        <div class="hc-amenities">
+          <span class="hc-tag">🌬️ Full AC</span><span class="hc-tag">📶 WiFi</span>
+          <span class="hc-tag">🍳 Kitchen</span><span class="hc-tag">🌳 Garden</span><span class="hc-tag">🧺 Laundry</span>
+        </div>
+        <div class="hc-footer">
+          <div class="hc-price">$230 AUD <small>/ night</small><sub>from · up to 4 guests · max 7</sub></div>
+          <button class="hc-cta">Book →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FULL PHOTO GALLERY -->
+<section id="photos" style="background:var(--fog);padding:60px 20px">
+  <div style="max-width:960px;margin:0 auto">
+    <div class="section-eyebrow">Gallery</div>
+    <div class="section-title">See inside</div>
+    <div style="display:flex;gap:10px;margin-bottom:1.2rem;flex-wrap:wrap">
+      <button onclick="showGallery('heavenly',this)" style="padding:9px 20px;border-radius:100px;border:1.5px solid var(--ink);background:var(--ink);color:white;font-size:13px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;transition:all .2s" id="gtab-heavenly">Heavenly Home</button>
+      <button onclick="showGallery('nua',this)" style="padding:9px 20px;border-radius:100px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;transition:all .2s" id="gtab-nua">Nua's Oasis</button>
+    </div>
+    <div id="gallery-heavenly" style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto;gap:8px;border-radius:16px;overflow:hidden">
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067043/IMG_5377_xvs4sk.jpg')" style="cursor:pointer; grid-row:1/3;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067043/IMG_5377_xvs4sk.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Living area</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067045/IMG_5376_k4odp5.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067045/IMG_5376_k4odp5.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Bedroom</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067040/IMG_5369_lhiese.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067040/IMG_5369_lhiese.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Kitchen</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067039/IMG_5370_q5rlcv.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067039/IMG_5370_q5rlcv.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Outdoor area</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067039/IMG_5380_ajsm6u.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067039/IMG_5380_ajsm6u.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Garden view</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067036/IMG_5373_onmcfh.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067036/IMG_5373_onmcfh.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Dining room</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067035/IMG_5367_lzatii.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067035/IMG_5367_lzatii.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Lounge</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067036/IMG_5371_zdylzl.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067036/IMG_5371_zdylzl.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Bathroom</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067044/IMG_5374_zzqzeo.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067044/IMG_5374_zzqzeo.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Exterior</div>
+      </div>
+    </div>
+    <div id="gallery-nua" style="display:none;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto;gap:8px;border-radius:16px;overflow:hidden">
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067581/IMG_6042_yp8aog.jpg')" style="cursor:pointer; grid-row:1/3;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067581/IMG_6042_yp8aog.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Living area</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067579/IMG_6041_dubzcn.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067579/IMG_6041_dubzcn.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Bedroom</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067577/IMG_6028_tz6z0x.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067577/IMG_6028_tz6z0x.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Kitchen</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067584/IMG_6039_j80soy.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067584/IMG_6039_j80soy.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Garden</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067585/IMG_6033_xpzoew.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067585/IMG_6033_xpzoew.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Lounge</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067585/IMG_6035_mt6gnh.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067585/IMG_6035_mt6gnh.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Dining area</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067584/IMG_6040_b3k0bn.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067584/IMG_6040_b3k0bn.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Outdoor space</div>
+      </div>
+      <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067476/IMG_6623_evengn.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067476/IMG_6623_evengn.jpg') center/cover no-repeat;position:relative;min-height:180px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:white;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">Exterior</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out">
+  <img id="lightbox-img" style="max-width:92vw;max-height:90vh;border-radius:12px;object-fit:contain;box-shadow:0 20px 80px rgba(0,0,0,0.5)" src="" alt="">
+  <button onclick="closeLightbox()" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.15);border:none;color:white;width:40px;height:40px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
+</div>
+<section class="reviews">
+  <div class="reviews-inner">
+    <div class="section-eyebrow">Guest reviews</div>
+    <div class="section-title">Families love it here</div>
+    <div class="reviews-grid">
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-text">"We've never felt so comfortable in a home in the islands. My parents felt right at home. Truly a special place — we'll be back."</p><div class="rv-author">Samoan family from Auckland</div><div class="rv-when">Heavenly Home · December 2024</div></div>
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-text">"Perfect for our big family reunion. Spacious, spotless, fully equipped. That outdoor shower is an experience you won't forget!"</p><div class="rv-author">Family group of 10 guests</div><div class="rv-when">Heavenly Home · January 2025</div></div>
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-text">"Nua's Oasis is exactly that — an oasis. Garden is gorgeous, AC is brilliant, everything you need is there. Absolute gem."</p><div class="rv-author">Couple from Sydney</div><div class="rv-when">Nua's Oasis · February 2025</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="amenities">
+  <div class="amenities-inner">
+    <div class="section-eyebrow">What's included</div>
+    <div class="section-title">Everything your family needs</div>
+    <div class="ams-grid">
+      <div>
+        <div class="am-home-title">Heavenly Home</div>
+        <div class="am-home-sub">4 bedrooms · Vaitele · Up to 13 guests</div>
+        <ul class="am-list">
+          <li class="am-item"><div class="am-icon">🌬️</div>Full air conditioning</li>
+          <li class="am-item"><div class="am-icon">📺</div>65" Smart TV + streaming</li>
+          <li class="am-item"><div class="am-icon">📶</div>Unlimited high-speed WiFi</li>
+          <li class="am-item"><div class="am-icon">🍳</div>Fully equipped kitchen</li>
+          <li class="am-item"><div class="am-icon">🛏️</div>Fresh linen & towels</li>
+          <li class="am-item"><div class="am-icon">🚿</div>High-pressure outdoor shower</li>
+          <li class="am-item"><div class="am-icon">🍽️</div>Large dining table</li>
+          <li class="am-item"><div class="am-icon">🅿️</div>Free on-site parking — 5+ vehicles</li>
+          <li class="am-item"><div class="am-icon">🚿</div>Hot water</li>
+          <li class="am-item"><div class="am-icon">🌀</div>Clothes dryer</li>
+          <li class="am-item"><div class="am-icon">🛁</div>2.5 bathrooms</li>
+          <li class="am-item"><div class="am-icon">♿</div>Wheelchair accessible</li>
+        </ul>
+      </div>
+      <div>
+        <div class="am-home-title">Nua's Oasis</div>
+        <div class="am-home-sub">3 bedrooms · Vailele · Up to 7 guests</div>
+        <ul class="am-list">
+          <li class="am-item"><div class="am-icon">🌬️</div>Full air conditioning</li>
+          <li class="am-item"><div class="am-icon">📶</div>Unlimited high-speed WiFi</li>
+          <li class="am-item"><div class="am-icon">🍳</div>Fully equipped kitchen</li>
+          <li class="am-item"><div class="am-icon">🛏️</div>Fresh linen & towels</li>
+          <li class="am-item"><div class="am-icon">🌳</div>Private garden & outdoor space</li>
+          <li class="am-item"><div class="am-icon">🧺</div>Washing machine</li>
+          <li class="am-item"><div class="am-icon">🍽️</div>Dining area</li>
+          <li class="am-item"><div class="am-icon">🅿️</div>Free on-site parking — 3+ vehicles</li>
+          <li class="am-item"><div class="am-icon">🚿</div>Hot water</li>
+          <li class="am-item"><div class="am-icon">🌀</div>Clothes dryer</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="policies">
+  <div class="section-eyebrow">Terms &amp; Conditions</div>
+  <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:1.5rem 1.8rem;margin-bottom:2rem;font-size:14px;color:var(--muted);line-height:1.9">
+    <p style="font-weight:600;color:var(--ink);margin-bottom:.8rem;font-size:15px">Booking &amp; Payment Terms</p>
+    <p>1. A <strong style="color:var(--ink)">50% deposit</strong> is required at the time of booking to reserve your dates. Your booking is not confirmed until the deposit is received.</p>
+    <p style="margin-top:.6rem">2. The <strong style="color:var(--ink)">remaining 50% balance</strong> must be paid no later than <strong style="color:var(--ink)">30 days before your arrival date</strong>. Bookings made within 30 days of arrival require full payment upfront.</p>
+    <p style="margin-top:.6rem">3. A <strong style="color:var(--ink)">$300 AUD refundable security bond</strong> is collected at checkout and returned within 7 days of check-out, provided the property is left in good condition.</p>
+    <p style="margin-top:.6rem">4. <strong style="color:var(--ink)">Cancellation policy:</strong></p>
+    <p style="margin-top:.4rem;padding-left:1rem">• <strong style="color:var(--ink)">90+ days before arrival</strong> — Full refund</p>
+    <p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">60–89 days</strong> — 75% refund or 100% credit valid 12 months</p>
+    <p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">30–59 days</strong> — 75% credit valid 12 months</p>
+    <p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">15–29 days</strong> — 50% credit valid 12 months</p>
+    <p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">Within 14 days</strong> — 25% credit valid 12 months</p>
+    <p style="margin-top:.6rem">6. <strong style="color:var(--ink)">Credit conditions:</strong> Credits must be used within 12 months of issue. They may be applied to any available dates subject to availability. Credits are not transferable. If new dates cost more, the guest pays the difference. Credits hold no cash value.</p>
+    <p style="margin-top:.6rem">6. A <strong style="color:var(--ink)">10% discount</strong> applies automatically to stays of 9 nights or more. This discount cannot be combined with other promotional codes — the greater discount will apply.</p>
+    <p style="margin-top:.6rem">7. Lupe Accommodations reserves the right to cancel a booking in the event of unforeseen circumstances. In such cases, a full refund will be issued.</p>
+    <p style="margin-top:.6rem">7. Guests are responsible for any damage to the property during their stay. Costs exceeding the bond will be invoiced separately.</p>
+    <p style="margin-top:.6rem">8. Check-in is from <strong style="color:var(--ink)">3:00 PM</strong>. Check-out is by <strong style="color:var(--ink)">11:00 AM</strong>. Late check-out or early check-in may be arranged on request, subject to availability.</p>
+  </div>
+  <div class="section-eyebrow">Policies</div>
+  <div class="pol-grid">
+    <div class="pol-card"><h4>✅ Check-in</h4><p>From 3:00 PM. Early check-in on request — we'll do our best!</p></div>
+    <div class="pol-card"><h4>👋 Check-out</h4><p>By 11:00 AM. Late check-out on request.</p></div>
+    <div class="pol-card"><h4>🚭 No smoking</h4><p>Smoke outdoors only please.</p></div>
+    <div class="pol-card"><h4>🐾 No pets</h4><p>No animals at either property.</p></div>
+    <div class="pol-card"><h4>🔇 Quiet 10pm</h4><p>Respect neighbours after 10 PM.</p></div>
+    <div class="pol-card"><h4>💳 50% deposit</h4><p>Balance due 30 days before arrival. Bookings within 30 days require full payment upfront.</p></div>
+    <div class="pol-card"><h4>✅ 90+ days</h4><p>Full refund.</p></div>
+    <div class="pol-card"><h4>✅ 60–89 days</h4><p>75% refund or 100% credit (12 months).</p></div>
+    <div class="pol-card"><h4>🔄 30–59 days</h4><p>75% credit valid 12 months.</p></div>
+    <div class="pol-card"><h4>🔄 15–29 days</h4><p>50% credit valid 12 months.</p></div>
+    <div class="pol-card"><h4>🔄 Within 14 days</h4><p>25% credit valid 12 months.</p></div>
+    <div class="pol-card"><h4>🔒 $300 bond</h4><p>Refundable within 7 days of check-out if property left in good condition.</p></div>
+  </div>
+</div>
+
+<div class="footer-cta">
+  <h2>Ready for your<br><em>Samoa escape?</em></h2>
+  <p>Two beautiful homes. Book direct. Best rate guaranteed.</p>
+  <button class="btn-hero" onclick="openBooking()">Book now — it only takes 2 min →</button>
+  <div class="footer-links-row">
+    <a href="https://instagram.com/lupeaccommodations" target="_blank">Instagram</a>
+    <a href="https://lupeaccommodations.com" target="_blank">Website</a>
+    <a href="https://wa.me/6857621745" target="_blank">WhatsApp</a>
+    <a href="mailto:lupeaccommodations@gmail.com">Email</a>
+  </div>
+  <p style="margin-top:2rem;font-size:11px;opacity:.25">© 2025 Lupe Accommodations · Samoa</p>
+</div>
+
+<!-- PANELS -->
+<div class="dropdown-overlay" id="overlay" onclick="closePanel()"></div>
+
+<div class="dropdown-panel" id="prop-panel">
+  <div class="panel-handle"></div>
+  <div class="panel-title">Choose your home</div>
+  <div class="panel-body">
+    <div class="prop-pick">
+      <div class="prop-pick-card" id="pp-heavenly" onclick="chooseProp('heavenly')">
+        <div class="ppc-top">
+          <div class="ppc-icon h" style="background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067043/IMG_5377_xvs4sk.jpg') center/cover no-repeat;border-radius:12px"></div>
+          <div class="ppc-info">
+            <div class="ppc-name">Heavenly Home</div>
+            <div class="ppc-sub">4 bedrooms · Vaitele · Up to 13 guests</div>
+            <div class="ppc-rate">From $375 AUD/night</div>
+          </div>
+          <div class="ppc-check">✓</div>
+        </div>
+      </div>
+      <div class="prop-pick-card" id="pp-nua" onclick="chooseProp('nua')">
+        <div class="ppc-top">
+          <div class="ppc-icon n" style="background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067581/IMG_6042_yp8aog.jpg') center/cover no-repeat;border-radius:12px"></div>
+          <div class="ppc-info">
+            <div class="ppc-name">Nua's Oasis</div>
+            <div class="ppc-sub">3 bedrooms · Vailele · Up to 7 guests</div>
+            <div class="ppc-rate">From $230 AUD/night</div>
+          </div>
+          <div class="ppc-check">✓</div>
+        </div>
+      </div>
+    </div>
+    <button class="panel-confirm" id="prop-confirm" onclick="closePanel()" disabled>Confirm selection</button>
+  </div>
+</div>
+
+<div class="dropdown-panel" id="date-panel">
+  <div class="panel-handle"></div>
+  <div class="panel-title">When are you coming?</div>
+  <div class="panel-body">
+    <div id="cal-status" style="font-size:12px;color:var(--sage);margin-bottom:12px;display:none">
+      🔄 Loading availability from Airbnb...
+    </div>
+    <div class="cal-two-months">
+      <div class="cal-single">
+        <div class="cal-nav">
+          <button onclick="shiftMonth(-1)">‹</button>
+          <div class="cal-month" id="cal-m1-title"></div>
+          <button onclick="shiftMonth(1)">›</button>
+        </div>
+        <div class="cal-grid" id="cal-m1"></div>
+      </div>
+      <div class="cal-single">
+        <div class="cal-nav">
+          <button style="visibility:hidden">‹</button>
+          <div class="cal-month" id="cal-m2-title"></div>
+          <button style="visibility:hidden">›</button>
+        </div>
+        <div class="cal-grid" id="cal-m2"></div>
+      </div>
+    </div>
+    <div class="date-confirm-row" style="margin-top:16px">
+      <div class="date-chip">
+        <div class="date-chip-label">Check-in</div>
+        <div class="date-chip-val empty" id="dc-cin">Select date</div>
+      </div>
+      <div style="font-size:18px;color:var(--muted)">→</div>
+      <div class="date-chip">
+        <div class="date-chip-label">Check-out</div>
+        <div class="date-chip-val empty" id="dc-cout">Select date</div>
+      </div>
+    </div>
+    <div id="nights-info" style="margin-top:10px;display:none">
+      <span class="nights-chip" id="nights-chip-txt"></span>
+      <span class="discount-chip" id="disc-chip" style="display:none">🎉 10% discount for 9+ nights!</span>
+    </div>
+    <button class="panel-confirm" id="date-confirm" onclick="closePanel()" disabled style="margin-top:16px">Confirm dates</button>
+  </div>
+</div>
+
+<div class="dropdown-panel" id="guest-panel">
+  <div class="panel-handle"></div>
+  <div class="panel-title">How many guests?</div>
+  <div class="panel-body">
+    <div class="guest-row">
+      <div class="guest-info">
+        <strong>Guests</strong>
+        <span id="gp-max-note">Max 13 for Heavenly Home</span>
+      </div>
+      <div class="guest-ctrl">
+        <button class="g-btn" id="gp-minus" onclick="adjGuests(-1)" disabled>−</button>
+        <span class="g-count" id="gp-count">1</span>
+        <button class="g-btn" id="gp-plus" onclick="adjGuests(1)">+</button>
+      </div>
+    </div>
+    <button class="panel-confirm" onclick="closePanel()">Confirm guests</button>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="booking-modal" id="booking-modal">
+  <div class="bm-backdrop" onclick="closeBooking()"></div>
+  <div class="bm-sheet" id="bm-sheet">
+    <div class="bm-handle"></div>
+    <div class="bm-header">
+      <div class="bm-title" id="bm-title">Book your stay</div>
+      <button class="bm-close" onclick="closeBooking()">✕</button>
+    </div>
+    <div class="bm-body">
+      <div class="flow-dots" id="flow-dots">
+        <div class="flow-dot on" id="fd0"></div>
+        <div class="flow-dot" id="fd1"></div>
+        <div class="flow-dot" id="fd2"></div>
+        <div class="flow-dot" id="fd3"></div>
+      </div>
+
+      <!-- STEP 0: Choose home -->
+      <div class="flow-step active" id="fs0">
+        <div class="prop-pick" style="margin-bottom:16px">
+          <div class="prop-pick-card" id="bm-heavenly" onclick="bmChooseProp('heavenly')">
+            <div class="ppc-top">
+              <div class="ppc-icon h" style="background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067043/IMG_5377_xvs4sk.jpg') center/cover no-repeat;border-radius:12px"></div>
+              <div class="ppc-info">
+                <div class="ppc-name">Heavenly Home</div>
+                <div class="ppc-sub">4 bed · up to 13 guests · Vaitele</div>
+                <div class="ppc-rate">From $375 AUD/night</div>
+              </div>
+              <div class="ppc-check" id="bm-h-check">✓</div>
+            </div>
+          </div>
+          <div class="prop-pick-card" id="bm-nua" onclick="bmChooseProp('nua')">
+            <div class="ppc-top">
+              <div class="ppc-icon n" style="background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067581/IMG_6042_yp8aog.jpg') center/cover no-repeat;border-radius:12px"></div>
+              <div class="ppc-info">
+                <div class="ppc-name">Nua's Oasis</div>
+                <div class="ppc-sub">3 bed · up to 7 guests · Vailele</div>
+                <div class="ppc-rate">From $230 AUD/night</div>
+              </div>
+              <div class="ppc-check" id="bm-n-check">✓</div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-next" id="fs0-next" onclick="bmGoStep(1)" disabled>Continue →</button>
+      </div>
+
+      <!-- STEP 1: Dates + guests -->
+      <div class="flow-step" id="fs1">
+        <div id="bm-cal-wrap">
+          <div id="bm-cal-status" style="font-size:12px;color:var(--sage);margin-bottom:10px;display:none">🔄 Loading availability...</div>
+          <div class="cal-nav" style="margin-bottom:10px">
+            <button onclick="bmShiftMonth(-1)">‹</button>
+            <div class="cal-month" id="bm-cal-title"></div>
+            <button onclick="bmShiftMonth(1)">›</button>
+          </div>
+          <div class="cal-grid" id="bm-cal" style="margin-bottom:12px"></div>
+          <div class="date-confirm-row">
+            <div class="date-chip">
+              <div class="date-chip-label">Check-in</div>
+              <div class="date-chip-val empty" id="bm-dc-cin">Select date</div>
+            </div>
+            <div style="font-size:18px;color:var(--muted)">→</div>
+            <div class="date-chip">
+              <div class="date-chip-label">Check-out</div>
+              <div class="date-chip-val empty" id="bm-dc-cout">Select date</div>
+            </div>
+          </div>
+          <div id="bm-nights-info" style="margin-top:10px;display:none">
+            <span class="nights-chip" id="bm-nights-txt"></span>
+            <span class="discount-chip" id="bm-disc-chip" style="display:none">🎉 10% discount for 9+ nights!</span>
+          </div>
+          <div class="min-stay-warn" id="min-stay-warn"></div>
+        </div>
+
+        <div style="border:1.5px solid var(--border);border-radius:14px;padding:4px 16px;margin:16px 0;background:var(--fog)">
+          <div class="guest-row" style="padding:14px 0">
+            <div class="guest-info">
+              <strong>Guests</strong>
+              <span id="bm-gmax">Max 13 guests</span>
+            </div>
+            <div class="guest-ctrl">
+              <button class="g-btn" id="bm-minus" onclick="bmAdj(-1)" disabled>−</button>
+              <span class="g-count" id="bm-gcount">1</span>
+              <button class="g-btn" id="bm-plus" onclick="bmAdj(1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="live-price-bar" id="live-price-bar">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:13px;color:var(--muted)" id="lp-desc"></div>
+            <div style="font-size:1.4rem;font-weight:700;color:var(--ink);font-family:'Cormorant Garamond',serif" id="lp-total"></div>
+          </div>
+          <div style="font-size:12px;color:var(--sage);margin-top:4px" id="lp-note"></div>
+        </div>
+
+        <button class="btn-next" id="fs1-next" onclick="bmGoStep(2)" disabled>Continue →</button>
+        <button class="btn-back" onclick="bmGoStep(0)">← Back</button>
+      </div>
+
+      <!-- STEP 2: Guest details -->
+      <div class="flow-step" id="fs2">
+        <div class="sum-bar" id="fs2-sumbar"></div>
+        <div class="field-row" style="margin-bottom:16px">
+          <div class="field" style="margin-bottom:0"><label>First name</label><input type="text" id="bm-fname" placeholder="First name" oninput="checkStep2()"></div>
+          <div class="field" style="margin-bottom:0"><label>Last name</label><input type="text" id="bm-lname" placeholder="Last name" oninput="checkStep2()"></div>
+        </div>
+        <div class="field"><label>Email address</label><input type="email" id="bm-email" placeholder="you@email.com" oninput="checkStep2()"></div>
+        <div class="field"><label>WhatsApp / phone</label><input type="tel" id="bm-phone" placeholder="+685 or your number" oninput="checkStep2()"></div>
+        <div class="field"><label>Special requests <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label><textarea id="bm-requests" rows="2" placeholder="Early check-in, celebrations, dietary needs..."></textarea></div>
+        <button class="btn-next" id="fs2-next" onclick="bmGoStep(3)" disabled>Review & pay →</button>
+        <button class="btn-back" onclick="bmGoStep(1)">← Back</button>
+      </div>
+
+      <!-- STEP 3: Payment -->
+      <div class="flow-step" id="fs3">
+        <div class="deposit-callout">
+          <div class="dc-top">💳 Deposit due today (50%)</div>
+          <div class="dc-amount" id="dep-amount">$— <small>AUD</small></div>
+          <div class="dc-note" id="dep-note"></div>
+        </div>
+        <div class="sum-bar" id="fs3-sumbar"></div>
+        <div class="promo-wrap">
+          <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px">Promo code (optional)</label>
+          <div class="promo-row">
+            <input class="promo-input" id="promo-input" placeholder="ENTER CODE" oninput="this.value=this.value.toUpperCase()">
+            <button class="promo-btn" onclick="applyPromo()">Apply</button>
+          </div>
+          <div class="promo-feedback" id="promo-feedback"></div>
+        </div>
+        <div class="bond-notice">
+          <strong>🔒 Refundable security bond: $300 AUD</strong>
+          Collected at checkout and fully refunded within 7 days of check-out, provided the property is left in good condition.
+        </div>
+        <div class="stripe-wrap">
+          <div class="stripe-head">Card details</div>
+          <div id="card-el"></div>
+          <div id="card-err" style="color:var(--ember);font-size:12px;padding:0 16px 8px;display:none"></div>
+          <div class="stripe-secure">🔒 Secured by Stripe · 256-bit SSL · PCI Compliant</div>
+        </div>
+        <button class="btn-pay" id="pay-btn" onclick="doPay()">
+          <span id="pay-btn-text">🔒 Pay deposit now</span>
+        </button>
+        <div style="display:flex;align-items:center;gap:10px;margin:12px 0">
+          <div style="flex:1;height:1px;background:var(--border)"></div>
+          <div style="font-size:12px;color:var(--muted)">or</div>
+          <div style="flex:1;height:1px;background:var(--border)"></div>
+        </div>
+        <button class="btn-wa" onclick="doWhatsApp()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.557 4.124 1.526 5.858L0 24l6.335-1.526A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.034-1.388l-.36-.214-3.733.979.999-3.648-.235-.374A9.818 9.818 0 012.182 12C2.182 6.573 6.573 2.182 12 2.182S21.818 6.573 21.818 12 17.427 21.818 12 21.818z"/></svg>
+          Reserve via WhatsApp (pay later)
+        </button>
+        <button class="btn-back" onclick="bmGoStep(2)">← Back</button>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-flow" id="success-flow">
+        <div class="suc-ring">🌺</div>
+        <div class="suc-title">You're booked!</div>
+        <p class="suc-msg">Thank you, <strong id="suc-name"></strong>!<br>Confirmation sent to <strong id="suc-email"></strong>.<br>We'll reach out on WhatsApp to finalise details.</p>
+        <div class="suc-ref" id="suc-ref">LUPE-XXXXXX</div>
+        <div class="suc-balance" id="suc-balance-wrap"></div>
+        <button class="btn-next" onclick="resetAll()">Make another booking</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading-screen" id="loading">
+  <div class="spin"></div>
+  <div class="loading-text">Processing payment…</div>
+</div>
+
+<script>
+// ═══════════════════════
+//  ICAL PROXY & PARSER
+// ═══════════════════════
+// We use allorigins.win as a CORS proxy to fetch Airbnb iCal feeds
+const ICAL_URLS = {
+  heavenly: 'https://www.airbnb.com/calendar/ical/737148180379804560.ics?t=5e68645b953444b7b2734b72f9f910bd&locale=en-AU',
+  nua: 'https://www.airbnb.com/calendar/ical/1132966183263705313.ics?t=e186ffa51db245fe8db08ebbc27a5c20&locale=en-AU'
+};
+const blockedDates = { heavenly: new Set(), nua: new Set() };
+let calLoaded = { heavenly: false, nua: false };
+
+async function loadCalendar(prop) {
+  if (calLoaded[prop]) return;
+  // Try multiple CORS proxies for reliability
+  const proxies = [
+    `https://api.allorigins.win/get?url=${encodeURIComponent(ICAL_URLS[prop])}`,
+    `https://corsproxy.io/?${encodeURIComponent(ICAL_URLS[prop])}`,
+    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(ICAL_URLS[prop])}`
+  ];
+  for (const proxy of proxies) {
+    try {
+      const res = await fetch(proxy, { signal: AbortSignal.timeout ? AbortSignal.timeout(8000) : undefined });
+      const text = proxy.includes('allorigins') ? (await res.json()).contents : await res.text();
+      if (text && text.includes('VCALENDAR')) {
+        parseIcal(text, prop);
+        calLoaded[prop] = true;
+        console.log('Calendar loaded for', prop, 'via', proxy.split('?')[0]);
+        return;
+      }
+    } catch (e) {
+      console.log('Proxy failed, trying next:', e.message);
+    }
+  }
+  console.log('All proxies failed — calendar will show without Airbnb blocking');
+  calLoaded[prop] = true;
+}
+
+function parseIcal(ical, prop) {
+  if (!ical) return;
+  const events = ical.split('BEGIN:VEVENT');
+  events.forEach(ev => {
+    const dtstart = ev.match(/DTSTART[^:]*:(\d{8})/);
+    const dtend = ev.match(/DTEND[^:]*:(\d{8})/);
+    if (dtstart && dtend) {
+      let cur = parseIcalDate(dtstart[1]);
+      const end = parseIcalDate(dtend[1]);
+      while (cur < end) {
+        blockedDates[prop].add(toYMD(cur));
+        cur.setDate(cur.getDate() + 1);
+      }
+    }
+  });
+}
+
+function parseIcalDate(s) {
+  return new Date(s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8)+'T00:00:00');
+}
+
+// ═══════════════════════
+//  STATE
+// ═══════════════════════
+const S = { prop:null, cin:null, cout:null, guests:1, nights:0, rate:0, subtotal:0, discount:0, promoDiscount:0, total:0, deposit:0, balance:0, promoCode:null, promoLabel:'', fullPayNow:false, cancellationPolicy:'full-refund', cancellationText:'✅ Full refund — cancelled more than 90 days before arrival.' };
+const BOND = 300;
+const MIN_NIGHTS = { heavenly:4, nua:2 };
+const MAXG = { heavenly:13, nua:7 };
+const NAMES = { heavenly:'Heavenly Home', nua:"Nua's Oasis" };
+let stripeInited = false;
+let stripe, elements, cardEl;
+const galIdx = { h:0, n:0 };
+
+// Calendar state
+let calViewMonth = new Date();
+calViewMonth.setDate(1);
+let bmCalMonth = new Date();
+bmCalMonth.setDate(1);
+let selecting = 'start'; // 'start' or 'end'
+
+// ═══════════════════════
+//  PRICING
+// ═══════════════════════
+const TEST_MODE = true; // Set to true for $1 test, false for live prices
+
+function nightlyRate(prop, g) {
+  if (TEST_MODE) return 1; // $1/night for testing
+  if (prop === 'heavenly') {
+    if (g <= 4) return 375;
+    if (g <= 6) return 410;
+    if (g <= 8) return 450;
+    return 450 + (g - 8) * 35;
+  } else {
+    // Nua's Oasis
+    if (g <= 4) return 230;
+    if (g <= 6) return 270;
+    return 280;
+  }
+}
+
+function calcPricing() {
+  if (!S.prop || !S.nights) return;
+  S.rate = nightlyRate(S.prop, S.guests);
+  S.subtotal = S.rate * S.nights;
+  // Only one discount applies — whichever is larger
+  const weeklyAmt = S.nights >= 9 ? Math.round(S.subtotal * 0.1) : 0;
+  const promoAmt = S.promoCode ? Math.round(S.subtotal * (S.promoDiscount / 100)) : 0;
+  if (promoAmt >= weeklyAmt) {
+    S.discount = promoAmt;
+    S.discountLabel = S.promoLabel + ' (' + S.promoDiscount + '% off)';
+  } else if (weeklyAmt > 0) {
+    S.discount = weeklyAmt;
+    S.discountLabel = '10% discount — stay of 9+ nights';
+  } else {
+    S.discount = 0;
+    S.discountLabel = '';
+  }
+  S.total = S.subtotal - S.discount;
+
+  // TEST MODE: flat $1, no bond, no split payment
+  if (TEST_MODE) {
+    S.total = 1;
+    S.deposit = 1;
+    S.balance = 0;
+    S.fullPayNow = true;
+    return;
+  }
+
+  // If check-in is within 30 days, full amount required upfront
+  const daysUntilCheckin = S.cin ? Math.ceil((new Date(S.cin+'T00:00:00') - new Date()) / 86400000) : 999;
+  S.fullPayNow = daysUntilCheckin <= 30;
+  if (S.fullPayNow) {
+    S.deposit = S.total + BOND; // full stay + bond
+    S.balance = 0;
+  } else {
+    S.deposit = Math.round(S.total * 0.5) + BOND; // 50% + bond
+    S.balance = S.total - Math.round(S.total * 0.5); // remaining 50%
+  }
+  // Cancellation policy based on days until check-in
+  if (daysUntilCheckin > 90) {
+    S.cancellationPolicy = 'full-refund';
+    S.cancellationText = '✅ Full refund — cancelled more than 90 days before arrival.';
+  } else if (daysUntilCheckin >= 60) {
+    S.cancellationPolicy = 'partial-refund';
+    S.cancellationText = '✅ 75% refund or 100% credit valid 12 months — cancelled 60–89 days before arrival.';
+  } else if (daysUntilCheckin >= 30) {
+    S.cancellationPolicy = 'credit-75';
+    S.cancellationText = '🔄 75% credit valid 12 months — cancelled 30–59 days before arrival.';
+  } else if (daysUntilCheckin >= 15) {
+    S.cancellationPolicy = 'credit-50';
+    S.cancellationText = '🔄 50% credit valid 12 months — cancelled 15–29 days before arrival.';
+  } else {
+    S.cancellationPolicy = 'credit-25';
+    S.cancellationText = '🔄 25% credit valid 12 months — cancelled within 14 days of arrival.';
+  }
+}
+
+// ═══════════════════════
+//  DATE UTILS
+// ═══════════════════════
+function toYMD(d) {
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function fmtDate(d) {
+  if (!d) return '';
+  return new Date(d+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
+}
+const todayYMD = toYMD(new Date());
+
+// ═══════════════════════
+//  CALENDAR RENDERER
+// ═══════════════════════
+function renderCal(containerId, titleId, month, prop, cinState, coutState, onPick) {
+  const y = month.getFullYear(), m = month.getMonth();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById(titleId).textContent = months[m]+' '+y;
+  const grid = document.getElementById(containerId);
+  grid.innerHTML = '';
+  // Day headers
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'cal-dow'; el.textContent = d;
+    grid.appendChild(el);
+  });
+  const first = new Date(y, m, 1).getDay();
+  const days = new Date(y, m+1, 0).getDate();
+  for (let i = 0; i < first; i++) {
+    const el = document.createElement('div'); el.className = 'cal-day empty'; grid.appendChild(el);
+  }
+  for (let d = 1; d <= days; d++) {
+    const ymd = y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    const el = document.createElement('button');
+    el.className = 'cal-day'; el.textContent = d;
+    const isPast = ymd < todayYMD;
+    const isBlocked = prop && blockedDates[prop] && blockedDates[prop].has(ymd);
+    if (isPast) el.classList.add('past');
+    else if (isBlocked) el.classList.add('blocked');
+    else {
+      if (ymd === cinState) el.classList.add('selected-start');
+      if (ymd === coutState) el.classList.add('selected-end');
+      if (cinState && coutState && ymd > cinState && ymd < coutState) el.classList.add('in-range');
+      if (ymd === todayYMD) el.classList.add('today');
+      el.onclick = () => onPick(ymd);
+    }
+    grid.appendChild(el);
+  }
+}
+
+function renderTwoMonths() {
+  const m2 = new Date(calViewMonth);
+  m2.setMonth(m2.getMonth()+1);
+  renderCal('cal-m1','cal-m1-title', calViewMonth, S.prop, S.cin, S.cout, pickDate);
+  renderCal('cal-m2','cal-m2-title', m2, S.prop, S.cin, S.cout, pickDate);
+}
+
+function shiftMonth(d) {
+  calViewMonth.setMonth(calViewMonth.getMonth()+d);
+  renderTwoMonths();
+}
+
+function pickDate(ymd) {
+  if (!S.cin || (S.cin && S.cout) || ymd <= S.cin) {
+    // Start new selection
+    S.cin = ymd; S.cout = null;
+    document.getElementById('dc-cin').textContent = fmtDate(ymd);
+    document.getElementById('dc-cin').classList.remove('empty');
+    document.getElementById('dc-cout').textContent = 'Select date';
+    document.getElementById('dc-cout').classList.add('empty');
+    document.getElementById('date-confirm').disabled = true;
+    document.getElementById('nights-info').style.display = 'none';
+  } else {
+    // Check no blocked dates in range
+    let hasBlocked = false;
+    if (S.prop) {
+      let cur = new Date(S.cin+'T00:00:00');
+      cur.setDate(cur.getDate()+1);
+      const end = new Date(ymd+'T00:00:00');
+      while (cur < end) {
+        if (blockedDates[S.prop].has(toYMD(cur))) { hasBlocked = true; break; }
+        cur.setDate(cur.getDate()+1);
+      }
+    }
+    if (hasBlocked) {
+      // Reset and start over
+      S.cin = ymd; S.cout = null;
+      document.getElementById('dc-cin').textContent = fmtDate(ymd);
+      document.getElementById('dc-cin').classList.remove('empty');
+      document.getElementById('dc-cout').textContent = 'Select date';
+      document.getElementById('dc-cout').classList.add('empty');
+    } else {
+      S.cout = ymd;
+      S.nights = Math.round((new Date(ymd+'T00:00:00') - new Date(S.cin+'T00:00:00')) / 86400000);
+      document.getElementById('dc-cout').textContent = fmtDate(ymd);
+      document.getElementById('dc-cout').classList.remove('empty');
+      document.getElementById('date-confirm').disabled = false;
+      const nc = document.getElementById('nights-info');
+      nc.style.display = 'block';
+      document.getElementById('nights-chip-txt').textContent = S.nights+' night'+(S.nights!==1?'s':'');
+      document.getElementById('disc-chip').style.display = S.nights >= 9 ? 'inline-flex' : 'none';
+      // Update search bar
+      document.getElementById('sb-cin').textContent = fmtDate(S.cin);
+      document.getElementById('sb-cin').classList.remove('empty');
+      document.getElementById('sb-cout').textContent = fmtDate(S.cout);
+      document.getElementById('sb-cout').classList.remove('empty');
+      calcPricing();
+    }
+  }
+  renderTwoMonths();
+}
+
+// ── BM CALENDAR ──
+function renderBmCal() {
+  renderCal('bm-cal','bm-cal-title', bmCalMonth, S.prop, S.cin, S.cout, bmPickDate);
+}
+function bmShiftMonth(d) {
+  bmCalMonth.setMonth(bmCalMonth.getMonth()+d);
+  renderBmCal();
+}
+function bmPickDate(ymd) {
+  if (!S.cin || (S.cin && S.cout) || ymd <= S.cin) {
+    S.cin = ymd; S.cout = null;
+    document.getElementById('bm-dc-cin').textContent = fmtDate(ymd);
+    document.getElementById('bm-dc-cin').classList.remove('empty');
+    document.getElementById('bm-dc-cout').textContent = 'Select date';
+    document.getElementById('bm-dc-cout').classList.add('empty');
+    document.getElementById('fs1-next').disabled = true;
+    document.getElementById('bm-nights-info').style.display = 'none';
+    document.getElementById('live-price-bar').style.display = 'none';
+  } else {
+    let hasBlocked = false;
+    if (S.prop) {
+      let cur = new Date(S.cin+'T00:00:00'); cur.setDate(cur.getDate()+1);
+      const end = new Date(ymd+'T00:00:00');
+      while (cur < end) { if (blockedDates[S.prop].has(toYMD(cur))) { hasBlocked = true; break; } cur.setDate(cur.getDate()+1); }
+    }
+    if (hasBlocked) {
+      S.cin = ymd; S.cout = null;
+      document.getElementById('bm-dc-cin').textContent = fmtDate(ymd);
+      document.getElementById('bm-dc-cin').classList.remove('empty');
+      document.getElementById('bm-dc-cout').textContent = 'Select date';
+      document.getElementById('bm-dc-cout').classList.add('empty');
+    } else {
+      S.cout = ymd;
+      S.nights = Math.round((new Date(ymd+'T00:00:00') - new Date(S.cin+'T00:00:00')) / 86400000);
+      document.getElementById('bm-dc-cout').textContent = fmtDate(ymd);
+      document.getElementById('bm-dc-cout').classList.remove('empty');
+      const minN = S.prop ? MIN_NIGHTS[S.prop] : 1;
+      const warn = document.getElementById('min-stay-warn');
+      if (S.nights < minN) {
+        warn.textContent = `Minimum stay for ${NAMES[S.prop]} is ${minN} nights. Please select a later check-out date.`;
+        warn.classList.add('show');
+        document.getElementById('fs1-next').disabled = true;
+      } else {
+        warn.classList.remove('show');
+        document.getElementById('fs1-next').disabled = false;
+      }
+      document.getElementById('bm-nights-info').style.display = 'block';
+      document.getElementById('bm-nights-txt').textContent = S.nights+' night'+(S.nights!==1?'s':'');
+      document.getElementById('bm-disc-chip').style.display = S.nights >= 9 ? 'inline-flex' : 'none';
+      calcPricing();
+      document.getElementById('live-price-bar').style.display = 'block';
+      document.getElementById('lp-desc').textContent = `$${S.rate}/night × ${S.nights} nights${S.discount ? ` − $${S.discount} discount` : ''}`;
+      document.getElementById('lp-total').textContent = `$${S.total} AUD`;
+      document.getElementById('lp-note').textContent = S.discount > 0 ? `🎉 You save $${S.discount} AUD with the extended stay rate!` : '';
+    }
+  }
+  renderBmCal();
+}
+
+// ═══════════════════════
+//  GALLERY
+// ═══════════════════════
+function shiftSlide(g, d) {
+  const slides = document.getElementById('gal-'+g).children.length;
+  galIdx[g] = (galIdx[g]+d+slides)%slides;
+  document.getElementById('gal-'+g).style.transform = `translateX(-${galIdx[g]*100}%)`;
+  document.querySelectorAll('#dots-'+g+' .hc-dot').forEach((dot,i) => dot.classList.toggle('on', i===galIdx[g]));
+}
+
+// ═══════════════════════
+//  PANELS
+// ═══════════════════════
+let activePanel = null;
+function openPanel(id) {
+  closePanel();
+  if (id === 'date-panel' && S.prop && !calLoaded[S.prop]) {
+    document.getElementById('cal-status').style.display = 'block';
+    loadCalendar(S.prop).then(() => {
+      document.getElementById('cal-status').style.display = 'none';
+      renderTwoMonths();
+    });
+  }
+  if (id === 'date-panel') renderTwoMonths();
+  activePanel = id;
+  document.getElementById('overlay').classList.add('show');
+  const p = document.getElementById(id);
+  p.style.display = 'block';
+  requestAnimationFrame(() => requestAnimationFrame(() => p.classList.add('open')));
+}
+function closePanel() {
+  if (activePanel) {
+    const p = document.getElementById(activePanel);
+    p.classList.remove('open');
+    setTimeout(() => { p.style.display='none'; }, 350);
+    activePanel = null;
+  }
+  document.getElementById('overlay').classList.remove('show');
+}
+function chooseProp(id) {
+  S.prop = id;
+  ['heavenly','nua'].forEach(p => document.getElementById('pp-'+p).classList.toggle('chosen', p===id));
+  document.getElementById('prop-confirm').disabled = false;
+  document.getElementById('sb-prop').textContent = NAMES[id];
+  document.getElementById('sb-prop').classList.remove('empty');
+  document.getElementById('gp-max-note').textContent = 'Max '+MAXG[id]+' for '+NAMES[id];
+  document.getElementById('gp-plus').disabled = S.guests >= MAXG[id];
+  loadCalendar(id);
+}
+function adjGuests(d) {
+  const max = S.prop ? MAXG[S.prop] : 13;
+  S.guests = Math.max(1, Math.min(max, S.guests+d));
+  document.getElementById('gp-count').textContent = S.guests;
+  document.getElementById('sb-guests').textContent = S.guests+' guest'+(S.guests!==1?'s':'');
+  document.getElementById('gp-minus').disabled = S.guests <= 1;
+  document.getElementById('gp-plus').disabled = S.guests >= max;
+  calcPricing();
+}
+function startSearch() {
+  if (!S.prop) { openPanel('prop-panel'); return; }
+  if (!S.cin || !S.cout) { openPanel('date-panel'); return; }
+  openBooking();
+}
+
+// ═══════════════════════
+//  BOOKING MODAL
+// ═══════════════════════
+function openBooking(preselect) {
+  if (preselect) S.prop = preselect;
+  const modal = document.getElementById('booking-modal');
+  const sheet = document.getElementById('bm-sheet');
+  modal.style.display = 'flex';
+  requestAnimationFrame(() => requestAnimationFrame(() => sheet.classList.add('in')));
+  document.body.style.overflow = 'hidden';
+  if (S.prop) { bmPreselect(S.prop); bmGoStep(1); } else { bmGoStep(0); }
+}
+function quickBook(prop) { S.prop = prop; openBooking(prop); }
+function closeBooking() {
+  document.getElementById('bm-sheet').classList.remove('in');
+  setTimeout(() => { document.getElementById('booking-modal').style.display='none'; document.body.style.overflow=''; }, 400);
+}
+function bmPreselect(prop) {
+  S.prop = prop;
+  ['heavenly','nua'].forEach(p => document.getElementById('bm-'+p).classList.toggle('chosen', p===prop));
+  document.getElementById('fs0-next').disabled = false;
+  document.getElementById('bm-gmax').textContent = 'Max '+MAXG[prop]+' for '+NAMES[prop];
+}
+function bmChooseProp(prop) {
+  S.prop = prop;
+  ['heavenly','nua'].forEach(p => document.getElementById('bm-'+p).classList.toggle('chosen', p===prop));
+  document.getElementById('fs0-next').disabled = false;
+  document.getElementById('bm-gmax').textContent = 'Max '+MAXG[prop]+' for '+NAMES[prop];
+  const max = MAXG[prop];
+  if (S.guests > max) { S.guests = max; document.getElementById('bm-gcount').textContent = max; }
+  document.getElementById('bm-plus').disabled = S.guests >= max;
+  loadCalendar(prop);
+}
+function bmAdj(d) {
+  const max = S.prop ? MAXG[S.prop] : 13;
+  S.guests = Math.max(1, Math.min(max, S.guests+d));
+  document.getElementById('bm-gcount').textContent = S.guests;
+  document.getElementById('bm-minus').disabled = S.guests <= 1;
+  document.getElementById('bm-plus').disabled = S.guests >= max;
+  if (S.nights > 0) { calcPricing(); document.getElementById('lp-desc').textContent = `$${S.rate}/night × ${S.nights} nights${S.discount ? ` − $${S.discount}` : ''}`; document.getElementById('lp-total').textContent = `$${S.total} AUD`; }
+}
+
+let currentStep = 0;
+function bmGoStep(n) {
+  currentStep = n;
+  for (let i=0; i<=3; i++) {
+    const el = document.getElementById('fs'+i);
+    if (el) el.classList.toggle('active', i===n);
+    const dot = document.getElementById('fd'+i);
+    if (dot) { dot.classList.remove('on','done'); if (i===n) dot.classList.add('on'); else if (i<n) dot.classList.add('done'); }
+  }
+  const titles = ['Choose your home','Pick your dates','Your details','Confirm & pay'];
+  document.getElementById('bm-title').textContent = titles[n]||'Book';
+  document.getElementById('bm-sheet').scrollTop = 0;
+  if (n===1) {
+    // Load calendar for this property
+    if (S.prop && !calLoaded[S.prop]) {
+      document.getElementById('bm-cal-status').style.display = 'block';
+      loadCalendar(S.prop).then(() => { document.getElementById('bm-cal-status').style.display='none'; renderBmCal(); });
+    } else { renderBmCal(); }
+    // Restore dates if already selected
+    if (S.cin) { document.getElementById('bm-dc-cin').textContent = fmtDate(S.cin); document.getElementById('bm-dc-cin').classList.remove('empty'); }
+    if (S.cout) { document.getElementById('bm-dc-cout').textContent = fmtDate(S.cout); document.getElementById('bm-dc-cout').classList.remove('empty'); document.getElementById('fs1-next').disabled = false; }
+  }
+  if (n===2) renderSumBar('fs2-sumbar');
+  if (n===3) { renderSumBar('fs3-sumbar'); renderPayStep(); initStripeAndWake(); }
+}
+
+function renderSumBar(id) {
+  calcPricing();
+  const el = document.getElementById(id);
+  if (!el || !S.prop || !S.nights) return;
+  let html = `<div class="sum-bar-prop">${NAMES[S.prop]}</div>`;
+  html += `<div class="sum-bar-dates">${fmtDate(S.cin)} → ${fmtDate(S.cout)} · ${S.nights} night${S.nights!==1?'s':''} · ${S.guests} guest${S.guests!==1?'s':''}</div>`;
+  html += `<div class="sum-bar-rule"></div>`;
+  html += `<div class="sum-line"><span>$${S.rate}/night × ${S.nights} nights</span><span>$${S.subtotal} AUD</span></div>`;
+  if (S.discount>0) html += `<div class="sum-line savings"><span>🎉 ${S.discountLabel}</span><span>−$${S.discount} AUD</span></div>`;
+  html += `<div class="sum-line total"><span>Accommodation total</span><span>$${S.total} AUD</span></div>`;
+  html += `<div class="sum-line"><span>Refundable bond</span><span>$${BOND} AUD</span></div>`;
+  html += `<div class="sum-bar-rule"></div>`;
+  if (S.fullPayNow) {
+    html += `<div class="sum-line total"><span>Full payment due now</span><span>$${S.deposit} AUD</span></div>`;
+    html += `<div style="margin-top:8px;font-size:12px;padding:8px 12px;border-radius:8px;background:rgba(192,57,43,0.07);">⚠️ Check-in is within 30 days — full payment required. ${S.cancellationText}</div>`;
+  } else {
+    html += `<div class="sum-line total"><span>Due today (50% deposit + bond)</span><span>$${S.deposit} AUD</span></div>`;
+    html += `<div class="sum-line"><span>Balance due 30 days before arrival</span><span>$${S.balance} AUD</span></div>`;
+    const cpBg = {'full-refund':'rgba(44,95,74,0.07)','partial-refund':'rgba(44,95,74,0.06)','credit-75':'rgba(184,134,60,0.07)','credit-50':'rgba(184,134,60,0.07)','credit-25':'rgba(192,57,43,0.06)'};
+    html += `<div style="margin-top:8px;font-size:12px;padding:8px 12px;border-radius:8px;background:${cpBg[S.cancellationPolicy]||'rgba(184,134,60,0.07)'};">${S.cancellationText}</div>`;
+  }
+  el.innerHTML = html;
+}
+
+function renderPayStep() {
+  document.getElementById('dep-amount').innerHTML = `$${S.deposit} <small>AUD</small>`;
+  if (S.fullPayNow) {
+    document.getElementById('dep-note').textContent = `Full payment required — check-in is within 30 days. Includes $${BOND} refundable bond.`;
+    document.getElementById('pay-btn-text').textContent = `🔒 Pay full amount $${S.deposit} AUD now`;
+  } else {
+    document.getElementById('dep-note').textContent = `Includes $${BOND} refundable bond · Balance of $${S.balance} AUD due 30 days before arrival`;
+    document.getElementById('pay-btn-text').textContent = `🔒 Pay $${S.deposit} AUD now`;
+  }
+  // Show cancellation policy
+  let cpEl = document.getElementById('cancel-policy-note');
+  if (!cpEl) {
+    cpEl = document.createElement('div');
+    cpEl.id = 'cancel-policy-note';
+    cpEl.style.cssText = 'margin-top:10px;font-size:12px;padding:10px 13px;border-radius:10px;line-height:1.5';
+    document.getElementById('dep-note').parentNode.appendChild(cpEl);
+  }
+  const cpColors = { 'full-refund': 'rgba(44,95,74,0.08)', 'partial-refund': 'rgba(44,95,74,0.06)', 'credit-75': 'rgba(184,134,60,0.08)', 'credit-50': 'rgba(184,134,60,0.08)', 'credit-25': 'rgba(192,57,43,0.06)' };
+  cpEl.style.background = cpColors[S.cancellationPolicy] || 'rgba(184,134,60,0.08)';
+  cpEl.textContent = S.cancellationText;
+}
+
+function checkStep2() {
+  const ok = document.getElementById('bm-fname').value.trim() &&
+             document.getElementById('bm-lname').value.trim() &&
+             /\S+@\S+\.\S+/.test(document.getElementById('bm-email').value) &&
+             document.getElementById('bm-phone').value.trim().length > 5;
+  document.getElementById('fs2-next').disabled = !ok;
+}
+
+// ═══════════════════════
+//  STRIPE
+// ═══════════════════════
+// ═══════════════════════
+//  PROMO CODES
+//  ↓ ADD NEW CODES HERE ↓
+// ═══════════════════════
+const PROMO_CODES = {
+  'MOTHERSDAY15': { discount: 15, label: "Mother's Day special" },
+  'LUPE20':       { discount: 20, label: 'Lupe loyalty discount' },
+  'FAMILY10':     { discount: 10, label: 'Family discount' },
+  // Add more codes here: 'CODENAME': { discount: %, label: 'Description' }
+};
+
+function applyPromo() {
+  const code = document.getElementById('promo-input').value.trim().toUpperCase();
+  const input = document.getElementById('promo-input');
+  const fb = document.getElementById('promo-feedback');
+  if (!code) return;
+  if (PROMO_CODES[code]) {
+    const p = PROMO_CODES[code];
+    S.promoCode = code;
+    S.promoDiscount = p.discount;
+    S.promoLabel = p.label;
+    input.classList.remove('invalid'); input.classList.add('valid');
+    calcPricing();
+    // Show which discount is being applied
+    const weeklyAmt = S.nights >= 9 ? Math.round(S.subtotal * 0.1) : 0;
+    const promoAmt = Math.round(S.subtotal * (p.discount / 100));
+    let msg = `✓ Code applied — ${p.discount}% off (saves $${promoAmt} AUD)`;
+    if (weeklyAmt > promoAmt && weeklyAmt > 0) {
+      msg += `. Your 9-night discount ($${weeklyAmt}) is better — that's applied instead!`;
+      S.promoCode = null; // Weekly is better, don't use promo
+    }
+    fb.className = 'promo-feedback show ok';
+    fb.textContent = msg;
+    renderSumBar('fs3-sumbar');
+    renderPayStep();
+  } else {
+    S.promoCode = null; S.promoDiscount = 0; S.promoLabel = '';
+    input.classList.remove('valid'); input.classList.add('invalid');
+    fb.className = 'promo-feedback show err';
+    fb.textContent = '✕ Invalid code — please check and try again';
+    calcPricing();
+    renderSumBar('fs3-sumbar');
+    renderPayStep();
+  }
+}
+
+function initStripe() {
+  if (stripeInited) return;
+    stripe = Stripe('pk_test_51TUFzeRq0XCTLGq5yFm7224pFyowU9ozSTTKhxPckvjY0t5QcKzsMS2XB6VQxFGTRDGRNSV01iWKpO6hto6jLcsd00WSMXFowT');
+    elements = stripe.elements();
+    cardEl = elements.create('card', {
+      style: { base: { fontFamily:"'Inter',sans-serif", fontSize:'15px', color:'#0F1923', '::placeholder':{ color:'#8A8278' } }, invalid: { color:'#C0392B' } },
+      hidePostalCode: true
+    });
+    cardEl.mount('#card-el');
+    cardEl.on('change', e => {
+      const err = document.getElementById('card-err');
+      err.textContent = e.error ? e.error.message : '';
+      err.style.display = e.error ? 'block' : 'none';
+    });
+    stripeInited = true;
+  } catch(e) { console.log('Stripe init error:', e); }
+}
+}
+
+// No backend server needed — using Stripe Payment Links
+function initStripeAndWake() {
+  initStripe();
+}
+
+async function doPay() {
+  const btn = document.getElementById('pay-btn');
+  const errEl = document.getElementById('card-err');
+  btn.disabled = true;
+  errEl.style.display = 'none';
+  document.getElementById('loading').classList.add('show');
+  document.querySelector('.loading-text').textContent = 'Preparing secure checkout…';
+
+  try {
+    const fname = document.getElementById('bm-fname').value;
+    const lname = document.getElementById('bm-lname').value;
+    const email = document.getElementById('bm-email').value;
+    const ref = document.getElementById('suc-ref') ? document.getElementById('suc-ref').textContent : 'LUPE-' + Math.random().toString(36).substr(2,6).toUpperCase();
+
+    const res = await fetch('https://lupe-server.onrender.com/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: S.deposit,
+        currency: 'aud',
+        success_url: window.location.origin + '/?booking=success&ref=' + ref,
+        cancel_url: window.location.origin + '/?booking=cancelled',
+        metadata: {
+          property: NAMES[S.prop],
+          checkin: S.cin,
+          checkout: S.cout,
+          guests: String(S.guests),
+          total: String(S.total),
+          deposit: String(S.deposit),
+          balance: String(S.balance),
+          name: fname + ' ' + lname,
+          email: email,
+          phone: document.getElementById('bm-phone').value,
+          requests: document.getElementById('bm-requests').value || 'None',
+          booking_ref: ref
+        }
+      })
+    });
+
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.error || 'Payment setup failed. Please try WhatsApp below.');
+    }
+
+    const { clientSecret, error: intentErr } = await res.json();
+    if (intentErr) throw new Error(intentErr);
+
+    const result = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: cardEl,
+        billing_details: { name: fname + ' ' + lname, email: email }
+      }
+    });
+    if (result.error) throw result.error;
+    showSuccess();
+
+  } catch(err) {
+    errEl.textContent = err.message;
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    document.getElementById('loading').classList.remove('show');
+  }
+}
+
+function showSuccess() {
+  for (let i=0;i<=3;i++) { const f=document.getElementById('fs'+i); if(f) f.classList.remove('active'); }
+  document.getElementById('flow-dots').style.display = 'none';
+  document.getElementById('success-flow').style.display = 'block';
+  document.getElementById('bm-title').textContent = 'Confirmed ✓';
+  document.getElementById('suc-name').textContent = document.getElementById('bm-fname').value;
+  document.getElementById('suc-email').textContent = document.getElementById('bm-email').value;
+  document.getElementById('suc-ref').textContent = 'LUPE-'+Math.random().toString(36).substr(2,6).toUpperCase();
+  if (S.fullPayNow) {
+    document.getElementById('suc-balance-wrap').innerHTML = '<strong>Full payment collected including $' + BOND + ' AUD refundable bond.</strong> No further payment required.';
+  } else {
+    document.getElementById('suc-balance-wrap').innerHTML = 'Balance of <strong>$' + S.balance + ' AUD</strong> is due 30 days before arrival. Bond of $' + BOND + ' AUD refunded within 7 days of check-out.';
+  }
+  document.getElementById('suc-name').textContent = document.getElementById('bm-fname').value;
+  sendEmail();
+}
+
+function doWhatsApp() {
+  const prop = S.prop ? NAMES[S.prop] : 'a home';
+  const name = (document.getElementById('bm-fname').value+' '+document.getElementById('bm-lname').value).trim();
+  let msg = `Hi! I'd like to book ${prop}`;
+  if (S.cin && S.cout) msg += ` from ${S.cin} to ${S.cout}`;
+  msg += ` for ${S.guests} guest${S.guests!==1?'s':''}`;
+  if (S.total) msg += `. Total: $${S.total} AUD`;
+  if (name) msg += `. Name: ${name}`;
+  msg += '. Please confirm. Thank you!';
+  window.open('https://wa.me/6857621745?text='+encodeURIComponent(msg),'_blank');
+}
+
+async function sendEmail() {
+  const EMAILJS_SERVICE   = 'service_04guqam';
+  const EMAILJS_KEY       = 'kmMmwZoCdFN4gKhH9';
+  const TEMPLATE_HEAVENLY = 'template_y7xi5wa';
+  const TEMPLATE_NUA      = 'template_pwl1c7g';
+  const guestTemplate = S.prop === 'heavenly' ? TEMPLATE_HEAVENLY : TEMPLATE_NUA;
+
+  const fname    = document.getElementById('bm-fname').value;
+  const lname    = document.getElementById('bm-lname').value;
+  const email    = document.getElementById('bm-email').value;
+  const phone    = document.getElementById('bm-phone').value;
+  const requests = document.getElementById('bm-requests').value || 'No special requests';
+  const ref      = document.getElementById('suc-ref').textContent;
+
+  const params = {
+    guest_name: fname + ' ' + lname,
+    guest_email: email,
+    guest_phone: phone,
+    property: NAMES[S.prop],
+    checkin: fmtDate(S.cin),
+    checkout: fmtDate(S.cout),
+    nights: String(S.nights),
+    guests: String(S.guests),
+    total: String(S.total),
+    deposit: String(S.deposit),
+    balance: String(S.balance),
+    booking_ref: ref,
+    cancellation_policy: S.cancellationText,
+    requests: requests
+  };
+
+  try {
+    // Send beautiful confirmation to GUEST
+    await emailjs.send(EMAILJS_SERVICE, guestTemplate, params, EMAILJS_KEY);
+    // Send owner notification copy
+    await emailjs.send(EMAILJS_SERVICE, guestTemplate, {
+      ...params,
+      guest_email: 'lupeaccommodations@gmail.com',
+      guest_name: 'NEW BOOKING — ' + fname + ' ' + lname
+    }, EMAILJS_KEY);
+    console.log('Emails sent successfully');
+  } catch(err) {
+    console.error('EmailJS failed, using mailto fallback:', err);
+    const subject = encodeURIComponent('New Booking – ' + NAMES[S.prop] + ' – ' + fname + ' ' + lname);
+    const body = encodeURIComponent('Property: ' + NAMES[S.prop] + '\nCheck-in: ' + S.cin + '\nCheck-out: ' + S.cout + '\nGuests: ' + S.guests + '\nTotal: $' + S.total + ' AUD\nName: ' + fname + ' ' + lname + '\nEmail: ' + email + '\nPhone: ' + phone);
+    window.open('mailto:lupeaccommodations@gmail.com?subject=' + subject + '&body=' + body);
+  }
+}
+
+function resetAll() {
+  Object.assign(S,{prop:null,cin:null,cout:null,guests:1,nights:0,rate:0,subtotal:0,discount:0,promoDiscount:0,total:0,deposit:0,balance:0,promoCode:null,promoLabel:''});
+  ['bm-fname','bm-lname','bm-email','bm-phone','bm-requests'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('success-flow').style.display='none';
+  document.getElementById('flow-dots').style.display='flex';
+  stripeInited=false;
+  bmGoStep(0);
+}
+
+function showGallery(prop, btn) {
+  document.getElementById('gallery-heavenly').style.display = prop==='heavenly' ? 'grid' : 'none';
+  document.getElementById('gallery-nua').style.display = prop==='nua' ? 'grid' : 'none';
+  ['heavenly','nua'].forEach(p => {
+    const t = document.getElementById('gtab-'+p);
+    if (p===prop) { t.style.background='var(--ink)'; t.style.color='white'; t.style.borderColor='var(--ink)'; }
+    else { t.style.background='transparent'; t.style.color='var(--muted)'; t.style.borderColor='var(--border)'; }
+  });
+}
+function openLightbox(url) {
+  event.stopPropagation();
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = url;
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+
+// Init EmailJS
+emailjs.init("kmMmwZoCdFN4gKhH9");
+
+// Handle return from Stripe Checkout
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('booking') === 'success') {
+    const saved = sessionStorage.getItem('lupe_booking');
+    if (saved) {
+      const b = JSON.parse(saved);
+      Object.assign(S, {
+        prop: b.prop, cin: b.cin, cout: b.cout,
+        guests: b.guests, nights: b.nights,
+        total: b.total, deposit: b.deposit, balance: b.balance,
+        cancellationText: b.cancellationText || '', fullPayNow: b.balance == 0
+      });
+      setTimeout(() => {
+        document.getElementById('booking-modal').style.display = 'flex';
+        document.getElementById('bm-sheet').classList.add('in');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('bm-fname').value = b.fname || '';
+        document.getElementById('bm-lname').value = b.lname || '';
+        document.getElementById('bm-email').value = b.email || '';
+        document.getElementById('bm-phone').value = b.phone || '';
+        document.getElementById('bm-requests').value = b.requests || '';
+        document.getElementById('suc-ref').textContent = b.ref || ('LUPE-' + Math.random().toString(36).substr(2,6).toUpperCase());
+        showSuccess();
+        sessionStorage.removeItem('lupe_booking');
+        history.replaceState({}, '', '/');
+      }, 600);
+    }
+  }
+})();
+
+// Handle return from Stripe Checkout
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('booking') === 'success') {
+    const saved = sessionStorage.getItem('lupe_booking');
+    if (saved) {
+      const b = JSON.parse(saved);
+      Object.assign(S, {
+        prop: b.prop, cin: b.cin, cout: b.cout,
+        guests: b.guests, nights: b.nights,
+        total: b.total, deposit: b.deposit, balance: b.balance,
+        cancellationText: b.cancellationText || ''
+      });
+      setTimeout(() => {
+        document.getElementById('booking-modal').style.display = 'flex';
+        document.getElementById('bm-sheet').classList.add('in');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('bm-fname').value = b.fname || '';
+        document.getElementById('bm-lname').value = b.lname || '';
+        document.getElementById('bm-email').value = b.email || '';
+        document.getElementById('bm-phone').value = b.phone || '';
+        document.getElementById('bm-requests').value = b.requests || '';
+        document.getElementById('suc-ref').textContent = b.ref || ('LUPE-' + Math.random().toString(36).substr(2,6).toUpperCase());
+        showSuccess();
+        sessionStorage.removeItem('lupe_booking');
+      }, 500);
+    }
+  }
+})();
+
+// Init calendars on load
+calViewMonth = new Date(); calViewMonth.setDate(1);
+bmCalMonth = new Date(); bmCalMonth.setDate(1);
+</script>
+</body>
+</html>
