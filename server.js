@@ -12,7 +12,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json());
+app.use(express.static('public'));
 
 // Health check — keeps server alive, confirms it's running
 app.get('/', (req, res) => {
