@@ -768,7 +768,7 @@ function parseIcalDate(s) { return new Date(s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.
 
 // ── STATE ──
 const S = { prop:null, cin:null, cout:null, guests:1, nights:0, rate:0, subtotal:0, discount:0, promoDiscount:0, total:0, deposit:0, balance:0, promoCode:null, promoLabel:'', fullPayNow:false, cancellationPolicy:'full-refund', cancellationText:'✅ Full refund — cancelled more than 90 days before arrival.' };
-const BOND = 300;
+const BOND = 1;
 const MIN_NIGHTS = { heavenly:4, nua:2 };
 const MAXG = { heavenly:13, nua:7 };
 const NAMES = { heavenly:'Heavenly Home', nua:"Nua's Oasis" };
