@@ -1249,6 +1249,10 @@ function openPanel(id, mode){
   const p=document.getElementById(id);p.style.display='block';
   requestAnimationFrame(()=>requestAnimationFrame(()=>p.classList.add('open')));
 }
+function closePanel(){
+  if(activePanel){const p=document.getElementById(activePanel);p.classList.remove('open');setTimeout(()=>{p.style.display='none';},350);activePanel=null;}
+  document.getElementById('overlay').classList.remove('show');
+}
 
 // ── BOOKING MODAL ──
 function openBooking(preselect){
