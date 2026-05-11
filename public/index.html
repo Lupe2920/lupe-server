@@ -901,9 +901,9 @@ function calcPricing() {
   const daysUntilCheckin = S.cin ? Math.ceil((new Date(S.cin+'T00:00:00') - new Date()) / 86400000) : 999;
   S.fullPayNow = daysUntilCheckin <= 30;
   if (S.fullPayNow) {
-    S.deposit = S.total + BOND; S.balance = 0;
+    S.deposit = S.total + getBond(); S.balance = 0;
   } else {
-    S.deposit = Math.round(S.total * 0.5) + BOND;
+    S.deposit = Math.round(S.total * 0.5) + getBond();
     S.balance = S.total - Math.round(S.total * 0.5);
   }
   if (daysUntilCheckin > 90) { S.cancellationPolicy='full-refund'; S.cancellationText='✅ Full refund — cancelled more than 90 days before arrival.'; }
