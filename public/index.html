@@ -269,63 +269,50 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   <div class="hero-bg-art"></div>
   <div class="hero-gradient"></div>
   <div class="hero-content">
-    <div class="hero-tag"><div class="hero-dot"></div> 2 fale · Samoa</div>
-    <h1>Your family's<br><em>island home</em><br>in Samoa</h1>
-    <p class="hero-desc">Two private homes built for families. Air conditioning, full kitchen, fast WiFi — everything you need to relax and feel at home.</p>
-    <p style="font-size:13px;color:rgba(255,255,255,0.45);font-style:italic;margin-top:-1.2rem;margin-bottom:1.8rem">Fale tanu mo aiga — manuia ma le filemu</p>
+    <div class="hero-tag"><div class="hero-dot"></div> 2 homes available in Samoa</div>
+    <h1>Your family's<br><em>island escape</em><br>awaits</h1>
+    <p class="hero-desc">Private holiday homes in the heart of Samoa. Fully Air Conditioned, Unlimited WiFi, Hot Water, Washing Machiene, Drier,full kitchen everything your family needs.</p>
     <div class="hero-cta-row">
-      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-        <button class="btn-hero" onclick="openBooking()">Check availability →</button>
-        <span style="font-size:11px;font-style:italic;color:rgba(255,255,255,0.4);padding-left:4px">Siaki avanoa aso o lau malaga</span>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-        <button onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:white;border:2px solid rgba(255,255,255,0.35);border-radius:100px;padding:16px 28px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s" onmouseover="this.style.borderColor='white';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.35)';this.style.background='transparent'">✨ Help me choose</button>
-        <span style="font-size:11px;font-style:italic;color:rgba(255,255,255,0.4);padding-left:4px">Fesoasoani i lau filifiliga</span>
-      </div>
-    </div>
-    <div class="hero-proof" style="margin-top:16px"><span class="stars">★★★★★</span> 4.97 · 80+ aiga fiafia</div>
+  <button class="btn-hero" onclick="openBooking()">Check availability / Siaki po'o avanoa aso o lau malaga →</button>
+  <button onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:white;border:2px solid rgba(255,255,255,0.4);border-radius:100px;padding:16px 28px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;backdrop-filter:blur(8px)" onmouseover="this.style.borderColor='white';this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.4)';this.style.background='transparent'">✨ Help me choose / Mana'omia se fesoasoani i lau filifiliga?</button>
+  </div>
+  <div class="hero-proof" style="margin-top:12px"><span class="stars">★★★★★</span> 4.97 · 80+ reviews</div>
   </div>
 </section>
 
 <div class="proof-strip">
-  <div class="proof-item"><div class="proof-num">2</div><div class="proof-label">Private homes<br><span style="font-style:italic;opacity:.6">Fale tanu</span></div></div>
-  <div class="proof-item"><div class="proof-num">28K</div><div class="proof-label">Instagram<br><span style="font-style:italic;opacity:.6">followers</span></div></div>
-  <div class="proof-item"><div class="proof-num">4.97</div><div class="proof-label">Star rating<br><span style="font-style:italic;opacity:.6">Faitau fetu</span></div></div>
-  <div class="proof-item"><div class="proof-num">80+</div><div class="proof-label">Happy families<br><span style="font-style:italic;opacity:.6">Aiga fiafia</span></div></div>
-  <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Booking fees<br><span style="font-style:italic;opacity:.6">Tupe faaopoopo</span></div></div>
+  <div class="proof-item"><div class="proof-num">2</div><div class="proof-label">Private<br>homes</div></div>
+  <div class="proof-item"><div class="proof-num">28k</div><div class="proof-label">Instagram<br>followers</div></div>
+  <div class="proof-item"><div class="proof-num">4.97</div><div class="proof-label">Average<br>rating</div></div>
+  <div class="proof-item"><div class="proof-num">80+</div><div class="proof-label">Happy<br>families</div></div>
+  <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Booking fees<br>(book direct)</div></div>
 </div>
 
 <div class="search-bar-wrap">
   <div class="search-bar">
     <button class="sb-cell" onclick="openPanel('prop-panel')">
-      <div class="sb-cell-label">Home <em style="font-size:9px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--gold);margin-left:4px">· Fale</em></div>
-      <div class="sb-cell-val empty" id="sb-prop">Choose a home</div>
-      <div style="font-size:10px;font-style:italic;color:var(--muted);margin-top:2px">Filifili lau fale</div>
+      <div class="sb-cell-label">Home · <span style="font-style:italic;text-transform:none;letter-spacing:0;font-weight:400">Fale</span></div>
+      <div class="sb-cell-val empty" id="sb-prop">Choose a home · Filifili lau fale</div>
+</button>
+    <button class="sb-cell" onclick="openPanel('date-panel')">
+      <div class="sb-cell-label">Check-in / Aso Ulufale</div>
+      <div class="sb-cell-val empty" id="sb-cin">Add date / Filifili le aso</div>
     </button>
     <button class="sb-cell" onclick="openPanel('date-panel')">
-      <div class="sb-cell-label">Check-in <em style="font-size:9px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--gold);margin-left:4px">· Ulufale</em></div>
-      <div class="sb-cell-val empty" id="sb-cin">Add date</div>
-      <div style="font-size:10px;font-style:italic;color:var(--muted);margin-top:2px">Filifili le aso</div>
-    </button>
-    <button class="sb-cell" onclick="openPanel('date-panel')">
-      <div class="sb-cell-label">Check-out <em style="font-size:9px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--gold);margin-left:4px">· Ulufafo</em></div>
-      <div class="sb-cell-val empty" id="sb-cout">Add date</div>
-      <div style="font-size:10px;font-style:italic;color:var(--muted);margin-top:2px">Filifili le aso</div>
+      <div class="sb-cell-label">Check-out / Aso Ulufafo</div>
+      <div class="sb-cell-val empty" id="sb-cout">Add date / Filifili le aso</div>
     </button>
     <button class="sb-cell" onclick="openPanel('guest-panel')" style="border-right:none">
-      <div class="sb-cell-label">Guests <em style="font-size:9px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--gold);margin-left:4px">· Malo</em></div>
-      <div class="sb-cell-val" id="sb-guests">1 guest</div>
-      <div style="font-size:10px;font-style:italic;color:var(--muted);margin-top:2px">1 malo</div>
+      <div class="sb-cell-label">Guests / To'a fia le aufa'iga o le tou malaga</div>
+      <div class="sb-cell-val" id="sb-guests">1 guest / 1 malo </div>
     </button>
     <button class="sb-search-btn" onclick="startSearch()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      Book
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Book
     </button>
   </div>
-  <div style="text-align:center;padding:8px 20px 14px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap">
-    <span style="font-size:12px;color:var(--muted)">Not sure which home is right for you?</span>
-    <span style="font-size:11px;font-style:italic;color:var(--muted);opacity:0.7">Le'o mautinoa po'o le fea fale?</span>
-    <button onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})" style="background:none;border:none;color:var(--gold);font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:underline">Help me choose →</button>
+  <div style="text-align:center;padding:10px 20px 16px;border-top:1px solid var(--border)">
+    <span style="font-size:13px;color:var(--muted)">Not sure which home suits you? / Le'o mautinoa po'o le fea o fale e lua e talafeagai mo outou?  </span>
+    <button onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})" style="background:none;border:none;color:var(--gold);font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:underline">Help me choose →</button>
   </div>
 </div>
   
