@@ -1285,7 +1285,7 @@ function showSuccess() {
   document.getElementById('suc-name').textContent=document.getElementById('bm-fname').value;
   document.getElementById('suc-email').textContent=document.getElementById('bm-email').value;
   if (S.fullPayNow) {
-    document.getElementById('suc-balance-wrap').innerHTML='<strong>Full payment collected including $'+BOND+' AUD refundable bond.</strong> No further payment required.';
+    document.getElementById('suc-balance-wrap').innerHTML='<strong>Full payment collected including $'+getBond()+' AUD refundable bond.</strong> No further payment required.';
   } else {
     document.getElementById('suc-balance-wrap').innerHTML='Balance of <strong>$'+S.balance+' AUD</strong> is due 30 days before arrival. Bond of $'+BOND+' AUD refunded within 7 days of check-out.';
   }
