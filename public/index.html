@@ -1186,26 +1186,59 @@ function doWhatsApp() {
 }
 
 async function sendEmail() {
-  const EMAILJS_SERVICE='service_04guqam'; const EMAILJS_KEY='kmMmwZoCdFN4gKhH9';
-  const TEMPLATE_HEAVENLY='template_y7xi5wa'; const TEMPLATE_NUA='template_pwl1c7g';
-  const guestTemplate=S.prop==='heavenly'?TEMPLATE_HEAVENLY:TEMPLATE_NUA;
-  const fname=document.getElementById('bm-fname').value; const lname=document.getElementById('bm-lname').value;
-  const email=document.getElementById('bm-email').value; const phone=document.getElementById('bm-phone').value;
-  const requests=document.getElementById('bm-requests').value||'No special requests';
-  const ref=document.getElementById('suc-ref').textContent;
-  const params={guest_name:fname+' '+lname,guest_email:email,guest_phone:phone,property:NAMES[S.prop],checkin:fmtDate(S.cin),checkout:fmtDate(S.cout),nights:String(S.nights),guests:String(S.guests),total:String(S.total),deposit:String(S.deposit),balance:String(S.balance),booking_ref:ref,cancellation_policy:S.cancellationText,requests:requests};
+  const EMAILJS_SERVICE = 'service_04guqam';
+  const EMAILJS_KEY = 'kmMmwZoCdFN4gKhH9';
+  const TEMPLATE_HEAVENLY = 'template_4oq7bmk';
+  const TEMPLATE_NUA = 'template_rboo8yr';
+  const guestTemplate = S.prop === 'heavenly' ? TEMPLATE_HEAVENLY : TEMPLATE_NUA;
+
+  const fname = document.getElementById('bm-fname').value;
+  const lname = document.getElementById('bm-lname').value;
+  const email = document.getElementById('bm-email').value;
+  const phone = document.getElementById('bm-phone').value;
+  const requests = document.getElementById('bm-requests').value || 'No special requests';
+  const ref = document.getElementById('suc-ref').textContent;
+
+  const params = {
+    guest_name: fname + ' ' + lname,
+    email: email,
+    guest_email: email,
+    order_id: ref,
+    guest_phone: phone,
+    property: NAMES[S.prop],
+    checkin: fmtDate(S.cin),
+    checkout: fmtDate(S.cout),
+    nights: String(S.nights),
+    guests: String(S.guests),
+    total: String(S.total),
+    deposit: String(S.deposit),
+    balance: String(S.balance),
+    booking_ref: ref,
+    cancellation_policy: S.cancellationText,
+    requests: requests,
+    extras: typeof extrasDescription === 'function' ? extrasDescription() : 'None',
+    extras_total: String(S.extrasTotal || 0)
+  };
+
   try {
-    await emailjs.send(EMAILJS_SERVICE,guestTemplate,params,EMAILJS_KEY);
-    await emailjs.send(EMAILJS_SERVICE,guestTemplate,{...params,guest_email:'lupeaccommodations@gmail.com',guest_name:'NEW BOOKING — '+fname+' '+lname},EMAILJS_KEY);
+    await emailjs.send(EMAILJS_SERVICE, guestTemplate, params, EMAILJS_KEY);
+    await emailjs.send(EMAILJS_SERVICE, guestTemplate, {
+      ...params,
+      guest_email: 'lupeaccommodations@gmail.com',
+      email: 'lupeaccommodations@gmail.com',
+      guest_name: 'NEW BOOKING — ' + fname + ' ' + lname
+    }, EMAILJS_KEY);
+    console.log('Emails sent successfully');
   } catch(err) {
-    const subject=encodeURIComponent('New Booking – '+NAMES[S.prop]+' – '+fname+' '+lname);
-    const body=encodeURIComponent('Property: '+NAMES[S.prop]+'\nCheck-in: '+S.cin+'\nCheck-out: '+S.cout+'\nGuests: '+S.guests+'\nTotal: $'+S.total+' AUD\nName: '+fname+' '+lname+'\nEmail: '+email+'\nPhone: '+phone);
-    window.open('mailto:lupeaccommodations@gmail.com?subject='+subject+'&body='+body);
+    console.error('EmailJS error:', err);
+    const subject = encodeURIComponent('New Booking – ' + NAMES[S.prop] + ' – ' + fname + ' ' + lname);
+    const body = encodeURIComponent('Property: ' + NAMES[S.prop] + '\nCheck-in: ' + S.cin + '\nCheck-out: ' + S.cout + '\nGuests: ' + S.guests + '\nTotal: $' + S.total + ' AUD\nName: ' + fname + ' ' + lname + '\nEmail: ' + email + '\nPhone: ' + phone);
+    window.open('mailto:lupeaccommodations@gmail.com?subject=' + subject + '&body=' + body);
   }
 }
 
 function resetAll() {
-  Object.assign(S,{prop:null,cin:null,cout:null,guests:1,nights:0,rate:0,subtotal:0,discount:0,promoDiscount:0,total:0,deposit:0,balance:0,promoCode:null,promoLabel:''});
+  Object.assign(S,{prop:null,cin:null,cout:null,guests:1,nights:0,rate:0,subtotal:0,discount:0,promoDiscount:0,total:0,deposit:0,balance:0,promoCode:null,promoLabel:'',carOption:null,breakfastOption:null,breakfastDays:0,babyOption:null,babyDays:0,extrasTotal:0});
   ['bm-fname','bm-lname','bm-email','bm-phone','bm-requests'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('success-flow').style.display='none';
   document.getElementById('flow-dots').style.display='flex';
@@ -1217,6 +1250,7 @@ function showGallery(prop,btn) {
   document.getElementById('gallery-nua').style.display=prop==='nua'?'grid':'none';
   ['heavenly','nua'].forEach(p=>{const t=document.getElementById('gtab-'+p);if(p===prop){t.style.background='var(--ink)';t.style.color='white';t.style.borderColor='var(--ink)';}else{t.style.background='transparent';t.style.color='var(--muted)';t.style.borderColor='var(--border)';}});
 }
+
 function openLightbox(url) { event.stopPropagation(); document.getElementById('lightbox-img').src=url; document.getElementById('lightbox').style.display='flex'; document.body.style.overflow='hidden'; }
 function closeLightbox() { document.getElementById('lightbox').style.display='none'; document.body.style.overflow=''; }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
