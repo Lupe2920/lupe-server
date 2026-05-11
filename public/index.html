@@ -1120,12 +1120,12 @@ function calcPricing() {
   const grand=S.total+S.extrasTotal;
   if(S.fullPayNow){S.deposit=grand+getBond();S.balance=0;}
   else{S.deposit=Math.round(grand*0.5)+getBond();S.balance=grand-Math.round(grand*0.5);}
-  if(days>90){S.cancellationPolicy='full-refund';S.cancellationText='✅ Full refund — cancelled more than 90 days before arrival.';}
-  else if(days>=60){S.cancellationPolicy='partial-refund';S.cancellationText='✅ 75% refund or 100% credit valid 12 months — cancelled 60–89 days before arrival.';}
-  else if(days>=30){S.cancellationPolicy='credit-75';S.cancellationText='🔄 75% credit valid 12 months — cancelled 30–59 days before arrival.';}
-  else if(days>=15){S.cancellationPolicy='credit-50';S.cancellationText='🔄 50% credit valid 12 months — cancelled 15–29 days before arrival.';}
-  else{S.cancellationPolicy='credit-25';S.cancellationText='🔄 25% credit valid 12 months — cancelled within 14 days of arrival.';}
-}
+    if(days>90){S.cancellationPolicy='full-refund';S.cancellationText='✅ 85% cash refund — cancelled more than 90 days before arrival. 15% non-refundable admin fee applies.';}
+    else if(days>=60){S.cancellationPolicy='partial-refund';S.cancellationText='🔄 75% credit valid 12 months — cancelled 60–89 days before arrival. No cash refund.';}
+    else if(days>=30){S.cancellationPolicy='credit-75';S.cancellationText='🔄 50% credit valid 12 months — cancelled 30–59 days before arrival. No cash refund.';}
+    else if(days>=14){S.cancellationPolicy='credit-50';S.cancellationText='🔄 25% credit valid 12 months — cancelled 14–29 days before arrival. No cash refund.';}
+    else{S.cancellationPolicy='credit-25';S.cancellationText='❌ No refund · No credit — cancelled within 14 days of arrival.';}
+  }
 
 // ── DATE UTILS ──
 function toYMD(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
