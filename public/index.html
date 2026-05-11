@@ -871,9 +871,10 @@ function nightlyRate(prop, g) {
     if (g <= 8) return 450;
     return 450 + (g - 8) * 35;
   } else {
-    if (g <= 4) return 230;
-    if (g <= 6) return 270;
-    return 280;
+    if (g <= 4) return 245;
+    if (g === 5) return 270;
+    if (g === 6) return 295;
+    return 320;
   }
 }
 
