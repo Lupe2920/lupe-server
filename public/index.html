@@ -360,7 +360,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <span class="btn-ghost-samoan" style="font-size:13px;opacity:0.85">Fesoasoani i lau filifiliga</span>
       </button>
     </div>
-    <div class="hero-proof"><span class="stars">★★★★★</span> 4.97 · 80+ aiga fiafia · happy families</div>
+    <div class="hero-proof"><span class="stars">★★★★★</span> 4.97 · 80+ Aiga fiafia · Happy families</div>
   </div>
 </section>
 
@@ -376,23 +376,31 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   <div class="search-bar">
     <button class="sb-cell" onclick="openPanel('prop-panel')">
       <div class="sb-cell-top"><span class="sb-cell-label">Home</span><span class="sb-cell-label-sam">· Fale</span></div>
-      <div class="sb-cell-val empty" id="sb-prop">Choose a home</div>
-      <div class="sb-cell-sam">Filifili lau fale</div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-top:3px">
+        <div class="sb-cell-val empty" id="sb-prop">Choose a home</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--muted);white-space:nowrap">· Filifili lau fale</div>
+      </div>
     </button>
     <button class="sb-cell" onclick="openPanel('date-panel')">
       <div class="sb-cell-top"><span class="sb-cell-label">Check-in</span><span class="sb-cell-label-sam">· Ulufale</span></div>
-      <div class="sb-cell-val empty" id="sb-cin">Add date</div>
-      <div class="sb-cell-sam">Filifili le aso</div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-top:3px">
+        <div class="sb-cell-val empty" id="sb-cin">Add date</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--muted);white-space:nowrap">· Filifili le aso</div>
+      </div>
     </button>
     <button class="sb-cell" onclick="openPanel('date-panel')">
       <div class="sb-cell-top"><span class="sb-cell-label">Check-out</span><span class="sb-cell-label-sam">· Ulufafo</span></div>
-      <div class="sb-cell-val empty" id="sb-cout">Add date</div>
-      <div class="sb-cell-sam">Filifili le aso</div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-top:3px">
+        <div class="sb-cell-val empty" id="sb-cout">Add date</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--muted);white-space:nowrap">· Filifili le aso</div>
+      </div>
     </button>
     <button class="sb-cell" onclick="openPanel('guest-panel')" style="border-right:none">
       <div class="sb-cell-top"><span class="sb-cell-label">Guests</span><span class="sb-cell-label-sam">· Malo</span></div>
-      <div class="sb-cell-val" id="sb-guests">1 guest</div>
-      <div class="sb-cell-sam">1 malo</div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-top:3px">
+        <div class="sb-cell-val" id="sb-guests">1 guest</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--muted);white-space:nowrap">· 1 malo</div>
+      </div>
     </button>
     <button class="sb-search-btn" onclick="startSearch()">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -402,7 +410,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   </div>
   <div class="sb-help">
     <span class="sb-help-en">Not sure which home suits you?</span>
-    <span class="sb-help-sam">· Le'o mautinoa po'o le fea fale? ·</span>
+    <span class="sb-help-sam">· Le'o mautinoa po'o le fea o fale e filifili? ·</span>
     <button class="sb-help-btn" onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})">Help me choose →</button>
   </div>
 </div>
