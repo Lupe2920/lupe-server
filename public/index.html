@@ -1237,6 +1237,12 @@ function shiftSlide(g,d){
 let activePanel=null;
 function openPanel(id){
   closePanel();
+  if(id==='date-panel'){
+    const isCheckout = S.cin && !S.cout;
+    document.getElementById('date-panel-title').innerHTML = isCheckout
+      ? 'When are you leaving? · <em style="font-style:italic;font-size:1rem;color:var(--muted)">O afea tou te malaga ese atu ai?</em>'
+      : 'When are you coming? · <em style="font-style:italic;font-size:1rem;color:var(--muted)">O afea tou te malaga mai ai?</em>';
+  }
   if(id==='date-panel'&&S.prop&&!calLoaded[S.prop]){document.getElementById('cal-status').style.display='block';loadCalendar(S.prop).then(()=>{document.getElementById('cal-status').style.display='none';renderTwoMonths();});}
   if(id==='date-panel')renderTwoMonths();
   activePanel=id;document.getElementById('overlay').classList.add('show');
