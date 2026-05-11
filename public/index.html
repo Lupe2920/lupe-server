@@ -1157,6 +1157,38 @@ async function doPay() {
   }
 }
 
+async function saveBookingToServer() {
+  try {
+    await fetch('https://lupe-server.onrender.com/save-booking', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        booking_ref: document.getElementById('suc-ref').textContent,
+        property: NAMES[S.prop],
+        checkin: S.cin,
+        checkout: S.cout,
+        name: document.getElementById('bm-fname').value + ' ' + document.getElementById('bm-lname').value,
+        email: document.getElementById('bm-email').value,
+        phone: document.getElementById('bm-phone').value,
+        guests: String(S.guests),
+        total: String(S.total),
+        deposit: String(S.deposit),
+        balance: String(S.balance),
+        extras: typeof extrasDescription === 'function' ? extrasDescription() : 'None',
+        status: 'confirmed'
+      })
+    });
+    let cur = new Date(S.cin + 'T00:00:00');
+    const end = new Date(S.cout + 'T00:00:00');
+    const prop = S.prop;
+    while (cur < end) {
+      blockedDates[prop].add(toYMD(cur));
+      cur.setDate(cur.getDate() + 1);
+    }
+    console.log('Booking saved to server');
+  } catch(e) { console.log('Could not save booking:', e.message); }
+}
+
 function showSuccess() {
   for(let i=0;i<=3;i++){const f=document.getElementById('fs'+i);if(f)f.classList.remove('active');}
   document.getElementById('flow-dots').style.display='none';
@@ -1170,6 +1202,7 @@ function showSuccess() {
     document.getElementById('suc-balance-wrap').innerHTML='Balance of <strong>$'+S.balance+' AUD</strong> is due 30 days before arrival. Bond of $'+BOND+' AUD refunded within 7 days of check-out.';
   }
   document.getElementById('loading').classList.remove('show');
+  saveBookingToServer();
   sendEmail();
 }
 
