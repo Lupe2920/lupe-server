@@ -306,12 +306,15 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
       <div class="sb-cell-val" id="sb-guests">1 guest</div>
     </button>
     <button class="sb-search-btn" onclick="startSearch()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      Book
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Book
     </button>
   </div>
+  <div style="text-align:center;padding:10px 20px 16px;border-top:1px solid var(--border)">
+    <span style="font-size:13px;color:var(--muted)">Not sure which home suits you? </span>
+    <button onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})" style="background:none;border:none;color:var(--gold);font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:underline">Help me choose →</button>
+  </div>
 </div>
-
+  
 <section class="homes">
   <div class="section-eyebrow">Our homes</div>
   <div class="section-title">Where will you stay?</div>
