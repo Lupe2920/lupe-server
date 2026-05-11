@@ -1258,6 +1258,20 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 emailjs.init("kmMmwZoCdFN4gKhH9");
 calViewMonth=new Date(); calViewMonth.setDate(1);
 bmCalMonth=new Date(); bmCalMonth.setDate(1);
+
+// Pre-load both calendars and server booked dates on page open
+async function preloadEverything() {
+  try {
+    const res = await fetch('https://lupe-server.onrender.com/booked-dates');
+    const serverDates = await res.json();
+    if (serverDates.heavenly) serverDates.heavenly.forEach(d => blockedDates.heavenly.add(d));
+    if (serverDates.nua) serverDates.nua.forEach(d => blockedDates.nua.add(d));
+    console.log('Server booked dates loaded');
+  } catch(e) { console.log('Could not load server dates:', e.message); }
+  await Promise.all([loadCalendar('heavenly'), loadCalendar('nua')]);
+  console.log('All calendars pre-loaded!');
+}
+preloadEverything();
 </script>
 </body>
 </html>
