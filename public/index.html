@@ -1384,6 +1384,84 @@ async function preloadEverything() {
   console.log('All calendars pre-loaded!');
 }
 preloadEverything();
+  // ── PROPERTY FINDER QUIZ ──
+const quizAnswers = {};
+let quizResultProp = null;
+
+function quizAnswer(q, val) {
+  quizAnswers[q] = val;
+  document.getElementById('qpb' + q).style.background = 'var(--gold)';
+  if (q < 3) {
+    document.getElementById('qq' + q).classList.remove('active');
+    document.getElementById('qq' + (q + 1)).classList.add('active');
+    if (q + 1 < 4) document.getElementById('qpb' + (q + 1)).style.background = 'var(--gold)';
+  } else {
+    showQuizResult();
+  }
+}
+
+function showQuizResult() {
+  document.getElementById('quiz-questions').style.display = 'none';
+  document.getElementById('quiz-progress').style.display = 'none';
+  document.getElementById('quiz-result').style.display = 'block';
+
+  const guests = quizAnswers[0];
+  const wheelchair = quizAnswers[1];
+  const airport = quizAnswers[2];
+  const priority = quizAnswers[3];
+
+  let prop = 'nua';
+  let reason = '';
+
+  if (wheelchair === 'yes') {
+    prop = 'heavenly';
+    reason = 'Heavenly Home is fully wheelchair accessible — the perfect choice for guests with mobility needs.';
+  } else if (guests === '7-13') {
+    prop = 'heavenly';
+    reason = 'For groups of 7 or more, Heavenly Home is the perfect choice — 4 bedrooms, 2.5 bathrooms and space for up to 13 guests comfortably.';
+  } else if (guests === '1-6' && priority === 'views') {
+    prop = 'heavenly';
+    reason = 'Heavenly Home\'s stunning mountain views will take your breath away every single morning.';
+  } else if (guests === '1-6' && priority === 'garden') {
+    prop = 'nua';
+    reason = 'Nua\'s Oasis is ideal for your group — a stunning private garden, cosy and beautifully designed for up to 6 guests.';
+  } else {
+    prop = 'nua';
+    reason = 'Nua\'s Oasis is the perfect escape for your group — private garden, fully equipped and beautifully designed for up to 6 guests.';
+  }
+
+  quizResultProp = prop;
+
+  const facts = {
+    heavenly: '✈️ 30 mins from airport &nbsp;·&nbsp; 🏙️ 8 mins to town<br>🛏️ 4 bedrooms &nbsp;·&nbsp; 🛁 2.5 bathrooms &nbsp;·&nbsp; 👥 Up to 13 guests<br>🅿️ 5+ parking spaces &nbsp;·&nbsp; 🔒 Fully fenced &nbsp;·&nbsp; ♿ Wheelchair accessible',
+    nua: '✈️ 40 mins from airport &nbsp;·&nbsp; 🏙️ 7 mins to town<br>🛏️ 3 bedrooms &nbsp;·&nbsp; 🌳 Private garden &nbsp;·&nbsp; 👥 Up to 6 guests<br>🅿️ 2+ parking spaces &nbsp;·&nbsp; 🔒 Fully fenced'
+  };
+
+  document.getElementById('result-emoji').textContent = prop === 'heavenly' ? '🏠' : '🌳';
+  document.getElementById('result-title').textContent = prop === 'heavenly' ? 'Heavenly Home is perfect for you!' : "Nua's Oasis is perfect for you!";
+  document.getElementById('result-reason').textContent = reason;
+  document.getElementById('result-facts').innerHTML = facts[prop];
+  document.getElementById('result-book-btn').textContent = prop === 'heavenly' ? 'Book Heavenly Home →' : "Book Nua's Oasis →";
+}
+
+function quizBook() {
+  if (quizResultProp) quickBook(quizResultProp);
+}
+
+function resetQuiz() {
+  Object.keys(quizAnswers).forEach(k => delete quizAnswers[k]);
+  quizResultProp = null;
+  for (let i = 0; i < 4; i++) {
+    const q = document.getElementById('qq' + i);
+    if (q) q.classList.remove('active');
+    const pb = document.getElementById('qpb' + i);
+    if (pb) pb.style.background = i === 0 ? 'var(--gold)' : 'rgba(255,255,255,0.15)';
+  }
+  document.getElementById('qq0').classList.add('active');
+  document.getElementById('quiz-questions').style.display = 'block';
+  document.getElementById('quiz-progress').style.display = 'flex';
+  document.getElementById('quiz-result').style.display = 'none';
+}
 </script>
 </body>
 </html>
