@@ -1235,10 +1235,10 @@ function shiftSlide(g,d){
 
 // ── PANELS ──
 let activePanel=null;
-function openPanel(id){
+function openPanel(id, mode){
   closePanel();
   if(id==='date-panel'){
-    const isCheckout = S.cin && !S.cout;
+    const isCheckout = mode === 'checkout';
     document.getElementById('date-panel-title').innerHTML = isCheckout
       ? 'When are you leaving? · <em style="font-style:italic;font-size:1rem;color:var(--muted)">O afea tou te malaga ese atu ai?</em>'
       : 'When are you coming? · <em style="font-style:italic;font-size:1rem;color:var(--muted)">O afea tou te malaga mai ai?</em>';
@@ -1248,32 +1248,6 @@ function openPanel(id){
   activePanel=id;document.getElementById('overlay').classList.add('show');
   const p=document.getElementById(id);p.style.display='block';
   requestAnimationFrame(()=>requestAnimationFrame(()=>p.classList.add('open')));
-}
-function closePanel(){
-  if(activePanel){const p=document.getElementById(activePanel);p.classList.remove('open');setTimeout(()=>{p.style.display='none';},350);activePanel=null;}
-  document.getElementById('overlay').classList.remove('show');
-}
-function chooseProp(id){
-  S.prop=id;
-  ['heavenly','nua'].forEach(p=>document.getElementById('pp-'+p).classList.toggle('chosen',p===id));
-  document.getElementById('prop-confirm').disabled=false;
-  document.getElementById('sb-prop').textContent=NAMES[id];document.getElementById('sb-prop').classList.remove('empty');
-  document.getElementById('gp-max-note').textContent='Max '+MAXG[id]+' for '+NAMES[id];
-  document.getElementById('gp-plus').disabled=S.guests>=MAXG[id];
-  loadCalendar(id);
-}
-function adjGuests(d){
-  const max=S.prop?MAXG[S.prop]:13;
-  S.guests=Math.max(1,Math.min(max,S.guests+d));
-  document.getElementById('gp-count').textContent=S.guests;
-  document.getElementById('sb-guests').textContent=S.guests+' guest'+(S.guests!==1?'s':'');
-  document.getElementById('gp-minus').disabled=S.guests<=1;document.getElementById('gp-plus').disabled=S.guests>=max;
-  calcPricing();
-}
-function startSearch(){
-  if(!S.prop){openPanel('prop-panel');return;}
-  if(!S.cin||!S.cout){openPanel('date-panel');return;}
-  openBooking();
 }
 
 // ── BOOKING MODAL ──
