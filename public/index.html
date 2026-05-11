@@ -1121,7 +1121,7 @@ function renderSumBar(id) {
   html+=`<div class="sum-line"><span>$${S.rate}/night × ${S.nights} nights</span><span>$${S.subtotal} AUD</span></div>`;
   if (S.discount>0)html+=`<div class="sum-line savings"><span>🎉 ${S.discountLabel}</span><span>−$${S.discount} AUD</span></div>`;
   html+=`<div class="sum-line total"><span>Accommodation total</span><span>$${S.total} AUD</span></div>`;
-  html+=`<div class="sum-line"><span>Refundable bond</span><span>$${BOND} AUD</span></div>`;
+  html+=`<div class="sum-line"><span>Refundable bond</span><span>$${getBond()} AUD</span></div>`;
   html+=`<div class="sum-bar-rule"></div>`;
   if (S.fullPayNow) {
     html+=`<div class="sum-line total"><span>Full payment due now</span><span>$${S.deposit} AUD</span></div>`;
@@ -1138,10 +1138,10 @@ function renderSumBar(id) {
 function renderPayStep() {
   document.getElementById('dep-amount').innerHTML=`$${S.deposit} <small>AUD</small>`;
   if (S.fullPayNow) {
-    document.getElementById('dep-note').textContent=`Full payment required — check-in is within 30 days. Includes $${BOND} refundable bond.`;
+    document.getElementById('dep-note').textContent=`Full payment required — check-in is within 30 days. Includes $${getBond()} refundable bond.`;
     document.getElementById('pay-btn-text').textContent=`🔒 Pay full amount $${S.deposit} AUD now`;
   } else {
-    document.getElementById('dep-note').textContent=`Includes $${BOND} refundable bond · Balance of $${S.balance} AUD due 30 days before arrival`;
+    document.getElementById('dep-note').textContent=`Includes $${getBond()} refundable bond · Balance of $${S.balance} AUD due 30 days before arrival`;
     document.getElementById('pay-btn-text').textContent=`🔒 Pay $${S.deposit} AUD now`;
   }
   let cpEl=document.getElementById('cancel-policy-note');
