@@ -1254,7 +1254,19 @@ function closePanel(){
   if(activePanel){const p=document.getElementById(activePanel);p.classList.remove('open');setTimeout(()=>{p.style.display='none';},350);activePanel=null;}
   document.getElementById('overlay').classList.remove('show');
 }
-
+function closePanel(){
+  if(activePanel){const p=document.getElementById(activePanel);p.classList.remove('open');setTimeout(()=>{p.style.display='none';},350);activePanel=null;}
+  document.getElementById('overlay').classList.remove('show');
+}
+function chooseProp(id){
+  S.prop=id;
+  ['heavenly','nua'].forEach(p=>document.getElementById('pp-'+p).classList.toggle('chosen',p===id));
+  document.getElementById('prop-confirm').disabled=false;
+  document.getElementById('sb-prop').textContent=NAMES[id];document.getElementById('sb-prop').classList.remove('empty');
+  document.getElementById('gp-max-note').textContent='Max '+MAXG[id]+' for '+NAMES[id];
+  document.getElementById('gp-plus').disabled=S.guests>=MAXG[id];
+  loadCalendar(id);
+}
 // ── BOOKING MODAL ──
 function openBooking(preselect){
   if(preselect)S.prop=preselect;
