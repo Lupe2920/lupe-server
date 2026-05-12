@@ -16,16 +16,11 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   --ember:#C0392B;--white:#FFFFFF;--muted:#8A8278;--border:rgba(15,25,35,0.10);--r:16px;
 }
 body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-
-/* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:60px;background:rgba(247,244,239,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--ink);font-weight:500;line-height:1}
 .nav-logo b{color:var(--gold);font-weight:600}
-.nav-logo-sub{font-size:9px;font-style:italic;color:var(--muted);letter-spacing:.05em;display:block;margin-top:1px;font-family:'Cormorant Garamond',serif}
 .nav-book-btn{background:var(--ink);color:white;border:none;border-radius:100px;padding:12px 28px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
 .nav-book-btn:hover{background:var(--ink2)}
-
-/* HERO */
 .hero{position:relative;height:100svh;min-height:640px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--ink)}
 .hero-bg-art{position:absolute;inset:0;width:100%;height:100%;background:linear-gradient(160deg,#0F2027 0%,#203A43 45%,#2C5364 100%)}
 .hero-bg-art::before{content:'';position:absolute;top:-20%;right:-10%;width:70%;height:140%;background:radial-gradient(ellipse,rgba(44,95,74,0.4) 0%,transparent 70%)}
@@ -40,24 +35,19 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .hero-samoan{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:rgba(255,255,255,0.45);margin-bottom:1rem;font-weight:300}
 .hero-desc{font-size:15px;color:rgba(255,255,255,0.62);font-weight:300;line-height:1.6;margin-bottom:1.8rem;max-width:400px}
 .hero-btns{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:1.4rem}
-.btn-hero{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:white;border:none;border-radius:100px;padding:15px 28px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none;white-space:nowrap}
+.btn-hero{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:var(--gold);color:white;border:none;border-radius:100px;padding:15px 28px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none;white-space:nowrap}
 .btn-hero:hover{background:var(--gold2);transform:translateY(-1px)}
-.btn-hero-samoan{font-size:13px;font-style:italic;font-weight:400;opacity:.9;display:block;margin-top:2px}
+.btn-hero-samoan{font-size:13px;font-style:italic;font-weight:400;opacity:0.9;display:block;margin-top:2px;font-family:'Cormorant Garamond',serif}
 .btn-ghost{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:transparent;color:white;border:2px solid rgba(255,255,255,0.35);border-radius:100px;padding:13px 24px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;white-space:nowrap}
 .btn-ghost:hover{border-color:white;background:rgba(255,255,255,0.08)}
-.btn-ghost-samoan{font-size:15px;font-style:italic;font-weight:400;font-family:'Cormorant Garamond',serif;color:rgba(255,255,255,0.7);margin-top:2px}
+.btn-ghost-samoan{font-size:15px;font-style:italic;font-weight:400;font-family:'Cormorant Garamond',serif;color:rgba(255,255,255,0.7);margin-top:2px;opacity:0.9}
 .hero-proof{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.5);font-size:12px}
 .stars{color:#F4C430;letter-spacing:1px;font-size:13px}
-
-/* PROOF STRIP */
 .proof-strip{background:var(--ink);padding:18px 24px;display:flex;gap:28px;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
 .proof-strip::-webkit-scrollbar{display:none}
 .proof-item{display:flex;align-items:center;gap:10px;white-space:nowrap;flex-shrink:0}
 .proof-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;color:white}
 .proof-label{font-size:11px;color:rgba(255,255,255,.45);line-height:1.5}
-.proof-label em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;opacity:.7;display:block}
-
-/* SEARCH BAR */
 .search-bar-wrap{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:60px;z-index:100}
 .search-bar{max-width:940px;margin:0 auto;display:flex;align-items:stretch;padding:10px 20px;gap:0}
 .sb-cell{flex:1;padding:10px 16px;border-right:1px solid var(--border);cursor:pointer;transition:background .15s;border-radius:0;background:none;border-top:none;border-bottom:none;border-left:none;font-family:'Inter',sans-serif;text-align:left}
@@ -68,17 +58,14 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .sb-cell-label-sam{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:var(--gold);text-transform:none;letter-spacing:0;font-weight:400}
 .sb-cell-val{font-size:13px;color:var(--ink);font-weight:500}
 .sb-cell-val.empty{color:var(--muted);font-weight:400}
-.sb-cell-sam{font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;color:var(--muted);margin-top:1px}
-.sb-search-btn{background:var(--gold);color:white;border:none;border-radius:0 12px 12px 0;padding:0 22px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:background .2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.sb-cell-sam{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--muted);margin-top:1px}
+.sb-search-btn{background:var(--gold);color:white;border:none;border-radius:0 12px 12px 0;padding:0 22px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:6px}
 .sb-search-btn:hover{background:var(--gold2)}
-.sb-search-btn em{font-size:9px;font-style:italic;font-weight:400;font-family:'Cormorant Garamond',serif;opacity:.8}
-@media(max-width:650px){.search-bar{flex-direction:column;padding:10px 14px;gap:0}.sb-cell{border-right:none;border-bottom:1px solid var(--border);border-radius:0!important}.sb-cell:last-of-type{border-bottom:none}.sb-search-btn{border-radius:0 0 12px 12px;padding:12px;justify-content:center;margin-top:8px;flex-direction:row;gap:6px}}
+@media(max-width:650px){.search-bar{flex-direction:column;padding:10px 14px;gap:0}.sb-cell{border-right:none;border-bottom:1px solid var(--border);border-radius:0!important}.sb-cell:last-of-type{border-bottom:none}.sb-search-btn{border-radius:0 0 12px 12px;padding:12px;justify-content:center;margin-top:8px}}
 .sb-help{text-align:center;padding:8px 20px 12px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
 .sb-help-en{font-size:12px;color:var(--ink);font-weight:500}
 .sb-help-sam{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:var(--muted)}
 .sb-help-btn{background:none;border:none;color:var(--gold);font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:underline}
-
-/* HOMES */
 .homes{padding:56px 20px;max-width:960px;margin:0 auto}
 .section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:400;color:var(--ink);line-height:1.15;margin-bottom:1.4rem}
@@ -107,8 +94,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .hc-price sub{font-size:11px;font-weight:400;color:var(--muted);display:block;margin-top:2px}
 .hc-cta{background:var(--ink);color:white;border:none;border-radius:100px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
 .hc-cta:hover{background:var(--ink2)}
-
-/* CALENDAR */
 .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .cal-nav button{background:none;border:1.5px solid var(--border);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--ink)}
 .cal-nav button:hover{background:var(--fog);border-color:var(--ink)}
@@ -137,8 +122,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .discount-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(44,95,74,0.12);color:var(--sage);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600}
 .min-stay-warn{background:rgba(192,57,43,0.07);border:1.5px solid rgba(192,57,43,0.2);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--ember);margin-top:8px;display:none}
 .min-stay-warn.show{display:block}
-
-/* BOOKING MODAL */
 .booking-modal{position:fixed;inset:0;z-index:300;display:none}
 .bm-backdrop{position:absolute;inset:0;background:rgba(15,25,35,0.6);backdrop-filter:blur(6px)}
 .bm-sheet{position:absolute;bottom:0;left:0;right:0;background:white;border-radius:24px 24px 0 0;max-height:92svh;overflow-y:auto;transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
@@ -157,7 +140,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 @keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .field{margin-bottom:16px}
 .field label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
-.field input,.field textarea,.field select{width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-family:'Inter',sans-serif;color:var(--ink);background:var(--fog);outline:none;transition:all .2s;-webkit-appearance:none}
+.field input,.field textarea{width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-family:'Inter',sans-serif;color:var(--ink);background:var(--fog);outline:none;transition:all .2s;-webkit-appearance:none}
 .field input:focus,.field textarea:focus{border-color:var(--ink);background:white;box-shadow:0 0 0 3px rgba(15,25,35,0.07)}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .sum-bar{background:var(--fog);border-radius:14px;padding:16px 18px;margin-bottom:20px}
@@ -193,8 +176,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .suc-msg{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
 .suc-ref{font-size:12px;font-family:monospace;background:var(--fog);padding:10px 20px;border-radius:10px;color:var(--ink);font-weight:600;letter-spacing:.05em;display:inline-block;margin-bottom:1.5rem}
 .suc-balance{background:rgba(184,134,60,.08);border:1px solid rgba(184,134,60,.2);border-radius:12px;padding:14px 18px;font-size:14px;color:var(--muted);margin-bottom:1.5rem;text-align:left}
-
-/* PROP PICK */
 .prop-pick{display:flex;flex-direction:column;gap:14px}
 .prop-pick-card{border:2px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .2s;background:var(--fog)}
 .prop-pick-card:hover{border-color:var(--gold)}
@@ -219,8 +200,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .g-btn:hover:not(:disabled){border-color:var(--ink);background:var(--fog)}
 .g-btn:disabled{opacity:.28;cursor:not-allowed}
 .g-count{font-size:18px;font-weight:600;min-width:26px;text-align:center}
-
-/* DROPDOWN PANELS */
 .dropdown-overlay{display:none;position:fixed;inset:0;z-index:150;background:rgba(0,0,0,0.3);backdrop-filter:blur(2px)}
 .dropdown-overlay.show{display:block}
 .dropdown-panel{position:fixed;bottom:0;left:0;right:0;background:white;border-radius:24px 24px 0 0;z-index:160;transform:translateY(100%);transition:transform .35s cubic-bezier(.25,.46,.45,.94);max-height:90svh;overflow-y:auto;display:none}
@@ -228,8 +207,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .panel-handle{width:36px;height:4px;background:var(--fog2);border-radius:2px;margin:14px auto 0}
 .panel-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--ink);padding:20px 24px 0}
 .panel-body{padding:20px 24px 40px}
-
-/* REVIEWS */
 .reviews{padding:60px 20px;background:white}
 .reviews-inner{max-width:960px;margin:0 auto}
 .reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:2rem}
@@ -238,8 +215,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .rv-text{font-size:14px;line-height:1.7;color:var(--ink);margin-bottom:14px;font-style:italic}
 .rv-author{font-size:13px;font-weight:600;color:var(--ink)}
 .rv-when{font-size:11px;color:var(--muted);margin-top:2px}
-
-/* AMENITIES */
 .amenities{padding:60px 20px;background:var(--fog)}
 .amenities-inner{max-width:960px;margin:0 auto}
 .ams-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:2.5rem}
@@ -250,15 +225,11 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .am-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--ink)}
 .am-item:last-child{border-bottom:none}
 .am-icon{width:36px;height:36px;border-radius:10px;background:white;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-
-/* POLICIES */
 .policies{padding:40px 20px;max-width:960px;margin:0 auto}
 .pol-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:1.5rem}
 .pol-card{background:white;border:1px solid var(--border);border-radius:14px;padding:14px 16px}
 .pol-card h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:.4rem}
 .pol-card p{font-size:12px;color:var(--muted);line-height:1.6}
-
-/* FOOTER */
 .footer-cta{background:var(--ink);padding:60px 24px;text-align:center}
 .footer-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,3.5rem);color:white;font-weight:400;margin-bottom:.7rem}
 .footer-cta h2 em{font-style:italic;color:#A8D8C8}
@@ -266,18 +237,12 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .footer-links-row{display:flex;justify-content:center;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap}
 .footer-links-row a{color:rgba(255,255,255,.4);font-size:12px;text-decoration:none;transition:color .2s}
 .footer-links-row a:hover{color:rgba(255,255,255,.8)}
-
-/* LOADING */
 .loading-screen{display:none;position:fixed;inset:0;z-index:500;background:rgba(15,25,35,.7);backdrop-filter:blur(8px);align-items:center;justify-content:center;flex-direction:column;gap:16px}
 .loading-screen.show{display:flex}
 .spin{width:44px;height:44px;border:3px solid rgba(255,255,255,.2);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{color:white;font-size:15px;font-weight:500}
-
-/* LIVE PRICE BAR */
 .live-price-bar{display:none;background:linear-gradient(135deg,rgba(184,134,60,0.07),rgba(184,134,60,0.03));border:1.5px solid rgba(184,134,60,0.2);border-radius:14px;padding:14px 16px;margin-bottom:16px}
-
-/* PROMO */
 .promo-wrap{margin-bottom:16px}
 .promo-row{display:flex;gap:8px}
 .promo-input{flex:1;padding:13px 15px;border:1.5px solid var(--border);border-radius:12px;font-size:14px;font-family:'Inter',sans-serif;color:var(--ink);background:var(--fog);outline:none;transition:all .2s;text-transform:uppercase;letter-spacing:.05em}
@@ -292,8 +257,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .promo-feedback.err{color:var(--ember)}
 .bond-notice{background:rgba(27,79,114,0.06);border:1.5px solid rgba(27,79,114,0.15);border-radius:12px;padding:12px 15px;margin-bottom:14px;font-size:13px;color:var(--sky)}
 .bond-notice strong{display:block;font-size:14px;margin-bottom:2px}
-
-/* EXTRAS */
 .extras-section{margin-bottom:20px}
 .extras-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
 .extra-card{border:1.5px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:all .2s;background:white}
@@ -320,24 +283,18 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .extras-total-bar{background:var(--fog);border-radius:12px;padding:14px 16px;margin-top:16px;display:none;justify-content:space-between;align-items:center}
 .extras-total-bar span:first-child{font-size:13px;color:var(--muted)}
 .extras-total-bar span:last-child{font-size:16px;font-weight:700;color:var(--ink)}
-
-/* QUIZ */
 .quiz-q{display:none}
 .quiz-q.active{display:block;animation:slideUp .3s ease}
 .quiz-options{display:flex;flex-direction:column;gap:10px}
 .quiz-opt{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:16px 18px;color:white;font-size:14px;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
 .quiz-opt:hover{background:rgba(255,255,255,0.12);border-color:var(--gold);transform:translateX(4px)}
-
-/* LIGHTBOX */
 #lightbox{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out}
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <div class="nav-logo">
-    Lupe <b>Accommodations</b>
-  </div>
+  <div class="nav-logo">Lupe <b>Accommodations</b></div>
   <button class="nav-book-btn" onclick="openBooking()">Book now</button>
 </nav>
 
@@ -347,19 +304,19 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   <div class="hero-content">
     <div class="hero-tag"><div class="hero-dot"></div> 2 fale · Samoa · 2 homes available</div>
     <h1>Your family's<br><em>island home</em><br>in Samoa</h1>
-    <p class="hero-samoan">O ni fale e malu puipuia ai oe ma lau aiga i Samoa pe a tou malaga mai</p>
-    <p class="hero-desc">Two private homes built for families. Fully Air conditioning, Full kitchen, Unlimited WiFi, Hot Water, everything you need to feel right at home in Samoa.</p>
+    <p class="hero-samoan">O lo outou fale i Samoa — mo le aiga atoa</p>
+    <p class="hero-desc">Two private homes built for families. Air conditioning, full kitchen, fast WiFi — everything you need to feel right at home in Samoa.</p>
     <div class="hero-btns">
       <button class="btn-hero" onclick="openBooking()">
         Check availability →
-        <em class="btn-hero-samoan" style="font-size:13px;opacity:0.9">Siaki po'o avanoa ou aso</em>
+        <em class="btn-hero-samoan">Siaki avanoa aso o lau malaga</em>
       </button>
       <button class="btn-ghost" onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})">
         ✨ Help me choose
-        <span class="btn-ghost-samoan" style="font-size:15px;opacity:0.9">Mana'omia se fesoasoani?</span>
+        <span class="btn-ghost-samoan">Fesoasoani i lau filifiliga</span>
       </button>
     </div>
-    <div class="hero-proof"><span class="stars">★★★★★</span> 4.97 · 80+ Aiga fiafia · Happy families</div>
+    <div class="hero-proof"><span class="stars">★★★★★</span> 4.97 · 80+ aiga fiafia · happy families</div>
   </div>
 </section>
 
@@ -370,7 +327,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   <div class="proof-item"><div class="proof-num">80+</div><div class="proof-label">Happy<br>families</div></div>
   <div class="proof-item"><div class="proof-num">0%</div><div class="proof-label">Booking fees<br>(book direct)</div></div>
 </div>
-  
+
 <div class="search-bar-wrap">
   <div class="search-bar">
     <button class="sb-cell" onclick="openPanel('prop-panel')">
@@ -408,7 +365,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   </div>
   <div class="sb-help">
     <span class="sb-help-en">Not sure which home suits you?</span>
-    <span class="sb-help-sam">· Le'o mautinoa po'o le fea o fale e filifili? ·</span>
+    <span class="sb-help-sam">· Le'o mautinoa po'o le fea fale? ·</span>
     <button class="sb-help-btn" onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'})">Help me choose →</button>
   </div>
 </div>
@@ -470,20 +427,14 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   </div>
 </section>
 
-<!-- GALLERY -->
 <section id="photos" style="background:var(--fog);padding:60px 20px">
   <div style="max-width:960px;margin:0 auto">
     <div class="section-eyebrow">Ata o fale · Gallery</div>
     <div class="section-title" style="margin-bottom:.5rem">See inside both homes</div>
     <p style="font-size:14px;color:var(--muted);margin-bottom:2.5rem">Click any photo to view full size</p>
-
-    <!-- Heavenly Home Gallery -->
     <div style="margin-bottom:56px">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
-        <div>
-          <div class="section-eyebrow" style="margin-bottom:2px">Heavenly Home</div>
-          <div style="font-size:13px;color:var(--muted)">4 bedrooms · Vaitele · Up to 13 guests</div>
-        </div>
+        <div><div class="section-eyebrow" style="margin-bottom:2px">Heavenly Home</div><div style="font-size:13px;color:var(--muted)">4 bedrooms · Vaitele · Up to 13 guests</div></div>
         <button class="btn-hero" onclick="quickBook('heavenly')" style="font-size:13px;padding:12px 22px">Book Heavenly Home →</button>
       </div>
       <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;border-radius:16px;overflow:hidden">
@@ -495,17 +446,10 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <div onclick="openLightbox('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067036/IMG_5373_onmcfh.jpg')" style="cursor:pointer;background:url('https://res.cloudinary.com/djusgrmfu/image/upload/v1778067036/IMG_5373_onmcfh.jpg') center/cover;position:relative;min-height:160px"><div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.55));color:white;font-size:11px;text-transform:uppercase;font-weight:600;letter-spacing:.05em">Dining</div></div>
       </div>
     </div>
-
-    <!-- Divider -->
     <div style="height:1px;background:var(--border);margin-bottom:56px"></div>
-
-    <!-- Nua's Oasis Gallery -->
     <div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
-        <div>
-          <div class="section-eyebrow" style="margin-bottom:2px">Nua's Oasis</div>
-          <div style="font-size:13px;color:var(--muted)">3 bedrooms · Vailele · Up to 6 guests</div>
-        </div>
+        <div><div class="section-eyebrow" style="margin-bottom:2px">Nua's Oasis</div><div style="font-size:13px;color:var(--muted)">3 bedrooms · Vailele · Up to 6 guests</div></div>
         <button class="btn-hero" onclick="quickBook('nua')" style="font-size:13px;padding:12px 22px">Book Nua's Oasis →</button>
       </div>
       <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;border-radius:16px;overflow:hidden">
@@ -520,13 +464,11 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   </div>
 </section>
 
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="closeLightbox()">
+<div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:zoom-out">
   <img id="lightbox-img" style="max-width:92vw;max-height:90vh;border-radius:12px;object-fit:contain;box-shadow:0 20px 80px rgba(0,0,0,0.5)" src="" alt="">
   <button onclick="closeLightbox()" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.15);border:none;color:white;width:40px;height:40px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
 </div>
 
-<!-- QUIZ -->
 <section id="quiz-section" style="background:var(--ink);padding:60px 20px">
   <div style="max-width:680px;margin:0 auto;text-align:center">
     <div class="section-eyebrow" style="color:var(--gold)">Fesoasoani · Find your perfect home</div>
@@ -553,7 +495,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <div class="quiz-q" id="qq1">
           <div style="font-size:13px;color:var(--gold);font-weight:600;margin-bottom:8px">Question 2 of 4</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:white;margin-bottom:6px;line-height:1.3">Does anyone need wheelchair access?</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:rgba(255,255,255,0.4);margin-bottom:18px">E mana'omia se wheelchai mo se tasi?</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:rgba(255,255,255,0.4);margin-bottom:18px">E mana'omia se wheelchair mo se tasi?</div>
           <div class="quiz-options">
             <div class="quiz-opt" onclick="quizAnswer(1,'yes')">♿ Yes — we need full wheelchair access</div>
             <div class="quiz-opt" onclick="quizAnswer(1,'no')">🚶 No — we're all good on mobility</div>
@@ -595,7 +537,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   </div>
 </section>
 
-<!-- REVIEWS -->
 <section class="reviews">
   <div class="reviews-inner">
     <div class="section-eyebrow">Upu mai aiga · Guest reviews</div>
@@ -608,7 +549,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   </div>
 </section>
 
-<!-- AMENITIES -->
 <section class="amenities">
   <div class="amenities-inner">
     <div class="section-eyebrow">Mea o loo iai · What's included</div>
@@ -651,47 +591,45 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   </div>
 </section>
 
-<!-- POLICIES -->
 <div class="policies">
   <div class="section-eyebrow">Tulafono · Terms &amp; Conditions</div>
   <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:1.5rem 1.8rem;margin-bottom:2rem;font-size:14px;color:var(--muted);line-height:1.9">
     <p style="font-weight:600;color:var(--ink);margin-bottom:.8rem;font-size:15px">Booking &amp; Payment Terms</p>
-<p>1. A <strong style="color:var(--ink)">50% deposit</strong> is required at the time of booking. The remaining 50% is due 30 days before arrival. Bookings within 30 days require full payment upfront.</p>
-<p style="margin-top:.6rem">2. A <strong style="color:var(--ink)">refundable security bond</strong> is collected: $300 AUD (up to 5 guests) · $400 AUD (6–7 guests) · $500 AUD (8+ guests). The bond is <strong style="color:var(--ink)">always fully refunded regardless of cancellation</strong>, within 7 days of check-out or cancellation.</p>
-<p style="margin-top:.6rem">3. A <strong style="color:var(--ink)">10% discount</strong> applies automatically to stays of 9+ nights.</p>
-<p style="margin-top:.6rem">4. <strong style="color:var(--ink)">Mid-stay clean:</strong> Complimentary for stays of 11+ nights, scheduled by mutual agreement.</p>
-<p style="margin-top:.6rem">5. <strong style="color:var(--ink)">Cancellation policy:</strong></p>
-<p style="margin-top:.4rem;padding-left:1rem">• <strong style="color:var(--ink)">48-hour grace period</strong> — Full 100% refund if cancelled within 48 hours of booking, provided check-in is 45+ days away</p>
-<p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">90+ days before arrival</strong> — 85% cash refund · 15% non-refundable admin fee</p>
-<p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">60–89 days</strong> — 75% credit valid 12 months · no cash refund</p>
-<p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">30–59 days</strong> — 50% credit valid 12 months · no cash refund</p>
-<p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">14–29 days</strong> — 25% credit valid 12 months · no cash refund</p>
-<p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">Within 14 days</strong> — No refund · No credit · Full loss</p>
-<p style="margin-top:.6rem">6. <strong style="color:var(--ink)">Credit conditions:</strong> Credits are subject to availability · Cannot be applied to peak season dates already heavily booked · Valid 12 months from issue date · Non-transferable · No cash value · If new dates cost more, guest pays the difference.</p>
-<p style="margin-top:.6rem">7. <strong style="color:var(--ink)">Car hire:</strong> Driver must be 25+ with a valid licence. Vehicle returned in same condition — damage costs are the guest's responsibility.</p>
-<p style="margin-top:.6rem">8. <strong style="color:var(--ink)">Babysitter:</strong> Available 8:00 AM – 9:00 PM. Minimum child age 12 months. Ages must be accurately declared at booking.</p>
-<p style="margin-top:.6rem">9. Check-in from <strong style="color:var(--ink)">3:00 PM</strong>. Check-out by <strong style="color:var(--ink)">11:00 AM</strong>. Late check-out or early check-in on request, subject to availability.</p>  </div>
+    <p>1. A <strong style="color:var(--ink)">50% deposit</strong> is required at the time of booking. The remaining 50% is due 30 days before arrival. Bookings within 30 days require full payment upfront.</p>
+    <p style="margin-top:.6rem">2. A <strong style="color:var(--ink)">refundable security bond</strong> is collected: $300 AUD (up to 5 guests) · $400 AUD (6–7 guests) · $500 AUD (8+ guests). Bond is <strong style="color:var(--ink)">always fully refunded regardless of cancellation</strong>, within 7 days.</p>
+    <p style="margin-top:.6rem">3. A <strong style="color:var(--ink)">10% discount</strong> applies automatically to stays of 9+ nights.</p>
+    <p style="margin-top:.6rem">4. <strong style="color:var(--ink)">Mid-stay clean:</strong> Complimentary for stays of 11+ nights.</p>
+    <p style="margin-top:.6rem">5. <strong style="color:var(--ink)">Cancellation policy:</strong></p>
+    <p style="margin-top:.4rem;padding-left:1rem">• <strong style="color:var(--ink)">48-hour grace period</strong> — Full refund if cancelled within 48 hours, provided check-in is 45+ days away</p>
+    <p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">90+ days</strong> — 85% cash refund · 15% non-refundable admin fee</p>
+    <p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">60–89 days</strong> — 75% credit valid 12 months · no cash refund</p>
+    <p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">30–59 days</strong> — 50% credit valid 12 months · no cash refund</p>
+    <p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">14–29 days</strong> — 25% credit valid 12 months · no cash refund</p>
+    <p style="margin-top:.3rem;padding-left:1rem">• <strong style="color:var(--ink)">Within 14 days</strong> — No refund · No credit</p>
+    <p style="margin-top:.6rem">6. <strong style="color:var(--ink)">Credits:</strong> Subject to availability · Cannot apply to peak dates · Valid 12 months · Non-transferable · No cash value.</p>
+    <p style="margin-top:.6rem">7. Check-in from <strong style="color:var(--ink)">3:00 PM</strong>. Check-out by <strong style="color:var(--ink)">11:00 AM</strong>.</p>
+  </div>
   <div class="section-eyebrow">Faiga faavae · Policies</div>
   <div class="pol-grid">
-    <div class="pol-card"><h4>✅ Check-in · Ulufale</h4><p>From 3:00 PM. Early check-in on request.</p></div>
-    <div class="pol-card"><h4>👋 Check-out · Ulufafo</h4><p>By 11:00 AM. Late check-out on request.</p></div>
+    <div class="pol-card"><h4>✅ Check-in</h4><p>From 3:00 PM. Early check-in on request.</p></div>
+    <div class="pol-card"><h4>👋 Check-out</h4><p>By 11:00 AM. Late check-out on request.</p></div>
     <div class="pol-card"><h4>🧹 Mid-stay clean</h4><p>Free for stays of 11+ nights.</p></div>
     <div class="pol-card"><h4>🚭 No smoking</h4><p>Outdoors only please.</p></div>
     <div class="pol-card"><h4>🐾 No pets</h4><p>No animals at either property.</p></div>
     <div class="pol-card"><h4>🔇 Quiet 10pm</h4><p>Respect neighbours after 10 PM.</p></div>
-    <div class="pol-card"><h4>💳 50% deposit</h4><p>Balance due 30 days before arrival.</p></div>
-    <div class="pol-card"><h4>✅ 90+ days</h4><p>Full refund.</p></div>
-    <div class="pol-card"><h4>🔄 60–89 days</h4><p>75% refund or 100% credit.</p></div>
-    <div class="pol-card"><h4>🔄 30–59 days</h4><p>75% credit · 12 months.</p></div>
-    <div class="pol-card"><h4>🔄 15–29 days</h4><p>50% credit · 12 months.</p></div>
-    <div class="pol-card"><h4>🔒 Bond</h4><p>$300–$500 AUD based on guest count.</p></div>
+    <div class="pol-card"><h4>⏱️ 48-hour grace</h4><p>Full refund if cancelled within 48hrs · check-in 45+ days away.</p></div>
+    <div class="pol-card"><h4>✅ 90+ days</h4><p>85% cash refund · 15% admin fee.</p></div>
+    <div class="pol-card"><h4>🔄 60–89 days</h4><p>75% credit · 12 months.</p></div>
+    <div class="pol-card"><h4>🔄 30–59 days</h4><p>50% credit · 12 months.</p></div>
+    <div class="pol-card"><h4>🔄 14–29 days</h4><p>25% credit · 12 months.</p></div>
+    <div class="pol-card"><h4>❌ Within 14 days</h4><p>No refund · No credit.</p></div>
+    <div class="pol-card"><h4>🔒 Bond</h4><p>$300–$500 AUD · Always fully refunded.</p></div>
     <div class="pol-card"><h4>🚗 Car hire</h4><p>25+ years, valid licence required.</p></div>
     <div class="pol-card"><h4>👶 Babysitter</h4><p>8am–9pm. Min age 12 months.</p></div>
     <div class="pol-card"><h4>🍳 Breakfast</h4><p>Available for groups of 6+ guests.</p></div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <div class="footer-cta">
   <h2>Ready for your<br><em>Samoa escape?</em></h2>
   <p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.35);margin-top:-1rem;margin-bottom:1.5rem">O le a tatou maua — mo lou aiga atoa</p>
@@ -703,10 +641,9 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
     <a href="https://wa.me/6857621745" target="_blank">WhatsApp</a>
     <a href="mailto:lupeaccommodations@gmail.com">Email</a>
   </div>
-  <p style="margin-top:2rem;font-size:11px;opacity:.2">© 2025 Lupe Accommodations · Samoa · Fale Tanu</p>
+  <p style="margin-top:2rem;font-size:11px;opacity:.2">© 2025 Lupe Accommodations · Samoa</p>
 </div>
 
-<!-- PANELS -->
 <div class="dropdown-overlay" id="overlay" onclick="closePanel()"></div>
 
 <div class="dropdown-panel" id="prop-panel">
@@ -763,7 +700,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   </div>
 </div>
 
-<!-- BOOKING MODAL -->
 <div class="booking-modal" id="booking-modal">
   <div class="bm-backdrop" onclick="closeBooking()"></div>
   <div class="bm-sheet" id="bm-sheet">
@@ -780,8 +716,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <div class="flow-dot" id="fd3"></div>
         <div class="flow-dot" id="fd4"></div>
       </div>
-
-      <!-- STEP 0: Choose home -->
       <div class="flow-step active" id="fs0">
         <div class="prop-pick" style="margin-bottom:16px">
           <div class="prop-pick-card" id="bm-heavenly" onclick="bmChooseProp('heavenly')">
@@ -793,8 +727,6 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         </div>
         <button class="btn-next" id="fs0-next" onclick="bmGoStep(1)" disabled>Continue →</button>
       </div>
-
-      <!-- STEP 1: Dates + guests -->
       <div class="flow-step" id="fs1">
         <div id="bm-cal-status" style="font-size:12px;color:var(--sage);margin-bottom:10px;display:none">🔄 Loading availability...</div>
         <div class="cal-nav" style="margin-bottom:10px">
@@ -833,20 +765,13 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <button class="btn-next" id="fs1-next" onclick="bmGoStep(2)" disabled>Continue →</button>
         <button class="btn-back" onclick="bmGoStep(0)">← Back</button>
       </div>
-
-      <!-- STEP 2: Extras -->
       <div class="flow-step" id="fs2">
         <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--ink);margin-bottom:4px">Enhance your stay · Faaopoopo mea</div>
         <div style="font-size:13px;color:var(--muted);margin-bottom:20px">All optional. We'll confirm details via WhatsApp after booking.</div>
-
         <div class="extras-section">
           <div class="extras-title">🚗 Car hire · Lisi ta'avale</div>
           <div class="extra-card" id="extra-car" onclick="toggleExtra('car')">
-            <div class="extra-card-top">
-              <div class="extra-card-icon">🚗</div>
-              <div class="extra-card-info"><div class="extra-card-name">Add a hire car</div><div class="extra-card-desc">Full stay. Driver must be 25+ with a valid licence.</div></div>
-              <div class="extra-card-check">✓</div>
-            </div>
+            <div class="extra-card-top"><div class="extra-card-icon">🚗</div><div class="extra-card-info"><div class="extra-card-name">Add a hire car</div><div class="extra-card-desc">Full stay. Driver must be 25+ with a valid licence.</div></div><div class="extra-card-check">✓</div></div>
             <div class="extra-card-options">
               <div class="extra-option" id="car-pickup" onclick="event.stopPropagation();chooseCarOption('pickup')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Pickup Truck</strong><br><span style="font-size:11px;color:var(--muted)">Spacious — great for large groups & luggage</span></div><div class="extra-option-price">$138/day</div></div>
               <div class="extra-option" id="car-ecosport" onclick="event.stopPropagation();chooseCarOption('ecosport')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Ford EcoSport (5-seater)</strong><br><span style="font-size:11px;color:var(--muted)">Fuel efficient, easy around Samoa</span></div><div class="extra-option-price">$73/day</div></div>
@@ -854,15 +779,10 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
             </div>
           </div>
         </div>
-
         <div class="extras-section">
           <div class="extras-title">🍳 Breakfast · Taumafataga o le taeao</div>
           <div class="extra-card" id="extra-breakfast" onclick="toggleExtra('breakfast')">
-            <div class="extra-card-top">
-              <div class="extra-card-icon">🍳</div>
-              <div class="extra-card-info"><div class="extra-card-name">Samoan-style breakfast</div><div class="extra-card-desc">Available for groups of 6+. Choose how many services — dates confirmed via WhatsApp.</div></div>
-              <div class="extra-card-check">✓</div>
-            </div>
+            <div class="extra-card-top"><div class="extra-card-icon">🍳</div><div class="extra-card-info"><div class="extra-card-name">Samoan-style breakfast</div><div class="extra-card-desc">Available for groups of 6+. Dates confirmed via WhatsApp.</div></div><div class="extra-card-check">✓</div></div>
             <div class="extra-card-options">
               <div class="extra-option" id="bfast-6" onclick="event.stopPropagation();chooseBreakfastOption(6,100)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>6 guests</strong></div><div class="extra-option-price">$100/service</div></div>
               <div class="extra-option" id="bfast-7" onclick="event.stopPropagation();chooseBreakfastOption(7,112)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>7 guests</strong></div><div class="extra-option-price">$112/service</div></div>
@@ -877,58 +797,47 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
           </div>
           <div id="breakfast-warning" style="display:none;background:rgba(192,57,43,0.06);border:1px solid rgba(192,57,43,0.2);border-radius:10px;padding:10px 13px;font-size:12px;color:var(--ember);margin-top:8px">⚠️ Breakfast is only available for groups of 6 or more guests.</div>
         </div>
-
         <div class="extras-section">
           <div class="extras-title">👶 Babysitter · Tausi pepe</div>
           <div class="extra-card" id="extra-baby" onclick="toggleExtra('baby')">
-            <div class="extra-card-top">
-              <div class="extra-card-icon">👶</div>
-              <div class="extra-card-info"><div class="extra-card-name">Professional babysitter — 4 hrs/day</div><div class="extra-card-desc">Available 8:00 AM – 9:00 PM. Minimum child age: 12 months.</div></div>
-              <div class="extra-card-check">✓</div>
-            </div>
+            <div class="extra-card-top"><div class="extra-card-icon">👶</div><div class="extra-card-info"><div class="extra-card-name">Professional babysitter — 4 hrs/day</div><div class="extra-card-desc">Available 8:00 AM – 9:00 PM. Minimum child age: 12 months.</div></div><div class="extra-card-check">✓</div></div>
             <div class="extra-card-options">
               <div class="extra-option" id="baby-1" onclick="event.stopPropagation();chooseBabyOption('1',55)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>1 child</strong><br><span style="font-size:11px;color:var(--muted)">Must be 12 months or older</span></div><div class="extra-option-price">$55/day</div></div>
-              <div class="extra-option" id="baby-2" onclick="event.stopPropagation();chooseBabyOption('2',78)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>2 children</strong><br><span style="font-size:11px;color:var(--muted)">One 5+ years, one 12 months+</span></div><div class="extra-option-price">$78/day</div></div>
-              <div class="extra-option" id="baby-3" onclick="event.stopPropagation();chooseBabyOption('3',98)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>3 children</strong><br><span style="font-size:11px;color:var(--muted)">All must be 5 years or older</span></div><div class="extra-option-price">$98/day</div></div>
+              <div class="extra-option" id="baby-2" onclick="event.stopPropagation();chooseBabyOption('2',78)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>2 children</strong></div><div class="extra-option-price">$78/day</div></div>
+              <div class="extra-option" id="baby-3" onclick="event.stopPropagation();chooseBabyOption('3',98)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>3 children</strong></div><div class="extra-option-price">$98/day</div></div>
               <div class="field" style="margin-top:14px;margin-bottom:0"><label>How many days do you need a babysitter?</label><input type="number" id="baby-days" min="1" placeholder="e.g. 2" onclick="event.stopPropagation()" oninput="updateExtrasTotal()"></div>
               <div class="extra-notice">🕐 Available 8:00 AM – 9:00 PM. Schedule confirmed via WhatsApp.</div>
             </div>
           </div>
         </div>
-
         <div class="extras-total-bar" id="extras-total-bar">
           <span>Extras total · Aofa'i faaopoopo</span>
           <span id="extras-total-amt">$0 AUD</span>
         </div>
-
         <button class="btn-next" onclick="bmGoStep(3)">Continue →</button>
         <button class="btn-back" onclick="bmGoStep(1)">← Back</button>
       </div>
-
-      <!-- STEP 3: Guest details -->
       <div class="flow-step" id="fs3">
         <div class="sum-bar" id="fs3-sumbar"></div>
         <div class="field-row" style="margin-bottom:16px">
           <div class="field" style="margin-bottom:0"><label>First name · Igoa muamua</label><input type="text" id="bm-fname" placeholder="First name" oninput="checkStep3()"></div>
           <div class="field" style="margin-bottom:0"><label>Last name · Igoa faai'u</label><input type="text" id="bm-lname" placeholder="Last name" oninput="checkStep3()"></div>
         </div>
-        <div class="field"><label>Email address · Imeli</label><input type="email" id="bm-email" placeholder="you@email.com" oninput="checkStep3()"></div>
+        <div class="field"><label>Email · Imeli</label><input type="email" id="bm-email" placeholder="you@email.com" oninput="checkStep3()"></div>
         <div class="field"><label>WhatsApp / Phone · Telefoni</label><input type="tel" id="bm-phone" placeholder="+685 or your number" oninput="checkStep3()"></div>
-        <div class="field"><label>Special requests <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional · filemu)</span></label><textarea id="bm-requests" rows="2" placeholder="Early check-in, celebrations, dietary needs..."></textarea></div>
+        <div class="field"><label>Special requests <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label><textarea id="bm-requests" rows="2" placeholder="Early check-in, celebrations, dietary needs..."></textarea></div>
         <button class="btn-next" id="fs3-next" onclick="bmGoStep(4)" disabled>Review & pay →</button>
         <button class="btn-back" onclick="bmGoStep(2)">← Back</button>
       </div>
-
-      <!-- STEP 4: Payment -->
       <div class="flow-step" id="fs4">
         <div class="deposit-callout">
-          <div class="dc-top">💳 Deposit due today · Tupe e totogi i aso nei (50%)</div>
+          <div class="dc-top">💳 Deposit due today · Tupe e totogi i aso nei</div>
           <div class="dc-amount" id="dep-amount">$— <small>AUD</small></div>
           <div class="dc-note" id="dep-note"></div>
         </div>
         <div class="sum-bar" id="fs4-sumbar"></div>
         <div class="promo-wrap">
-          <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px">Promo code · Code faapitoa (optional)</label>
+          <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px">Promo code (optional)</label>
           <div class="promo-row">
             <input class="promo-input" id="promo-input" placeholder="ENTER CODE" oninput="this.value=this.value.toUpperCase()">
             <button class="promo-btn" onclick="applyPromo()">Apply</button>
@@ -937,13 +846,13 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         </div>
         <div class="bond-notice">
           <strong>🔒 Refundable security bond · Tupe tautinoa</strong>
-          $300 AUD (up to 5 guests) · $400 AUD (6–7 guests) · $500 AUD (8+ guests). Fully refunded within 7 days of check-out.
+          $300 AUD (up to 5 guests) · $400 AUD (6–7 guests) · $500 AUD (8+ guests). Always fully refunded within 7 days of check-out.
         </div>
         <div class="stripe-wrap">
           <div class="stripe-head">Card details · Faamatalaga o kata</div>
           <div id="card-el"></div>
           <div id="card-err" style="color:var(--ember);font-size:12px;padding:0 16px 8px;display:none"></div>
-          <div class="stripe-secure">🔒 Secured by Stripe · 256-bit SSL · PCI Compliant</div>
+          <div class="stripe-secure">🔒 Secured by Stripe · 256-bit SSL</div>
         </div>
         <button class="btn-pay" id="pay-btn" onclick="doPay()">
           <span id="pay-btn-text">🔒 Pay deposit now · Totogi nei</span>
@@ -959,12 +868,10 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         </button>
         <button class="btn-back" onclick="bmGoStep(3)">← Back</button>
       </div>
-
-      <!-- SUCCESS -->
       <div class="success-flow" id="success-flow">
         <div class="suc-ring">🌺</div>
         <div class="suc-title">You're booked! · Ua faamaonia!</div>
-        <p class="suc-msg">Thank you, <strong id="suc-name"></strong>!<br>Confirmation sent to <strong id="suc-email"></strong>.<br>We'll reach out on WhatsApp to finalise your details.</p>
+        <p class="suc-msg">Thank you, <strong id="suc-name"></strong>!<br>Confirmation sent to <strong id="suc-email"></strong>.<br>We'll reach out on WhatsApp to finalise details.</p>
         <div class="suc-ref" id="suc-ref">LUPE-XXXXXX</div>
         <div class="suc-balance" id="suc-balance-wrap"></div>
         <button class="btn-next" onclick="resetAll()">Make another booking</button>
@@ -979,178 +886,125 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 </div>
 
 <script>
-// ── ICAL CALENDAR ──
-const ICAL_URLS = {
-  heavenly: 'https://www.airbnb.com/calendar/ical/737148180379804560.ics?t=5e68645b953444b7b2734b72f9f910bd&locale=en-AU',
-  nua: 'https://www.airbnb.com/calendar/ical/1132966183263705313.ics?t=e186ffa51db245fe8db08ebbc27a5c20&locale=en-AU'
-};
-const blockedDates = { heavenly: new Set(), nua: new Set() };
-let calLoaded = { heavenly: false, nua: false };
+// ── ICAL ──
+const ICAL_URLS={heavenly:'https://www.airbnb.com/calendar/ical/737148180379804560.ics?t=5e68645b953444b7b2734b72f9f910bd&locale=en-AU',nua:'https://www.airbnb.com/calendar/ical/1132966183263705313.ics?t=e186ffa51db245fe8db08ebbc27a5c20&locale=en-AU'};
+const blockedDates={heavenly:new Set(),nua:new Set()};
+let calLoaded={heavenly:false,nua:false};
 
-async function loadCalendar(prop) {
-  if (calLoaded[prop]) return;
-  const proxies = [
-    `https://api.allorigins.win/get?url=${encodeURIComponent(ICAL_URLS[prop])}`,
-    `https://corsproxy.io/?${encodeURIComponent(ICAL_URLS[prop])}`,
-    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(ICAL_URLS[prop])}`
-  ];
-  for (const proxy of proxies) {
-    try {
-      const res = await fetch(proxy, { signal: AbortSignal.timeout ? AbortSignal.timeout(8000) : undefined });
-      const text = proxy.includes('allorigins') ? (await res.json()).contents : await res.text();
-      if (text && text.includes('VCALENDAR')) { parseIcal(text, prop); calLoaded[prop] = true; return; }
-    } catch(e) { console.log('Proxy failed:', e.message); }
+async function loadCalendar(prop){
+  if(calLoaded[prop])return;
+  const proxies=[`https://api.allorigins.win/get?url=${encodeURIComponent(ICAL_URLS[prop])}`,`https://corsproxy.io/?${encodeURIComponent(ICAL_URLS[prop])}`,`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(ICAL_URLS[prop])}`];
+  for(const proxy of proxies){
+    try{const res=await fetch(proxy);const text=proxy.includes('allorigins')?(await res.json()).contents:await res.text();if(text&&text.includes('VCALENDAR')){parseIcal(text,prop);calLoaded[prop]=true;return;}}catch(e){}
   }
-  calLoaded[prop] = true;
+  calLoaded[prop]=true;
 }
-
-function parseIcal(ical, prop) {
-  if (!ical) return;
-  ical.split('BEGIN:VEVENT').forEach(ev => {
-    const s = ev.match(/DTSTART[^:]*:(\d{8})/), e = ev.match(/DTEND[^:]*:(\d{8})/);
-    if (s && e) { let c = parseIcalDate(s[1]); const end = parseIcalDate(e[1]); while(c<end){blockedDates[prop].add(toYMD(c));c.setDate(c.getDate()+1);} }
-  });
+function parseIcal(ical,prop){
+  if(!ical)return;
+  ical.split('BEGIN:VEVENT').forEach(ev=>{const s=ev.match(/DTSTART[^:]*:(\d{8})/),e=ev.match(/DTEND[^:]*:(\d{8})/);if(s&&e){let c=parseIcalDate(s[1]);const end=parseIcalDate(e[1]);while(c<end){blockedDates[prop].add(toYMD(c));c.setDate(c.getDate()+1);}}});
 }
-function parseIcalDate(s) { return new Date(s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8)+'T00:00:00'); }
+function parseIcalDate(s){return new Date(s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8)+'T00:00:00');}
 
 // ── STATE ──
-const S = {
-  prop:null,cin:null,cout:null,guests:1,nights:0,rate:0,subtotal:0,
-  discount:0,promoDiscount:0,total:0,deposit:0,balance:0,
-  promoCode:null,promoLabel:'',discountLabel:'',fullPayNow:false,
-  cancellationPolicy:'full-refund',cancellationText:'✅ Full refund — cancelled more than 90 days before arrival.',
-  carOption:null,breakfastOption:null,breakfastPrice:0,breakfastDays:0,
-  babyOption:null,babyPrice:0,babyDays:0,extrasTotal:0
-};
-const MIN_NIGHTS = { heavenly:4, nua:2 };
-const MAXG = { heavenly:13, nua:6 };
-const NAMES = { heavenly:'Heavenly Home', nua:"Nua's Oasis" };
-const CAR_PRICES = { pickup:138, ecosport:73 };
-const BABY_PRICES = { '1':55, '2':78, '3':98 };
-let stripeInited=false, stripe, elements, cardEl;
-const galIdx = { h:0, n:0 };
-let calViewMonth=new Date(); calViewMonth.setDate(1);
-let bmCalMonth=new Date(); bmCalMonth.setDate(1);
+const S={prop:null,cin:null,cout:null,guests:1,nights:0,rate:0,subtotal:0,discount:0,promoDiscount:0,total:0,deposit:0,balance:0,promoCode:null,promoLabel:'',discountLabel:'',fullPayNow:false,skipBond:false,cancellationPolicy:'full-refund',cancellationText:'✅ Full refund available.',carOption:null,breakfastOption:null,breakfastPrice:0,breakfastDays:0,babyOption:null,babyPrice:0,babyDays:0,extrasTotal:0};
+const MIN_NIGHTS={heavenly:4,nua:2};
+const MAXG={heavenly:13,nua:6};
+const NAMES={heavenly:'Heavenly Home',nua:"Nua's Oasis"};
+const CAR_PRICES={pickup:138,ecosport:73};
+let stripeInited=false,stripe,elements,cardEl;
+const galIdx={h:0,n:0};
+let calViewMonth=new Date();calViewMonth.setDate(1);
+let bmCalMonth=new Date();bmCalMonth.setDate(1);
+const TEST_MODE=false;
 
 // ── BOND ──
-function getBond() {
-  if (S.guests >= 8) return 500;
-  if (S.guests >= 6) return 400;
+function getBond(){
+  if(S.skipBond)return 0;
+  if(S.guests>=8)return 500;
+  if(S.guests>=6)return 400;
   return 300;
 }
 
 // ── EXTRAS ──
-function toggleExtra(type) {
-  const card = document.getElementById('extra-'+type);
-  const isSelected = card.classList.contains('selected');
-  card.classList.toggle('selected', !isSelected);
-  if (isSelected) {
-    if (type==='car') S.carOption=null;
-    if (type==='breakfast') { S.breakfastOption=null; S.breakfastPrice=0; S.breakfastDays=0; }
-    if (type==='baby') { S.babyOption=null; S.babyPrice=0; S.babyDays=0; }
-  }
+function toggleExtra(type){
+  const card=document.getElementById('extra-'+type);
+  const isSelected=card.classList.contains('selected');
+  card.classList.toggle('selected',!isSelected);
+  if(isSelected){if(type==='car')S.carOption=null;if(type==='breakfast'){S.breakfastOption=null;S.breakfastPrice=0;S.breakfastDays=0;}if(type==='baby'){S.babyOption=null;S.babyPrice=0;S.babyDays=0;}}
   updateExtrasTotal();
 }
-
-function chooseCarOption(opt) {
-  S.carOption=opt;
-  ['pickup','ecosport'].forEach(o=>document.getElementById('car-'+o).classList.toggle('chosen',o===opt));
-  updateExtrasTotal();
-}
-
-function chooseBreakfastOption(guests, price) {
-  S.breakfastOption=guests; S.breakfastPrice=price;
-  ['6','7','8','9','10','11','12'].forEach(o=>document.getElementById('bfast-'+o).classList.toggle('chosen',String(guests)===o));
-  updateExtrasTotal();
-}
-
-function chooseBabyOption(opt, price) {
-  S.babyOption=opt; S.babyPrice=price;
-  ['1','2','3'].forEach(o=>document.getElementById('baby-'+o).classList.toggle('chosen',o===opt));
-  updateExtrasTotal();
-}
-
-function updateExtrasTotal() {
+function chooseCarOption(opt){S.carOption=opt;['pickup','ecosport'].forEach(o=>document.getElementById('car-'+o).classList.toggle('chosen',o===opt));updateExtrasTotal();}
+function chooseBreakfastOption(guests,price){S.breakfastOption=guests;S.breakfastPrice=price;['6','7','8','9','10','11','12'].forEach(o=>document.getElementById('bfast-'+o).classList.toggle('chosen',String(guests)===o));updateExtrasTotal();}
+function chooseBabyOption(opt,price){S.babyOption=opt;S.babyPrice=price;['1','2','3'].forEach(o=>document.getElementById('baby-'+o).classList.toggle('chosen',o===opt));updateExtrasTotal();}
+function updateExtrasTotal(){
   let total=0;
-  if (S.carOption && S.nights>0) total+=CAR_PRICES[S.carOption]*S.nights;
-  const bfDays=parseInt(document.getElementById('breakfast-days')?.value)||0; S.breakfastDays=bfDays;
-  if (S.breakfastOption && bfDays>0) total+=S.breakfastPrice*bfDays;
-  const bbDays=parseInt(document.getElementById('baby-days')?.value)||0; S.babyDays=bbDays;
-  if (S.babyOption && bbDays>0) total+=S.babyPrice*bbDays;
+  if(S.carOption&&S.nights>0)total+=CAR_PRICES[S.carOption]*S.nights;
+  const bfDays=parseInt(document.getElementById('breakfast-days')?.value)||0;S.breakfastDays=bfDays;
+  if(S.breakfastOption&&bfDays>0)total+=S.breakfastPrice*bfDays;
+  const bbDays=parseInt(document.getElementById('baby-days')?.value)||0;S.babyDays=bbDays;
+  if(S.babyOption&&bbDays>0)total+=S.babyPrice*bbDays;
   S.extrasTotal=total;
   const bar=document.getElementById('extras-total-bar');
-  if(total>0){bar.style.display='flex';document.getElementById('extras-total-amt').textContent=`$${total} AUD`;}
-  else{bar.style.display='none';}
+  if(total>0){bar.style.display='flex';document.getElementById('extras-total-amt').textContent=`$${total} AUD`;}else{bar.style.display='none';}
 }
-
-function extrasDescription() {
+function extrasDescription(){
   const parts=[];
   if(S.carOption)parts.push(`Car hire: ${S.carOption==='pickup'?'Pickup Truck':'Ford EcoSport'} × ${S.nights} nights ($${CAR_PRICES[S.carOption]*S.nights} AUD)`);
   if(S.breakfastOption&&S.breakfastDays>0)parts.push(`Breakfast: ${S.breakfastOption} guests × ${S.breakfastDays} services ($${S.breakfastPrice*S.breakfastDays} AUD)`);
   if(S.babyOption&&S.babyDays>0)parts.push(`Babysitter: ${S.babyOption} child${S.babyOption!=='1'?'ren':''} × ${S.babyDays} days ($${S.babyPrice*S.babyDays} AUD)`);
   return parts.length>0?parts.join(' | '):'None';
 }
-
-function checkBreakfastEligibility() {
-  const warn=document.getElementById('breakfast-warning');
-  const card=document.getElementById('extra-breakfast');
+function checkBreakfastEligibility(){
+  const warn=document.getElementById('breakfast-warning');const card=document.getElementById('extra-breakfast');
   if(S.guests<6){warn.style.display='block';card.style.opacity='0.5';card.style.pointerEvents='none';}
   else{warn.style.display='none';card.style.opacity='1';card.style.pointerEvents='auto';}
 }
 
 // ── PRICING ──
-const TEST_MODE = false;
-
-function nightlyRate(prop, g) {
+function nightlyRate(prop,g){
   if(TEST_MODE)return 1;
-  if(prop==='heavenly'){
-    if(g<=4)return 375; if(g<=6)return 410; if(g<=8)return 450; return 450+(g-8)*35;
-  } else {
-    if(g<=4)return 245; if(g===5)return 270; if(g===6)return 295; return 320;
-  }
+  if(prop==='heavenly'){if(g<=4)return 375;if(g<=6)return 410;if(g<=8)return 450;return 450+(g-8)*35;}
+  else{if(g<=4)return 245;if(g===5)return 270;if(g===6)return 295;return 320;}
 }
-
-function calcPricing() {
+function calcPricing(){
   if(!S.prop||!S.nights)return;
-  S.rate=nightlyRate(S.prop,S.guests);
-  S.subtotal=S.rate*S.nights;
+  S.rate=nightlyRate(S.prop,S.guests);S.subtotal=S.rate*S.nights;
   const weeklyAmt=S.nights>=9?Math.round(S.subtotal*0.1):0;
   const promoAmt=S.promoCode?Math.round(S.subtotal*(S.promoDiscount/100)):0;
   if(promoAmt>=weeklyAmt){S.discount=promoAmt;S.discountLabel=S.promoLabel+' ('+S.promoDiscount+'% off)';}
-  else if(weeklyAmt>0){S.discount=weeklyAmt;S.discountLabel='10% discount — stay of 9+ nights';}
+  else if(weeklyAmt>0){S.discount=weeklyAmt;S.discountLabel='10% discount — 9+ night stay';}
   else{S.discount=0;S.discountLabel='';}
   S.total=S.subtotal-S.discount;
   if(TEST_MODE){S.total=1;S.deposit=1;S.balance=0;S.fullPayNow=true;return;}
   const days=S.cin?Math.ceil((new Date(S.cin+'T00:00:00')-new Date())/86400000):999;
   S.fullPayNow=days<=30;
   const grand=S.total+S.extrasTotal;
-  const skipBond = S.promoCode && PROMO_CODES[S.promoCode] && PROMO_CODES[S.promoCode].skipBond;
-    if(S.fullPayNow){S.deposit=grand+(skipBond?0:getBond());S.balance=0;}
-    else{S.deposit=Math.round(grand*0.5)+(skipBond?0:getBond());S.balance=grand-Math.round(grand*0.5);}
-    if(days>90){S.cancellationPolicy='full-refund';S.cancellationText='✅ 85% cash refund — cancelled more than 90 days before arrival. 15% non-refundable admin fee applies.';}
-    else if(days>=60){S.cancellationPolicy='partial-refund';S.cancellationText='🔄 75% credit valid 12 months — cancelled 60–89 days before arrival. No cash refund.';}
-    else if(days>=30){S.cancellationPolicy='credit-75';S.cancellationText='🔄 50% credit valid 12 months — cancelled 30–59 days before arrival. No cash refund.';}
-    else if(days>=14){S.cancellationPolicy='credit-50';S.cancellationText='🔄 25% credit valid 12 months — cancelled 14–29 days before arrival. No cash refund.';}
-    else{S.cancellationPolicy='credit-25';S.cancellationText='❌ No refund · No credit — cancelled within 14 days of arrival.';}
-  }
+  if(S.fullPayNow){S.deposit=grand+getBond();S.balance=0;}
+  else{S.deposit=Math.round(grand*0.5)+getBond();S.balance=grand-Math.round(grand*0.5);}
+  if(days>90){S.cancellationPolicy='full-refund';S.cancellationText='✅ 85% cash refund — cancelled 90+ days before arrival. 15% non-refundable admin fee.';}
+  else if(days>=60){S.cancellationPolicy='partial';S.cancellationText='🔄 75% credit valid 12 months — cancelled 60–89 days before arrival.';}
+  else if(days>=30){S.cancellationPolicy='credit-50';S.cancellationText='🔄 50% credit valid 12 months — cancelled 30–59 days before arrival.';}
+  else if(days>=14){S.cancellationPolicy='credit-25';S.cancellationText='🔄 25% credit valid 12 months — cancelled 14–29 days before arrival.';}
+  else{S.cancellationPolicy='none';S.cancellationText='❌ No refund · No credit — cancelled within 14 days of arrival.';}
+}
 
 // ── DATE UTILS ──
 function toYMD(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function fmtDate(d){if(!d)return'';return new Date(d+'T00:00:00').toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});}
 const todayYMD=toYMD(new Date());
 
-// ── CALENDAR RENDERER ──
+// ── CALENDAR ──
 function renderCal(containerId,titleId,month,prop,cinState,coutState,onPick){
   const y=month.getFullYear(),m=month.getMonth();
   const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
   document.getElementById(titleId).textContent=months[m]+' '+y;
-  const grid=document.getElementById(containerId); grid.innerHTML='';
+  const grid=document.getElementById(containerId);grid.innerHTML='';
   ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d=>{const el=document.createElement('div');el.className='cal-dow';el.textContent=d;grid.appendChild(el);});
   const first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate();
   for(let i=0;i<first;i++){const el=document.createElement('div');el.className='cal-day empty';grid.appendChild(el);}
   for(let d=1;d<=days;d++){
     const ymd=y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
-    const el=document.createElement('button'); el.className='cal-day'; el.textContent=d;
+    const el=document.createElement('button');el.className='cal-day';el.textContent=d;
     const isPast=ymd<todayYMD,isBlocked=prop&&blockedDates[prop]&&blockedDates[prop].has(ymd);
     if(isPast)el.classList.add('past');
     else if(isBlocked)el.classList.add('blocked');
@@ -1164,10 +1018,8 @@ function renderCal(containerId,titleId,month,prop,cinState,coutState,onPick){
     grid.appendChild(el);
   }
 }
-
 function renderTwoMonths(){const m2=new Date(calViewMonth);m2.setMonth(m2.getMonth()+1);renderCal('cal-m1','cal-m1-title',calViewMonth,S.prop,S.cin,S.cout,pickDate);renderCal('cal-m2','cal-m2-title',m2,S.prop,S.cin,S.cout,pickDate);}
 function shiftMonth(d){calViewMonth.setMonth(calViewMonth.getMonth()+d);renderTwoMonths();}
-
 function pickDate(ymd){
   if(!S.cin||(S.cin&&S.cout)||ymd<=S.cin){
     S.cin=ymd;S.cout=null;
@@ -1192,10 +1044,8 @@ function pickDate(ymd){
   }
   renderTwoMonths();
 }
-
 function renderBmCal(){renderCal('bm-cal','bm-cal-title',bmCalMonth,S.prop,S.cin,S.cout,bmPickDate);}
 function bmShiftMonth(d){bmCalMonth.setMonth(bmCalMonth.getMonth()+d);renderBmCal();}
-
 function bmPickDate(ymd){
   if(!S.cin||(S.cin&&S.cout)||ymd<=S.cin){
     S.cin=ymd;S.cout=null;
@@ -1226,23 +1076,18 @@ function bmPickDate(ymd){
   renderBmCal();
 }
 
-// ── GALLERY SLIDER ──
-function shiftSlide(g,d){
-  const slides=document.getElementById('gal-'+g).children.length;
-  galIdx[g]=(galIdx[g]+d+slides)%slides;
-  document.getElementById('gal-'+g).style.transform=`translateX(-${galIdx[g]*100}%)`;
-  document.querySelectorAll('#dots-'+g+' .hc-dot').forEach((dot,i)=>dot.classList.toggle('on',i===galIdx[g]));
-}
+// ── GALLERY ──
+function shiftSlide(g,d){const slides=document.getElementById('gal-'+g).children.length;galIdx[g]=(galIdx[g]+d+slides)%slides;document.getElementById('gal-'+g).style.transform=`translateX(-${galIdx[g]*100}%)`;document.querySelectorAll('#dots-'+g+' .hc-dot').forEach((dot,i)=>dot.classList.toggle('on',i===galIdx[g]));}
 
 // ── PANELS ──
 let activePanel=null;
-function openPanel(id, mode){
+function openPanel(id,mode){
   closePanel();
   if(id==='date-panel'){
-    const isCheckout = mode === 'checkout';
-    document.getElementById('date-panel-title').innerHTML = isCheckout
-      ? 'When are you leaving? · <em style="font-style:italic;font-size:1rem;color:var(--muted)">O afea tou te malaga ese atu ai?</em>'
-      : 'When are you coming? · <em style="font-style:italic;font-size:1rem;color:var(--muted)">O afea tou te malaga mai ai?</em>';
+    const isCheckout=mode==='checkout';
+    document.getElementById('date-panel-title').innerHTML=isCheckout
+      ?'When are you leaving? · <em style="font-style:italic;font-size:1rem;color:var(--muted)">O afea tou te malaga ese atu ai?</em>'
+      :'When are you coming? · <em style="font-style:italic;font-size:1rem;color:var(--muted)">O afea tou te malaga mai ai?</em>';
   }
   if(id==='date-panel'&&S.prop&&!calLoaded[S.prop]){document.getElementById('cal-status').style.display='block';loadCalendar(S.prop).then(()=>{document.getElementById('cal-status').style.display='none';renderTwoMonths();});}
   if(id==='date-panel')renderTwoMonths();
@@ -1263,6 +1108,16 @@ function chooseProp(id){
   document.getElementById('gp-plus').disabled=S.guests>=MAXG[id];
   loadCalendar(id);
 }
+function adjGuests(d){
+  const max=S.prop?MAXG[S.prop]:13;
+  S.guests=Math.max(1,Math.min(max,S.guests+d));
+  document.getElementById('gp-count').textContent=S.guests;
+  document.getElementById('sb-guests').textContent=S.guests+' guest'+(S.guests!==1?'s':'');
+  document.getElementById('gp-minus').disabled=S.guests<=1;document.getElementById('gp-plus').disabled=S.guests>=max;
+  calcPricing();
+}
+function startSearch(){if(!S.prop){openPanel('prop-panel');return;}if(!S.cin||!S.cout){openPanel('date-panel');return;}openBooking();}
+
 // ── BOOKING MODAL ──
 function openBooking(preselect){
   if(preselect)S.prop=preselect;
@@ -1297,14 +1152,10 @@ function bmAdj(d){
   document.getElementById('bm-minus').disabled=S.guests<=1;document.getElementById('bm-plus').disabled=S.guests>=max;
   if(S.nights>0){calcPricing();document.getElementById('lp-desc').textContent=`$${S.rate}/night × ${S.nights} nights${S.discount?` − $${S.discount}`:''}`;document.getElementById('lp-total').textContent=`$${S.total} AUD`;}
 }
-
 let currentStep=0;
 function bmGoStep(n){
   currentStep=n;
-  for(let i=0;i<=4;i++){
-    const el=document.getElementById('fs'+i);if(el)el.classList.toggle('active',i===n);
-    const dot=document.getElementById('fd'+i);if(dot){dot.classList.remove('on','done');if(i===n)dot.classList.add('on');else if(i<n)dot.classList.add('done');}
-  }
+  for(let i=0;i<=4;i++){const el=document.getElementById('fs'+i);if(el)el.classList.toggle('active',i===n);const dot=document.getElementById('fd'+i);if(dot){dot.classList.remove('on','done');if(i===n)dot.classList.add('on');else if(i<n)dot.classList.add('done');}}
   const titles=['Choose your home','Pick your dates','Extras','Your details','Confirm & pay'];
   document.getElementById('bm-title').textContent=titles[n]||'Book';
   document.getElementById('bm-sheet').scrollTop=0;
@@ -1318,7 +1169,6 @@ function bmGoStep(n){
   if(n===3)renderSumBar('fs3-sumbar');
   if(n===4){renderSumBar('fs4-sumbar');renderPayStep();initStripe();}
 }
-
 function renderSumBar(id){
   calcPricing();updateExtrasTotal();
   const el=document.getElementById(id);if(!el||!S.prop||!S.nights)return;
@@ -1328,70 +1178,68 @@ function renderSumBar(id){
   html+=`<div class="sum-line"><span>$${S.rate}/night × ${S.nights} nights</span><span>$${S.subtotal} AUD</span></div>`;
   if(S.discount>0)html+=`<div class="sum-line savings"><span>🎉 ${S.discountLabel}</span><span>−$${S.discount} AUD</span></div>`;
   html+=`<div class="sum-line total"><span>Accommodation total</span><span>$${S.total} AUD</span></div>`;
-  if(S.extrasTotal>0)html+=`<div class="sum-line"><span>Extras · Faaopoopo</span><span>$${S.extrasTotal} AUD</span></div>`;
-  html+=`<div class="sum-line"><span>Refundable bond · Tupe tautinoa</span><span>$${getBond()} AUD</span></div>`;
+  if(S.extrasTotal>0)html+=`<div class="sum-line"><span>Extras</span><span>$${S.extrasTotal} AUD</span></div>`;
+  if(getBond()>0)html+=`<div class="sum-line"><span>Refundable bond 🔒</span><span>$${getBond()} AUD</span></div>`;
   html+=`<div class="sum-bar-rule"></div>`;
-  const grand=S.total+S.extrasTotal;
   if(S.fullPayNow){
     html+=`<div class="sum-line total"><span>Full payment due now</span><span>$${S.deposit} AUD</span></div>`;
-    html+=`<div style="margin-top:8px;font-size:12px;padding:8px 12px;border-radius:8px;background:rgba(192,57,43,0.07)">⚠️ Check-in within 30 days — full payment required. ${S.cancellationText}</div>`;
   } else {
     html+=`<div class="sum-line total"><span>Due today (50% + bond)</span><span>$${S.deposit} AUD</span></div>`;
     html+=`<div class="sum-line"><span>Balance due 30 days before arrival</span><span>$${S.balance} AUD</span></div>`;
-    const cpBg={'full-refund':'rgba(44,95,74,0.07)','partial-refund':'rgba(44,95,74,0.06)','credit-75':'rgba(184,134,60,0.07)','credit-50':'rgba(184,134,60,0.07)','credit-25':'rgba(192,57,43,0.06)'};
-    html+=`<div style="margin-top:8px;font-size:12px;padding:8px 12px;border-radius:8px;background:${cpBg[S.cancellationPolicy]||'rgba(184,134,60,0.07)'}">${S.cancellationText}</div>`;
   }
+  html+=`<div style="margin-top:8px;font-size:12px;padding:8px 12px;border-radius:8px;background:rgba(184,134,60,0.07)">${S.cancellationText}</div>`;
   if(S.nights>=11)html+=`<div style="margin-top:8px;font-size:12px;padding:8px 12px;border-radius:8px;background:rgba(44,95,74,0.07)">🧹 Complimentary mid-stay clean included for your ${S.nights}-night stay.</div>`;
   el.innerHTML=html;
 }
-
 function renderPayStep(){
   calcPricing();
   document.getElementById('dep-amount').innerHTML=`$${S.deposit} <small>AUD</small>`;
   if(S.fullPayNow){
-    document.getElementById('dep-note').textContent=`Full payment — check-in within 30 days. Includes $${getBond()} refundable bond.`;
-    document.getElementById('pay-btn-text').textContent=`🔒 Pay full amount $${S.deposit} AUD now`;
+    document.getElementById('dep-note').textContent=`Full payment — check-in within 30 days.${getBond()>0?' Includes $'+getBond()+' refundable bond.':''}`;
+    document.getElementById('pay-btn-text').textContent=`🔒 Pay $${S.deposit} AUD now`;
   } else {
-    document.getElementById('dep-note').textContent=`Includes $${getBond()} refundable bond · Balance of $${S.balance} AUD due 30 days before arrival`;
+    document.getElementById('dep-note').textContent=`${getBond()>0?'Includes $'+getBond()+' refundable bond · ':''} Balance of $${S.balance} AUD due 30 days before arrival`;
     document.getElementById('pay-btn-text').textContent=`🔒 Pay $${S.deposit} AUD now · Totogi nei`;
   }
-  let cpEl=document.getElementById('cancel-policy-note');
-  if(!cpEl){cpEl=document.createElement('div');cpEl.id='cancel-policy-note';cpEl.style.cssText='margin-top:10px;font-size:12px;padding:10px 13px;border-radius:10px;line-height:1.5';document.getElementById('dep-note').parentNode.appendChild(cpEl);}
-  const cpColors={'full-refund':'rgba(44,95,74,0.08)','partial-refund':'rgba(44,95,74,0.06)','credit-75':'rgba(184,134,60,0.08)','credit-50':'rgba(184,134,60,0.08)','credit-25':'rgba(192,57,43,0.06)'};
-  cpEl.style.background=cpColors[S.cancellationPolicy]||'rgba(184,134,60,0.08)';
-  cpEl.textContent=S.cancellationText;
 }
-
 function checkStep3(){
   const ok=document.getElementById('bm-fname').value.trim()&&document.getElementById('bm-lname').value.trim()&&/\S+@\S+\.\S+/.test(document.getElementById('bm-email').value)&&document.getElementById('bm-phone').value.trim().length>5;
   document.getElementById('fs3-next').disabled=!ok;
 }
 
-// ── PROMO CODES ──
-const PROMO_CODES = {
-  'MOTHERSDAY15':{discount:15,label:"Mother's Day special"},
-  'LUPE20':{discount:20,label:'Lupe loyalty discount'},
-  'FAMILY10':{discount:10,label:'Family discount'},
-  'TEST99':{discount:99,label:'Test discount'},
-  'LUPETEST':{discount:100,label:'Internal test — no charge',skipBond:true},
-};
-
-function applyPromo(){
+// ── PROMO ──
+async function applyPromo(){
   const code=document.getElementById('promo-input').value.trim().toUpperCase();
   const input=document.getElementById('promo-input'),fb=document.getElementById('promo-feedback');
   if(!code)return;
-  if(PROMO_CODES[code]){
-    const p=PROMO_CODES[code];S.promoCode=code;S.promoDiscount=p.discount;S.promoLabel=p.label;
-    input.classList.remove('invalid');input.classList.add('valid');
-    calcPricing();
-    const weeklyAmt=S.nights>=9?Math.round(S.subtotal*0.1):0;
+  if(code==='LAUNCH10'){
+    try{
+      const res=await fetch('https://lupe-server.onrender.com/check-promo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code})});
+      const data=await res.json();
+      if(data.valid){
+        S.promoCode=code;S.promoDiscount=data.discount;S.promoLabel=data.label;S.skipBond=data.skipBond||false;
+        input.classList.remove('invalid');input.classList.add('valid');
+        calcPricing();
+        const promoAmt=Math.round(S.subtotal*(data.discount/100));
+        fb.className='promo-feedback show ok';
+        fb.textContent=`✓ ${data.label} — saves $${promoAmt} AUD · ${data.remaining-1} spots left after this`;
+        renderSumBar('fs4-sumbar');renderPayStep();
+      } else {
+        input.classList.remove('valid');input.classList.add('invalid');
+        fb.className='promo-feedback show err';fb.textContent=`✕ ${data.message}`;
+      }
+      return;
+    }catch(e){console.log('Promo check failed:',e);}
+  }
+  const LOCAL_CODES={'MOTHERSDAY15':{discount:15,label:"Mother's Day special"},'LUPE20':{discount:20,label:'Lupe loyalty discount'},'FAMILY10':{discount:10,label:'Family discount'},'TEST99':{discount:99,label:'Test discount'},'LUPETEST':{discount:100,label:'Internal test',skipBond:true}};
+  if(LOCAL_CODES[code]){
+    const p=LOCAL_CODES[code];S.promoCode=code;S.promoDiscount=p.discount;S.promoLabel=p.label;S.skipBond=p.skipBond||false;
+    input.classList.remove('invalid');input.classList.add('valid');calcPricing();
     const promoAmt=Math.round(S.subtotal*(p.discount/100));
-    let msg=`✓ Code applied — ${p.discount}% off (saves $${promoAmt} AUD)`;
-    if(weeklyAmt>promoAmt&&weeklyAmt>0){msg+=`. Your 9-night discount ($${weeklyAmt}) is better — that's applied instead!`;S.promoCode=null;}
-    fb.className='promo-feedback show ok';fb.textContent=msg;
+    fb.className='promo-feedback show ok';fb.textContent=`✓ Code applied — ${p.discount}% off (saves $${promoAmt} AUD)`;
     renderSumBar('fs4-sumbar');renderPayStep();
   } else {
-    S.promoCode=null;S.promoDiscount=0;S.promoLabel='';
+    S.promoCode=null;S.promoDiscount=0;S.promoLabel='';S.skipBond=false;
     input.classList.remove('valid');input.classList.add('invalid');
     fb.className='promo-feedback show err';fb.textContent='✕ Invalid code — please check and try again';
     calcPricing();renderSumBar('fs4-sumbar');renderPayStep();
@@ -1410,34 +1258,16 @@ function initStripe(){
     stripeInited=true;
   }catch(e){console.log('Stripe init error:',e);}
 }
-
 async function doPay(){
   const btn=document.getElementById('pay-btn'),errEl=document.getElementById('card-err');
   btn.disabled=true;errEl.style.display='none';
   document.getElementById('loading').classList.add('show');
-  document.querySelector('.loading-text').textContent='Processing · O loʻo faatino...';
   try{
-    const fname=document.getElementById('bm-fname').value;
-    const lname=document.getElementById('bm-lname').value;
-    const email=document.getElementById('bm-email').value;
+    const fname=document.getElementById('bm-fname').value,lname=document.getElementById('bm-lname').value,email=document.getElementById('bm-email').value;
     const ref='LUPE-'+Math.random().toString(36).substr(2,6).toUpperCase();
     document.getElementById('suc-ref').textContent=ref;
-    const res=await fetch('https://lupe-server.onrender.com/create-payment-intent',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        amount:S.deposit,currency:'aud',
-        metadata:{
-          property:NAMES[S.prop],checkin:S.cin,checkout:S.cout,
-          guests:String(S.guests),total:String(S.total),deposit:String(S.deposit),
-          balance:String(S.balance),name:fname+' '+lname,email:email,
-          phone:document.getElementById('bm-phone').value,
-          requests:document.getElementById('bm-requests').value||'None',
-          extras:extrasDescription(),extras_total:String(S.extrasTotal),
-          bond:String(getBond()),booking_ref:ref
-        }
-      })
-    });
-    if(!res.ok){const errData=await res.json().catch(()=>({}));throw new Error(errData.error||'Payment setup failed. Please try WhatsApp below.');}
+    const res=await fetch('https://lupe-server.onrender.com/create-payment-intent',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:S.deposit,currency:'aud',metadata:{property:NAMES[S.prop],checkin:S.cin,checkout:S.cout,guests:String(S.guests),total:String(S.total),deposit:String(S.deposit),balance:String(S.balance),name:fname+' '+lname,email:email,phone:document.getElementById('bm-phone').value,requests:document.getElementById('bm-requests').value||'None',extras:extrasDescription(),extras_total:String(S.extrasTotal),bond:String(getBond()),booking_ref:ref}})});
+    if(!res.ok){const errData=await res.json().catch(()=>({}));throw new Error(errData.error||'Payment setup failed.');}
     const{clientSecret,error:intentErr}=await res.json();
     if(intentErr)throw new Error(intentErr);
     const result=await stripe.confirmCardPayment(clientSecret,{payment_method:{card:cardEl,billing_details:{name:fname+' '+lname,email:email}}});
@@ -1449,21 +1279,11 @@ async function doPay(){
   }
 }
 
+// ── SAVE BOOKING ──
 async function saveBookingToServer(){
   try{
-    await fetch('https://lupe-server.onrender.com/save-booking',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        booking_ref:document.getElementById('suc-ref').textContent,
-        property:NAMES[S.prop],checkin:S.cin,checkout:S.cout,
-        name:document.getElementById('bm-fname').value+' '+document.getElementById('bm-lname').value,
-        email:document.getElementById('bm-email').value,
-        phone:document.getElementById('bm-phone').value,
-        guests:String(S.guests),total:String(S.total),
-        deposit:String(S.deposit),balance:String(S.balance),
-        extras:extrasDescription(),status:'confirmed'
-      })
-    });
+    await fetch('https://lupe-server.onrender.com/save-booking',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({booking_ref:document.getElementById('suc-ref').textContent,property:NAMES[S.prop],checkin:S.cin,checkout:S.cout,name:document.getElementById('bm-fname').value+' '+document.getElementById('bm-lname').value,email:document.getElementById('bm-email').value,phone:document.getElementById('bm-phone').value,guests:String(S.guests),total:String(S.total),deposit:String(S.deposit),balance:String(S.balance),extras:extrasDescription(),status:'confirmed'})});
+    if(S.promoCode==='LAUNCH10'){await fetch('https://lupe-server.onrender.com/use-promo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:'LAUNCH10'})});}
     let c=new Date(S.cin+'T00:00:00');const end=new Date(S.cout+'T00:00:00');
     while(c<end){blockedDates[S.prop].add(toYMD(c));c.setDate(c.getDate()+1);}
   }catch(e){console.log('Could not save booking:',e.message);}
@@ -1476,8 +1296,8 @@ function showSuccess(){
   document.getElementById('bm-title').textContent='Confirmed · Ua faamaonia ✓';
   document.getElementById('suc-name').textContent=document.getElementById('bm-fname').value;
   document.getElementById('suc-email').textContent=document.getElementById('bm-email').value;
-  if(S.fullPayNow){document.getElementById('suc-balance-wrap').innerHTML='<strong>Full payment collected including $'+getBond()+' AUD refundable bond.</strong> No further payment required.';}
-  else{document.getElementById('suc-balance-wrap').innerHTML='Balance of <strong>$'+S.balance+' AUD</strong> due 30 days before arrival. Bond of $'+getBond()+' AUD refunded within 7 days of check-out.';}
+  if(S.fullPayNow){document.getElementById('suc-balance-wrap').innerHTML='<strong>Full payment collected.</strong>'+(getBond()>0?' Refundable bond of $'+getBond()+' AUD returned within 7 days of check-out.':'');}
+  else{document.getElementById('suc-balance-wrap').innerHTML='Balance of <strong>$'+S.balance+' AUD</strong> due 30 days before arrival.'+(getBond()>0?' Bond of $'+getBond()+' AUD refunded within 7 days of check-out.':'');}
   document.getElementById('loading').classList.remove('show');
   saveBookingToServer();
   sendEmail();
@@ -1490,32 +1310,23 @@ function doWhatsApp(){
   if(S.cin&&S.cout)msg+=` from ${S.cin} to ${S.cout}`;
   msg+=` for ${S.guests} guest${S.guests!==1?'s':''}`;
   if(S.total)msg+=`. Total: $${S.total} AUD`;
-  if(S.extrasTotal>0)msg+=`. Extras: ${extrasDescription()}`;
   if(name)msg+=`. Name: ${name}`;
   msg+='. Please confirm. Fa\'afetai!';
   window.open('https://wa.me/6857621745?text='+encodeURIComponent(msg),'_blank');
 }
 
 async function sendEmail(){
-  const EMAILJS_SERVICE='service_04guqam';const EMAILJS_KEY='kmMmwZoCdFN4gKhH9';
-  const TEMPLATE_HEAVENLY='template_4oq7bmk';const TEMPLATE_NUA='template_rboo8yr';
+  const EMAILJS_SERVICE='service_04guqam',EMAILJS_KEY='kmMmwZoCdFN4gKhH9';
+  const TEMPLATE_HEAVENLY='template_4oq7bmk',TEMPLATE_NUA='template_rboo8yr';
   const guestTemplate=S.prop==='heavenly'?TEMPLATE_HEAVENLY:TEMPLATE_NUA;
   const fname=document.getElementById('bm-fname').value,lname=document.getElementById('bm-lname').value;
   const email=document.getElementById('bm-email').value,phone=document.getElementById('bm-phone').value;
   const requests=document.getElementById('bm-requests').value||'No special requests';
   const ref=document.getElementById('suc-ref').textContent;
-  const params={
-    guest_name:fname+' '+lname,email:email,guest_email:email,order_id:ref,
-    guest_phone:phone,property:NAMES[S.prop],checkin:fmtDate(S.cin),checkout:fmtDate(S.cout),
-    nights:String(S.nights),guests:String(S.guests),total:String(S.total),
-    deposit:String(S.deposit),balance:String(S.balance),booking_ref:ref,
-    cancellation_policy:S.cancellationText,requests:requests,
-    extras:extrasDescription(),extras_total:String(S.extrasTotal)
-  };
+  const params={guest_name:fname+' '+lname,email:email,guest_email:email,order_id:ref,guest_phone:phone,property:NAMES[S.prop],checkin:fmtDate(S.cin),checkout:fmtDate(S.cout),nights:String(S.nights),guests:String(S.guests),total:String(S.total),deposit:String(S.deposit),balance:String(S.balance),booking_ref:ref,cancellation_policy:S.cancellationText,requests:requests,extras:extrasDescription(),extras_total:String(S.extrasTotal)};
   try{
     await emailjs.send(EMAILJS_SERVICE,guestTemplate,params,EMAILJS_KEY);
     await emailjs.send(EMAILJS_SERVICE,guestTemplate,{...params,guest_email:'lupeaccommodations@gmail.com',email:'lupeaccommodations@gmail.com',guest_name:'NEW BOOKING — '+fname+' '+lname},EMAILJS_KEY);
-    console.log('Emails sent');
   }catch(err){
     const subject=encodeURIComponent('New Booking – '+NAMES[S.prop]+' – '+fname+' '+lname);
     const body=encodeURIComponent('Property: '+NAMES[S.prop]+'\nCheck-in: '+S.cin+'\nCheck-out: '+S.cout+'\nGuests: '+S.guests+'\nTotal: $'+S.total+' AUD\nExtras: '+extrasDescription()+'\nName: '+fname+' '+lname+'\nEmail: '+email+'\nPhone: '+phone);
@@ -1524,7 +1335,7 @@ async function sendEmail(){
 }
 
 function resetAll(){
-  Object.assign(S,{prop:null,cin:null,cout:null,guests:1,nights:0,rate:0,subtotal:0,discount:0,promoDiscount:0,total:0,deposit:0,balance:0,promoCode:null,promoLabel:'',carOption:null,breakfastOption:null,breakfastPrice:0,breakfastDays:0,babyOption:null,babyPrice:0,babyDays:0,extrasTotal:0});
+  Object.assign(S,{prop:null,cin:null,cout:null,guests:1,nights:0,rate:0,subtotal:0,discount:0,promoDiscount:0,total:0,deposit:0,balance:0,promoCode:null,promoLabel:'',skipBond:false,carOption:null,breakfastOption:null,breakfastPrice:0,breakfastDays:0,babyOption:null,babyPrice:0,babyDays:0,extrasTotal:0});
   ['bm-fname','bm-lname','bm-email','bm-phone','bm-requests','breakfast-days','baby-days'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   ['extra-car','extra-breakfast','extra-baby'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('selected');});
   document.getElementById('success-flow').style.display='none';
@@ -1538,64 +1349,42 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
 // ── QUIZ ──
 const quizAnswers={};let quizResultProp=null;
-
 function quizAnswer(q,val){
   quizAnswers[q]=val;
   document.getElementById('qpb'+q).style.background='var(--gold)';
-  if(q<3){document.getElementById('qq'+q).classList.remove('active');document.getElementById('qq'+(q+1)).classList.add('active');if(q+1<4)document.getElementById('qpb'+(q+1)).style.background='var(--gold)';}
+  if(q<3){document.getElementById('qq'+q).classList.remove('active');document.getElementById('qq'+(q+1)).classList.add('active');}
   else{showQuizResult();}
 }
-
 function showQuizResult(){
-  document.getElementById('quiz-questions').style.display='none';
-  document.getElementById('quiz-progress').style.display='none';
-  document.getElementById('quiz-result').style.display='block';
-  const guests=quizAnswers[0],wheelchair=quizAnswers[1],airport=quizAnswers[2],priority=quizAnswers[3];
+  document.getElementById('quiz-questions').style.display='none';document.getElementById('quiz-progress').style.display='none';document.getElementById('quiz-result').style.display='block';
+  const guests=quizAnswers[0],wheelchair=quizAnswers[1],priority=quizAnswers[3];
   let prop='nua',reason='';
   if(wheelchair==='yes'){prop='heavenly';reason='Heavenly Home is fully wheelchair accessible — the perfect choice for guests with mobility needs.';}
-  else if(guests==='7-13'){prop='heavenly';reason='For groups of 7 or more, Heavenly Home is the perfect choice — 4 bedrooms, 2.5 bathrooms and space for up to 13 guests comfortably.';}
-  else if(guests==='1-6'&&priority==='views'){prop='heavenly';reason="Heavenly Home's stunning mountain views will take your breath away every single morning.";}
-  else if(guests==='1-6'&&priority==='garden'){prop='nua';reason="Nua's Oasis is ideal for your group — a stunning private garden, cosy and beautifully designed for up to 6 guests.";}
+  else if(guests==='7-13'){prop='heavenly';reason='For groups of 7 or more, Heavenly Home is the perfect choice — 4 bedrooms and space for up to 13 guests.';}
+  else if(priority==='views'){prop='heavenly';reason="Heavenly Home's stunning mountain views will take your breath away every morning.";}
+  else if(priority==='garden'){prop='nua';reason="Nua's Oasis has a beautiful private garden — perfect for families with kids who love the outdoors.";}
   else{prop='nua';reason="Nua's Oasis is the perfect escape — private garden, fully equipped and beautifully designed for up to 6 guests.";}
   quizResultProp=prop;
-  const facts={
-    heavenly:'✈️ 30 mins from airport &nbsp;·&nbsp; 🏙️ 8 mins to town<br>🛏️ 4 bedrooms &nbsp;·&nbsp; 🛁 2.5 bathrooms &nbsp;·&nbsp; 👥 Up to 13 guests<br>🅿️ 5+ parking spaces &nbsp;·&nbsp; 🔒 Fully fenced &nbsp;·&nbsp; ♿ Wheelchair accessible',
-    nua:'✈️ 40 mins from airport &nbsp;·&nbsp; 🏙️ 7 mins to town<br>🛏️ 3 bedrooms &nbsp;·&nbsp; 🌳 Private garden &nbsp;·&nbsp; 👥 Up to 6 guests<br>🅿️ 2+ parking spaces &nbsp;·&nbsp; 🔒 Fully fenced'
-  };
+  const facts={heavenly:'✈️ 30 mins from airport &nbsp;·&nbsp; 🏙️ 8 mins to town<br>🛏️ 4 bedrooms &nbsp;·&nbsp; 🛁 2.5 bathrooms &nbsp;·&nbsp; 👥 Up to 13 guests<br>🅿️ 5+ parking &nbsp;·&nbsp; 🔒 Fully fenced &nbsp;·&nbsp; ♿ Wheelchair accessible',nua:'✈️ 40 mins from airport &nbsp;·&nbsp; 🏙️ 7 mins to town<br>🛏️ 3 bedrooms &nbsp;·&nbsp; 🌳 Private garden &nbsp;·&nbsp; 👥 Up to 6 guests<br>🅿️ 2+ parking &nbsp;·&nbsp; 🔒 Fully fenced'};
   document.getElementById('result-emoji').textContent=prop==='heavenly'?'🏠':'🌳';
   document.getElementById('result-title').textContent=prop==='heavenly'?'Heavenly Home is perfect for you!':"Nua's Oasis is perfect for you!";
   document.getElementById('result-reason').textContent=reason;
   document.getElementById('result-facts').innerHTML=facts[prop];
   document.getElementById('result-book-btn').textContent=prop==='heavenly'?'Book Heavenly Home →':"Book Nua's Oasis →";
 }
-
 function quizBook(){if(quizResultProp)quickBook(quizResultProp);}
-
 function resetQuiz(){
-  Object.keys(quizAnswers).forEach(k=>delete quizAnswers[k]);
-  quizResultProp=null;
-  for(let i=0;i<4;i++){
-    const q=document.getElementById('qq'+i);if(q)q.classList.remove('active');
-    const pb=document.getElementById('qpb'+i);if(pb)pb.style.background=i===0?'var(--gold)':'rgba(255,255,255,0.15)';
-  }
+  Object.keys(quizAnswers).forEach(k=>delete quizAnswers[k]);quizResultProp=null;
+  for(let i=0;i<4;i++){const q=document.getElementById('qq'+i);if(q)q.classList.remove('active');const pb=document.getElementById('qpb'+i);if(pb)pb.style.background=i===0?'var(--gold)':'rgba(255,255,255,0.15)';}
   document.getElementById('qq0').classList.add('active');
-  document.getElementById('quiz-questions').style.display='block';
-  document.getElementById('quiz-progress').style.display='flex';
-  document.getElementById('quiz-result').style.display='none';
+  document.getElementById('quiz-questions').style.display='block';document.getElementById('quiz-progress').style.display='flex';document.getElementById('quiz-result').style.display='none';
 }
 
 // ── INIT ──
 emailjs.init("kmMmwZoCdFN4gKhH9");
-calViewMonth=new Date();calViewMonth.setDate(1);
-bmCalMonth=new Date();bmCalMonth.setDate(1);
 
 async function preloadEverything(){
-  try{
-    const res=await fetch('https://lupe-server.onrender.com/booked-dates');
-    const serverDates=await res.json();
-    if(serverDates.heavenly)serverDates.heavenly.forEach(d=>blockedDates.heavenly.add(d));
-    if(serverDates.nua)serverDates.nua.forEach(d=>blockedDates.nua.add(d));
-  }catch(e){console.log('Could not load server dates:',e.message);}
+  try{const res=await fetch('https://lupe-server.onrender.com/booked-dates');const serverDates=await res.json();if(serverDates.heavenly)serverDates.heavenly.forEach(d=>blockedDates.heavenly.add(d));if(serverDates.nua)serverDates.nua.forEach(d=>blockedDates.nua.add(d));}catch(e){}
   await Promise.all([loadCalendar('heavenly'),loadCalendar('nua')]);
   console.log('Calendars pre-loaded!');
 }
