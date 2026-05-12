@@ -1254,10 +1254,6 @@ function closePanel(){
   if(activePanel){const p=document.getElementById(activePanel);p.classList.remove('open');setTimeout(()=>{p.style.display='none';},350);activePanel=null;}
   document.getElementById('overlay').classList.remove('show');
 }
-function closePanel(){
-  if(activePanel){const p=document.getElementById(activePanel);p.classList.remove('open');setTimeout(()=>{p.style.display='none';},350);activePanel=null;}
-  document.getElementById('overlay').classList.remove('show');
-}
 function chooseProp(id){
   S.prop=id;
   ['heavenly','nua'].forEach(p=>document.getElementById('pp-'+p).classList.toggle('chosen',p===id));
