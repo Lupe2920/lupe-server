@@ -1359,9 +1359,10 @@ function showQuizResult(){
   let prop='nua',reason='';
   if(wheelchair==='yes'){prop='heavenly';reason='Heavenly Home is fully wheelchair accessible — the perfect choice for guests with mobility needs.';}
   else if(guests==='7-13'){prop='heavenly';reason='For groups of 7 or more, Heavenly Home is the perfect choice — 4 bedrooms and space for up to 13 guests.';}
-  else if(priority==='views'){prop='heavenly';reason="Heavenly Home's stunning mountain views will take your breath away every morning.";}
-  else if(priority==='garden'){prop='nua';reason="Nua's Oasis has a beautiful private garden — perfect for families with kids who love the outdoors.";}
-  else{prop='nua';reason="Nua's Oasis is the perfect escape — private garden, fully equipped and beautifully designed for up to 6 guests.";}
+  else if(guests==='1-6'&&priority==='heavenly'){prop='heavenly';reason="Heavenly Home's spacious living areas, private garden, mountain views and 5+ parking spaces make it ideal for your group.";}
+  else if(guests==='1-6'&&priority==='nua'){prop='nua';reason="Nua's Oasis is the perfect budget-friendly escape — stunning ocean and mountain views, private garden and comfortable living for up to 6 guests.";}
+  else if(guests==='1-6'){prop='nua';reason="Nua's Oasis is the perfect escape — private garden, stunning views, fully equipped and beautifully designed for up to 6 guests.";}
+  else{prop='heavenly';reason='Heavenly Home is ideal for your family — spacious, accessible, with stunning mountain views and parking for 5+ vehicles.';}
   quizResultProp=prop;
   const facts={heavenly:'✈️ 30 mins from airport &nbsp;·&nbsp; 🏙️ 8 mins to town<br>🛏️ 4 bedrooms &nbsp;·&nbsp; 🛁 2.5 bathrooms &nbsp;·&nbsp; 👥 Up to 13 guests<br>🅿️ 5+ parking &nbsp;·&nbsp; 🔒 Fully fenced &nbsp;·&nbsp; ♿ Wheelchair accessible',nua:'✈️ 40 mins from airport &nbsp;·&nbsp; 🏙️ 7 mins to town<br>🛏️ 3 bedrooms &nbsp;·&nbsp; 🌳 Private garden &nbsp;·&nbsp; 👥 Up to 6 guests<br>🅿️ 2+ parking &nbsp;·&nbsp; 🔒 Fully fenced'};
   document.getElementById('result-emoji').textContent=prop==='heavenly'?'🏠':'🌳';
