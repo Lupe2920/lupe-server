@@ -1230,7 +1230,7 @@ async function applyPromo(){
       return;
     }catch(e){console.log('Promo check failed:',e);}
   }
-  const LOCAL_CODES={'MOTHERSDAY15':{discount:15,label:"Mother's Day special"},'LUPE20':{discount:20,label:'Lupe loyalty discount'},'FAMILY10':{discount:10,label:'Family discount'},'TEST99':{discount:99,label:'Test discount'},'LUPETEST':{discount:100,label:'Internal test',skipBond:true}};
+  const LOCAL_CODES={'MOTHERSDAY15':{discount:15,label:"Mother's Day special"},'LUPE20':{discount:20,label:'Lupe loyalty discount'},'LUPE25':{discount:25,label:'Lupe special discount'},'FAMILY10':{discount:10,label:'Family discount'},'TEST99':{discount:99,label:'Test discount'},'LUPETEST':{discount:100,label:'Internal test',skipBond:true}};
   if(LOCAL_CODES[code]){
     const p=LOCAL_CODES[code];S.promoCode=code;S.promoDiscount=p.discount;S.promoLabel=p.label;S.skipBond=p.skipBond||false;
     input.classList.remove('invalid');input.classList.add('valid');calcPricing();
