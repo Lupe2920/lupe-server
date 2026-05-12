@@ -969,7 +969,7 @@ function nightlyRate(prop,g){
 function calcPricing(){
   if(!S.prop||!S.nights)return;
   S.rate=nightlyRate(S.prop,S.guests);S.subtotal=S.rate*S.nights;
-  const weeklyAmt=S.nights>=9?Math.round(S.subtotal*0.1):0;
+  const weeklyAmt=0;
   const promoAmt=S.promoCode?Math.round(S.subtotal*(S.promoDiscount/100)):0;
   if(promoAmt>=weeklyAmt){S.discount=promoAmt;S.discountLabel=S.promoLabel+' ('+S.promoDiscount+'% off)';}
   else if(weeklyAmt>0){S.discount=weeklyAmt;S.discountLabel='10% discount — 9+ night stay';}
