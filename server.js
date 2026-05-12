@@ -34,6 +34,44 @@ function saveBookings(bookings) {
   } catch(e) { console.log('Error saving bookings:', e.message); }
 }
 
+// ── PROMO TRACKING ──
+const PROMO_FILE = path.join('/tmp', 'promos.json');
+
+function loadPromos() {
+  try {
+    if (fs.existsSync(PROMO_FILE)) return JSON.parse(fs.readFileSync(PROMO_FILE, 'utf8'));
+  } catch(e) {}
+  return { LAUNCH10: 0 };
+}
+
+function savePromos(promos) {
+  try { fs.writeFileSync(PROMO_FILE, JSON.stringify(promos)); } catch(e) {}
+}
+
+// ── CHECK PROMO ──
+app.post('/check-promo', (req, res) => {
+  const { code } = req.body;
+  const promos = loadPromos();
+  if (code === 'LAUNCH10') {
+    const used = promos['LAUNCH10'] || 0;
+    if (used >= 5) return res.json({ valid: false, message: 'Sorry — this offer has expired. All 5 spots have been claimed!' });
+    return res.json({ valid: true, discount: 99, skipBond: true, label: '🎉 Launch special — 99% off (spot '+(used+1)+' of 5)', used, remaining: 5-used });
+  }
+  res.json({ valid: false, message: 'Invalid promo code' });
+});
+
+// ── USE PROMO ──
+app.post('/use-promo', (req, res) => {
+  const { code } = req.body;
+  const promos = loadPromos();
+  if (code === 'LAUNCH10') {
+    promos['LAUNCH10'] = (promos['LAUNCH10'] || 0) + 1;
+    savePromos(promos);
+    return res.json({ success: true, used: promos['LAUNCH10'] });
+  }
+  res.json({ success: false });
+});
+
 // ── HEALTH CHECK ──
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', hasKey: !!process.env.STRIPE_SECRET_KEY });
