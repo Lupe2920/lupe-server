@@ -4,6 +4,16 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
+// ── KEEP ALIVE ──
+const https = require('https');
+setInterval(() => {
+  https.get('https://lupe-server.onrender.com', (res) => {
+    console.log('Keep alive ping:', res.statusCode);
+  }).on('error', (e) => {
+    console.log('Keep alive error:', e.message);
+  });
+}, 14 * 60 * 1000); // ping every 14 minutes
+
 // ── CORS ──
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
