@@ -1166,12 +1166,12 @@ function bmPreselect(prop){
 }
 function bmChooseProp(prop){
   S.prop=prop;
-  ['heavenly','nua'].forEach(p=>document.getElementById('bm-'+p).classList.toggle('chosen',p===prop));
-  document.getElementById('fs0-next').disabled=false;
-  document.getElementById('bm-gmax').textContent='Max '+MAXG[prop]+' for '+NAMES[prop];
+  ['heavenly','nua'].forEach(p=>{const el=document.getElementById('bm-'+p);if(el)el.classList.toggle('chosen',p===prop);});
+  const nextBtn=document.getElementById('fs0-next');if(nextBtn)nextBtn.disabled=false;
+  const gmaxEl=document.getElementById('bm-gmax');if(gmaxEl)gmaxEl.textContent='Max '+MAXG[prop]+' for '+NAMES[prop];
   const max=MAXG[prop];
-  if(S.guests>max){S.guests=max;document.getElementById('bm-gcount').textContent=max;}
-  document.getElementById('bm-plus').disabled=S.guests>=max;
+  if(S.guests>max){S.guests=max;const gc=document.getElementById('bm-gcount');if(gc)gc.textContent=max;}
+  const plusBtn=document.getElementById('bm-plus');if(plusBtn)plusBtn.disabled=S.guests>=max;
   loadCalendar(prop);
 }
 function bmAdj(d){
