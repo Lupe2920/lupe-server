@@ -2,17 +2,17 @@ const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 const app = express();
 
 // ── KEEP ALIVE ──
-const https = require('https');
 setInterval(() => {
   https.get('https://lupe-server.onrender.com', (res) => {
     console.log('Keep alive ping:', res.statusCode);
   }).on('error', (e) => {
     console.log('Keep alive error:', e.message);
   });
-}, 14 * 60 * 1000); // ping every 14 minutes
+}, 14 * 60 * 1000);
 
 // ── CORS ──
 app.use((req, res, next) => {
@@ -57,6 +57,87 @@ function loadPromos() {
 function savePromos(promos) {
   try { fs.writeFileSync(PROMO_FILE, JSON.stringify(promos)); } catch(e) {}
 }
+
+// ── ICAL CACHE ──
+const ICAL_URLS = {
+  heavenly: 'https://www.airbnb.com/calendar/ical/737148180379804560.ics?t=5e68645b953444b7b2734b72f9f910bd&locale=en-AU',
+  nua: 'https://www.airbnb.com/calendar/ical/1132966183263705313.ics?t=e186ffa51db245fe8db08ebbc27a5c20&locale=en-AU'
+};
+const icalCache = { heavenly: null, nua: null, heavenlyAt: 0, nuaAt: 0 };
+const CACHE_TTL = 30 * 60 * 1000;
+
+async function fetchIcal(prop) {
+  const now = Date.now();
+  if (icalCache[prop] && (now - icalCache[prop+'At']) < CACHE_TTL) {
+    return icalCache[prop];
+  }
+  try {
+    const res = await fetch(ICAL_URLS[prop]);
+    const text = await res.text();
+    if (text && text.includes('VCALENDAR')) {
+      icalCache[prop] = text;
+      icalCache[prop+'At'] = now;
+      return text;
+    }
+  } catch(e) { console.log('iCal fetch error:', e.message); }
+  return icalCache[prop] || null;
+}
+
+function parseIcalDates(ical) {
+  const blocked = [];
+  if (!ical) return blocked;
+  ical.split('BEGIN:VEVENT').forEach(ev => {
+    const s = ev.match(/DTSTART[^:]*:(\d{8})/);
+    const e = ev.match(/DTEND[^:]*:(\d{8})/);
+    if (s && e) {
+      let cur = new Date(s[1].slice(0,4)+'-'+s[1].slice(4,6)+'-'+s[1].slice(6,8)+'T00:00:00');
+      const end = new Date(e[1].slice(0,4)+'-'+e[1].slice(4,6)+'-'+e[1].slice(6,8)+'T00:00:00');
+      while (cur < end) {
+        blocked.push(cur.toISOString().split('T')[0]);
+        cur.setDate(cur.getDate() + 1);
+      }
+    }
+  });
+  return blocked;
+}
+
+// ── GET AIRBNB BLOCKED DATES ──
+app.get('/airbnb-dates/:prop', async (req, res) => {
+  const prop = req.params.prop;
+  if (!['heavenly','nua'].includes(prop)) return res.status(400).json({error:'Invalid property'});
+  const ical = await fetchIcal(prop);
+  const dates = parseIcalDates(ical);
+  res.json({ prop, dates });
+});
+
+// ── ALL BLOCKED DATES (server bookings + airbnb) ──
+app.get('/all-blocked-dates', async (req, res) => {
+  const [heavenlyIcal, nuaIcal] = await Promise.all([fetchIcal('heavenly'), fetchIcal('nua')]);
+  const bookings = loadBookings();
+  const serverDates = { heavenly: [], nua: [] };
+  bookings.forEach(b => {
+    if (b.property && b.checkin && b.checkout) {
+      const p = b.property.toLowerCase().includes('heavenly') ? 'heavenly' : 'nua';
+      let cur = new Date(b.checkin + 'T00:00:00');
+      const end = new Date(b.checkout + 'T00:00:00');
+      while (cur < end) {
+        serverDates[p].push(cur.toISOString().split('T')[0]);
+        cur.setDate(cur.getDate() + 1);
+      }
+    }
+  });
+  res.json({
+    heavenly: [...new Set([...parseIcalDates(heavenlyIcal), ...serverDates.heavenly])],
+    nua: [...new Set([...parseIcalDates(nuaIcal), ...serverDates.nua])]
+  });
+});
+
+// ── WARM UP CACHE ON START ──
+setTimeout(() => {
+  fetchIcal('heavenly');
+  fetchIcal('nua');
+  console.log('Warming iCal cache...');
+}, 3000);
 
 // ── CHECK PROMO ──
 app.post('/check-promo', (req, res) => {
