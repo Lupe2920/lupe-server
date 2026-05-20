@@ -987,8 +987,17 @@ function checkBreakfastEligibility(){
 // ── PRICING ──
 function nightlyRate(prop,g){
   if(TEST_MODE)return 1;
-  if(prop==='heavenly'){if(g<=4)return 375;if(g<=6)return 410;if(g<=8)return 450;return 450+(g-8)*35;}
-  else{if(g<=4)return 245;if(g===5)return 270;if(g===6)return 295;return 320;}
+  const month=S.cin?new Date(S.cin+'T00:00:00').getMonth():new Date().getMonth();
+  const isPeak=month===10||month===11;
+  if(prop==='heavenly'){
+    const base=isPeak?420:375;
+    const extra=Math.max(0,g-6)*25;
+    return base+extra;
+  } else {
+    const base=isPeak?295:245;
+    const extra=Math.max(0,g-4)*25;
+    return base+extra;
+  }
 }
 function calcPricing(){
   if(!S.prop||!S.nights)return;
