@@ -1414,9 +1414,18 @@ function resetQuiz(){
 emailjs.init("kmMmwZoCdFN4gKhH9");
 
 async function preloadEverything(){
-  try{const res=await fetch('https://lupe-server.onrender.com/booked-dates');const serverDates=await res.json();if(serverDates.heavenly)serverDates.heavenly.forEach(d=>blockedDates.heavenly.add(d));if(serverDates.nua)serverDates.nua.forEach(d=>blockedDates.nua.add(d));}catch(e){}
-  await Promise.all([loadCalendar('heavenly'),loadCalendar('nua')]);
-  console.log('Calendars pre-loaded!');
+  try{
+    const res=await fetch('https://lupe-server.onrender.com/all-blocked-dates');
+    const data=await res.json();
+    if(data.heavenly)data.heavenly.forEach(d=>blockedDates.heavenly.add(d));
+    if(data.nua)data.nua.forEach(d=>blockedDates.nua.add(d));
+    calLoaded.heavenly=true;
+    calLoaded.nua=true;
+    console.log('All dates loaded from server!');
+  }catch(e){
+    console.log('Falling back to direct iCal load');
+    await Promise.all([loadCalendar('heavenly'),loadCalendar('nua')]);
+  }
 }
 preloadEverything();
 </script>
