@@ -1197,8 +1197,7 @@ function bmGoStep(n){
   document.getElementById('bm-title').textContent=titles[n]||'Book';
   document.getElementById('bm-sheet').scrollTop=0;
   if(n===1){
-    if(S.prop&&!calLoaded[S.prop]){document.getElementById('bm-cal-status').style.display='block';loadCalendar(S.prop).then(()=>{document.getElementById('bm-cal-status').style.display='none';renderBmCal();});}
-    else{renderBmCal();}
+    renderBmCal();
     if(S.cin){document.getElementById('bm-dc-cin').textContent=fmtDate(S.cin);document.getElementById('bm-dc-cin').classList.remove('empty');}
     if(S.cout){document.getElementById('bm-dc-cout').textContent=fmtDate(S.cout);document.getElementById('bm-dc-cout').classList.remove('empty');document.getElementById('fs1-next').disabled=false;}
   }
