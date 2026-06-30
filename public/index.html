@@ -1143,7 +1143,6 @@ function chooseProp(id){
   document.getElementById('sb-prop').textContent=NAMES[id];document.getElementById('sb-prop').classList.remove('empty');
   document.getElementById('gp-max-note').textContent='Max '+MAXG[id]+' for '+NAMES[id];
   document.getElementById('gp-plus').disabled=S.guests>=MAXG[id];
-  loadCalendar(id);
 }
 function adjGuests(d){
   const max=S.prop?MAXG[S.prop]:13;
