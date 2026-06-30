@@ -228,12 +228,17 @@ app.get('/admin', (req, res) => {
       <td style="padding:12px 8px">${b.guests||'—'}</td>
       <td style="padding:12px 8px;font-weight:600;color:#2C5F4A">$${b.deposit||'—'}</td>
       <td style="padding:12px 8px;font-size:12px;color:#8A8278">${b.extras||'None'}</td>
+      <td style="padding:12px 8px">
+        <button onclick="sendConfirmation(${JSON.stringify(b).replace(/"/g,'&quot;')})" style="background:#2C5F4A;color:white;border:none;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:sans-serif" id="btn-${b.booking_ref||'x'}">
+          📧 Send confirmation
+        </button>
+      </td>
     </tr>
   `).reverse().join('');
   res.send(`
     <html><head><meta charset="UTF-8"><title>Lupe Bookings</title></head>
     <body style="font-family:sans-serif;margin:0;background:#F7F4EF;padding:24px">
-      <div style="max-width:1200px;margin:0 auto">
+      <div style="max-width:1400px;margin:0 auto">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
           <h1 style="font-family:Georgia,serif;color:#0F1923;margin:0">🌺 Lupe Bookings</h1>
           <span style="background:#0F1923;color:white;padding:8px 16px;border-radius:100px;font-size:13px">${bookings.length} booking${bookings.length!==1?'s':''}</span>
@@ -252,13 +257,53 @@ app.get('/admin', (req, res) => {
                 <th style="padding:14px 8px;text-align:left">Guests</th>
                 <th style="padding:14px 8px;text-align:left">Deposit</th>
                 <th style="padding:14px 8px;text-align:left">Extras</th>
+                <th style="padding:14px 8px;text-align:left">Confirmation</th>
               </tr>
             </thead>
-            <tbody>${rows || '<tr><td colspan="10" style="padding:40px;text-align:center;color:#8A8278">No bookings yet</td></tr>'}</tbody>
+            <tbody>${rows || '<tr><td colspan="11" style="padding:40px;text-align:center;color:#8A8278">No bookings yet</td></tr>'}</tbody>
           </table>
         </div>
       </div>
-    </body></html>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+    emailjs.init("kmMmwZoCdFN4gKhH9");
+    async function sendConfirmation(b){
+      const btn=document.getElementById('btn-'+(b.booking_ref||'x'));
+      btn.textContent='Sending...';btn.disabled=true;btn.style.background='#8A8278';
+      const isHeavenly=(b.property||'').toLowerCase().includes('heavenly');
+      const template=isHeavenly?'template_4oq7bmk':'template_rboo8yr';
+      const params={
+        guest_name:b.name||'Guest',
+        email:b.email||'',
+        guest_email:b.email||'',
+        order_id:b.booking_ref||'',
+        guest_phone:b.phone||'',
+        property:b.property||'',
+        checkin:b.checkin||'',
+        checkout:b.checkout||'',
+        nights:b.nights||'',
+        guests:b.guests||'',
+        total:b.total||'',
+        deposit:b.deposit||'',
+        balance:b.balance||'',
+        booking_ref:b.booking_ref||'',
+        cancellation_policy:b.cancellation_policy||'',
+        requests:b.requests||'None',
+        extras:b.extras||'None',
+        extras_total:b.extras_total||'0'
+      };
+      try{
+        await emailjs.send('service_04guqam',template,params,'kmMmwZoCdFN4gKhH9');
+        btn.textContent='✅ Sent!';btn.style.background='#2C5F4A';
+        setTimeout(()=>{btn.textContent='📧 Send confirmation';btn.disabled=false;},3000);
+      }catch(err){
+        btn.textContent='❌ Failed — try again';btn.style.background='#C0392B';btn.disabled=false;
+        console.error('EmailJS error:',err);
+      }
+    }
+    </script>
+    </html>
   `);
 });
 
