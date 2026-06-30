@@ -1180,7 +1180,6 @@ function bmChooseProp(prop){
   const max=MAXG[prop];
   if(S.guests>max){S.guests=max;const gc=document.getElementById('bm-gcount');if(gc)gc.textContent=max;}
   const plusBtn=document.getElementById('bm-plus');if(plusBtn)plusBtn.disabled=S.guests>=max;
-  loadCalendar(prop);
 }
 function bmAdj(d){
   const max=S.prop?MAXG[S.prop]:13;
