@@ -847,7 +847,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
             <div class="extra-card-options">
               <div style="background:var(--fog);border-radius:12px;padding:14px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
                 <div style="font-size:13px;color:var(--muted)" id="ferry-price-label">Price based on your hire car</div>
-                <div style="font-size:1.2rem;font-weight:700;color:var(--gold)" id="ferry-price-amt"></div>
+                <div style="font-size:13px;font-weight:700;color:var(--gold)" id="ferry-price-amt"></div>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
                 <div class="field" style="margin-bottom:0"><label>Departure date</label><input type="date" id="ferry-go-date" onclick="event.stopPropagation()" onchange="updateFerryTimes('go')"></div>
@@ -869,7 +869,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
               <div class="field" style="margin-bottom:12px"><label>How many people on the tour?</label><input type="number" id="tour-people" min="1" max="10" placeholder="e.g. 4" onclick="event.stopPropagation()" oninput="calcTourPrice()"></div>
               <div id="tour-price-display" style="display:none;background:var(--fog);border-radius:12px;padding:14px 16px;margin-bottom:14px;justify-content:space-between;align-items:center">
                 <div style="font-size:13px;color:var(--muted)" id="tour-price-label"></div>
-                <div style="font-size:1.2rem;font-weight:700;color:var(--gold)" id="tour-price-amt"></div>
+                <div style="font-size:13px;font-weight:700;color:var(--gold)" id="tour-price-amt"></div>
               </div>
               <div id="tour-food-wrap" style="display:none;margin-bottom:14px">
                 <div class="extra-option" id="tour-food-yes" onclick="event.stopPropagation();toggleTourFood(true)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Add food & drinks</strong><br><span style="font-size:11px;color:var(--muted)">+$45 per person · All meals and drinks included throughout the day</span></div><div class="extra-option-price" id="tour-food-price"></div></div>
