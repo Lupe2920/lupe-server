@@ -764,7 +764,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <button class="btn-back" onclick="bmGoStep(0)">← Back</button>
       </div>
       <div class="flow-step" id="fs2">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--ink);margin-bottom:4px">Let us help you make your stay more smoother</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--ink);margin-bottom:4px">Let us help you organise your trip</div>
         <div style="font-size:13px;color:var(--muted);margin-bottom:20px">All optional. We'll confirm details via WhatsApp after booking.</div>
 
        <!-- CAR HIRE -->
@@ -780,20 +780,20 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
               <div class="extra-option" id="car-van15" onclick="event.stopPropagation();toggleCar('van15')"><div class="extra-option-radio" id="radio-van15"></div><div class="extra-option-label"><strong>🚐 15 Seater Van: Manual</strong><br><span style="font-size:11px;color:var(--muted)">Great for large groups</span></div><div class="extra-option-price">$160/day</div></div>
               <div class="extra-option" id="car-van10" onclick="event.stopPropagation();toggleCar('van10')"><div class="extra-option-radio" id="radio-van10"></div><div class="extra-option-label"><strong>🚐 10 Seater Van: Automatic</strong><br><span style="font-size:11px;color:var(--muted)">Perfect for medium groups</span></div><div class="extra-option-price">$160/day</div></div>
               <div id="car-total-display" style="display:none;background:var(--fog);border-radius:12px;padding:12px 16px;margin-top:12px;font-size:13px;font-weight:600;color:var(--ink)"></div>
-              <div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div>
+              <div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest. Permit License for 1 driver will be included in all car bookings. Your car will be waiting for you at the accommodation.</div>
             </div>
           </div>
         </div>
 
         <!-- AIRPORT TRANSFER -->
         <div class="extras-section">
-          <div class="extras-title">✈️ Airport transfer · Fe'au i le malae vaalele</div>
+          <div class="extras-title">Need help organising Airport transfer?/div>
           <div class="extra-card" id="extra-airport" onclick="toggleExtra('airport')">
             <div class="extra-card-top"><div class="extra-card-icon">✈️</div><div class="extra-card-info"><div class="extra-card-name">Airport transfer</div><div class="extra-card-desc">Pickup or drop off service between the airport and your home.</div></div><div class="extra-card-check">✓</div></div>
             <div class="extra-card-options">
               <div class="extra-option" id="airport-pickup" onclick="event.stopPropagation();chooseAirport('pickup')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Airport pickup → house</strong><br><span style="font-size:11px;color:var(--muted)">We pick you up from the airport and take you home</span></div><div class="extra-option-price">$75</div></div>
               <div class="extra-option" id="airport-dropoff" onclick="event.stopPropagation();chooseAirport('dropoff')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Drop off at airport</strong><br><span style="font-size:11px;color:var(--muted)">We drop you off at the airport at end of stay</span></div><div class="extra-option-price">$68</div></div>
-              <div class="extra-option" id="airport-return" onclick="event.stopPropagation();chooseAirport('return')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Full return — pickup + drop off</strong><br><span style="font-size:11px;color:var(--muted)">Airport pickup on arrival AND drop off at end of stay</span></div><div class="extra-option-price">$135</div></div>
+              <div class="extra-option" id="airport-return" onclick="event.stopPropagation();chooseAirport('return')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Return Transfer: pickup + drop off</strong><br><span style="font-size:11px;color:var(--muted)">Airport pickup on arrival AND drop off at end of stay</span></div><div class="extra-option-price">$135</div></div>
               <div class="extra-notice">📅 Transfer times confirmed via WhatsApp after booking.</div>
             </div>
           </div>
@@ -801,16 +801,16 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 
         <!-- BREAKFAST -->
         <div class="extras-section">
-          <div class="extras-title">🍳 Breakfast · Taumafataga o le taeao</div>
+          <div class="extras-title">Would you like Breakfast served to you at the home?</div>
           <div class="extra-card" id="extra-breakfast" onclick="toggleExtra('breakfast')">
-            <div class="extra-card-top"><div class="extra-card-icon">🍳</div><div class="extra-card-info"><div class="extra-card-name">Samoan-style breakfast</div><div class="extra-card-desc">Delivered to your door. Price based on your guest count.</div></div><div class="extra-card-check">✓</div></div>
+            <div class="extra-card-top"><div class="extra-card-icon">🍳</div><div class="extra-card-info"><div class="extra-card-name">Local Tropical Island breakfast</div><div class="extra-card-desc">Delivered to your door. Price based on your guest count.</div></div><div class="extra-card-check">✓</div></div>
             <div class="extra-card-options">
               <div style="background:var(--fog);border-radius:12px;padding:14px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
                 <div style="font-size:13px;color:var(--muted)" id="bfast-price-label">Price per service</div>
                 <div style="font-size:1.2rem;font-weight:700;color:var(--gold)" id="bfast-price-amt"></div>
               </div>
-              <div class="field" style="margin-bottom:0"><label>How many breakfast services?</label><input type="number" id="breakfast-days" min="1" placeholder="e.g. 3" onclick="event.stopPropagation()" oninput="updateExtrasTotal()"></div>
-              <div class="extra-notice">📅 Dates confirmed via WhatsApp after booking.</div>
+              <div class="field" style="margin-bottom:0"><label>How many days would you like your breakfast served?</label><input type="number" id="breakfast-days" min="1" placeholder="e.g. 3" onclick="event.stopPropagation()" oninput="updateExtrasTotal()"></div>
+              <div class="extra-notice">Dates confirmed via WhatsApp after booking.</div>
             </div>
           </div>
           <div id="breakfast-warning" style="display:none"></div>
@@ -818,23 +818,23 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 
         <!-- SIM CARD -->
         <div class="extras-section">
-          <div class="extras-title">📱 SIM Card · Kata telefoni</div>
+          <div class="extras-title">Let us help you organise a mobile plan for your simcard </div>
           <div class="extra-card" id="extra-sim" onclick="toggleExtra('sim')">
             <div class="extra-card-top"><div class="extra-card-icon">📱</div><div class="extra-card-info"><div class="extra-card-name">Samoa SIM card</div><div class="extra-card-desc">Unlimited local calls & texts · 30 mins international calling to designated countries</div></div><div class="extra-card-check">✓</div></div>
             <div class="extra-card-options">
               <div style="margin-bottom:14px">
-                <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px">Does your phone support eSIM?</label>
+                <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px">Does your phone have a SIM card tray,(please check)?</label>
                 <div style="display:flex;gap:10px">
-                  <button onclick="event.stopPropagation();simEsim(false)" id="sim-no-esim" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:10px;background:var(--fog);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s">📲 No — physical SIM only</button>
-                  <button onclick="event.stopPropagation();simEsim(true)" id="sim-yes-esim" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:10px;background:var(--fog);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s">✨ Yes — eSIM capable</button>
+                  <button onclick="event.stopPropagation();simEsim(false)" id="sim-no-esim" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:10px;background:var(--fog);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s">📲 Yes, it does</button>
+                  <button onclick="event.stopPropagation();simEsim(true)" id="sim-yes-esim" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:10px;background:var(--fog);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s">✨ No, it doesn't, I can only use an eSIM </button>
                 </div>
               </div>
               <div id="sim-options" style="display:none">
-                <div class="extra-option" id="sim-1week" onclick="event.stopPropagation();chooseSim('1week')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>1 week — $20 AUD</strong><br><span style="font-size:11px;color:var(--muted)">20+ GB data · Physical SIM slot required</span></div><div class="extra-option-price">$20</div></div>
-                <div class="extra-option" id="sim-2week" onclick="event.stopPropagation();chooseSim('2week')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>2 weeks — $37 AUD</strong><br><span style="font-size:11px;color:var(--muted)">40+ GB data · Works with eSIM or physical SIM</span></div><div class="extra-option-price">$37</div></div>
-                <div class="field" style="margin-top:14px;margin-bottom:0"><label>How many SIM cards? (max 13)</label><input type="number" id="sim-qty" min="1" max="13" placeholder="e.g. 4" onclick="event.stopPropagation()" oninput="updateExtrasTotal()"></div>
+                <div class="extra-option" id="sim-1week" onclick="event.stopPropagation();chooseSim('1week')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>1 week: $20 AUD</strong><br><span style="font-size:11px;color:var(--muted)">20+ GB data · Physical SIM slot required</span></div><div class="extra-option-price">$20</div></div>
+                <div class="extra-option" id="sim-2week" onclick="event.stopPropagation();chooseSim('2week')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>2 weeks: $37 AUD</strong><br><span style="font-size:11px;color:var(--muted)">40+ GB data · Works with eSIM or physical SIM</span></div><div class="extra-option-price">$37</div></div>
+                <div class="field" style="margin-top:14px;margin-bottom:0"><label>How many SIM cards do you need? (we highly encourage that everyone in the group has one)</label><input type="number" id="sim-qty" min="1" max="13" placeholder="e.g. 4" onclick="event.stopPropagation()" oninput="updateExtrasTotal()"></div>
               </div>
-              <div class="extra-notice">📦 SIM cards ready on arrival. Confirmed via WhatsApp.</div>
+              <div class="extra-notice">Your SIM cards will be provided to you at the house after check in.</div>
             </div>
           </div>
         </div>
