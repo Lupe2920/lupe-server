@@ -1068,14 +1068,127 @@ function getBond(){
 }
 
 // ── EXTRAS ──
+// ── EXTRAS ──
 function toggleExtra(type){
   const card=document.getElementById('extra-'+type);
+  if(!card)return;
   const isSelected=card.classList.contains('selected');
   card.classList.toggle('selected',!isSelected);
-  if(isSelected){if(type==='car')S.carOption=null;if(type==='breakfast'){S.breakfastOption=null;S.breakfastPrice=0;S.breakfastDays=0;}if(type==='baby'){S.babyOption=null;S.babyPrice=0;S.babyDays=0;}}
+  if(isSelected){
+    if(type==='breakfast'){S.breakfastOption=null;S.breakfastPrice=0;S.breakfastDays=0;}
+    if(type==='baby'){S.babyOption=null;S.babyPrice=0;S.babyDays=0;}
+    if(type==='sim'){S.simWeeks=null;S.simQty=0;const so=document.getElementById('sim-options');if(so)so.style.display='none';}
+    if(type==='ferry'){S.ferryPrice=0;}
+    if(type==='airport'){S.airportTransfer=null;}
+    if(type==='tour'){S.tourPeople=0;S.tourFood=false;}
+  } else {
+    if(type==='breakfast')chooseBreakfastOption();
+    if(type==='ferry')updateFerryPrice();
+  }
   updateExtrasTotal();
 }
-function chooseCarOption(opt){S.carOption=opt;['pickup','ecosport'].forEach(o=>document.getElementById('car-'+o).classList.toggle('chosen',o===opt));updateExtrasTotal();}
+
+function toggleCar(type){
+  const card=document.getElementById('extra-car-'+type);
+  if(!card)return;
+  const isSelected=card.classList.contains('selected');
+  card.classList.toggle('selected',!isSelected);
+  if(isSelected){S.carOptions=S.carOptions.filter(c=>c!==type);}
+  else{if(!S.carOptions.includes(type))S.carOptions.push(type);}
+  updateCarTotals();
+  updateFerryPrice();
+  updateExtrasTotal();
+}
+
+function updateCarTotals(){
+  ['pickup','ecosport','van16','van15','van10'].forEach(type=>{
+    const tot=document.getElementById(type+'-total');
+    const nts=document.getElementById(type+'-nights');
+    if(tot)tot.textContent=CAR_PRICES[type]*S.nights;
+    if(nts)nts.textContent=S.nights||0;
+  });
+}
+
+function updateFerryPrice(){
+  const hasPickup=S.carOptions.includes('pickup');
+  const hasEco=S.carOptions.includes('ecosport');
+  const price=hasPickup?140:hasEco?120:140;
+  S.ferryPrice=price;
+  const label=document.getElementById('ferry-price-label');
+  const amt=document.getElementById('ferry-price-amt');
+  if(label)label.textContent=hasPickup?'Pickup Truck booked · per car & driver':hasEco?'Ford EcoSport booked · per car & driver':'Per car & driver';
+  if(amt)amt.textContent=`$${price} AUD return`;
+}
+
+function getFerryTimes(dateStr){
+  if(!dateStr)return[];
+  const day=new Date(dateStr+'T00:00:00').getDay();
+  return day===0?['1:00 PM','3:00 PM']:['6:00 AM','8:00 AM','10:00 AM','12:00 PM','2:00 PM','4:00 PM'];
+}
+
+function updateFerryTimes(which){
+  const dateId=which==='go'?'ferry-go-date':'ferry-return-date';
+  const timeId=which==='go'?'ferry-go-time':'ferry-return-time';
+  const date=document.getElementById(dateId)?.value;
+  const sel=document.getElementById(timeId);
+  if(!sel)return;
+  sel.innerHTML='<option value="">Select time</option>';
+  getFerryTimes(date).forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;sel.appendChild(o);});
+  updateExtrasTotal();
+}
+
+function chooseAirport(opt){
+  S.airportTransfer=opt;
+  ['pickup','dropoff','return'].forEach(o=>{const el=document.getElementById('airport-'+o);if(el)el.classList.toggle('chosen',o===opt);});
+  updateExtrasTotal();
+}
+
+let simEsimCapable=null;
+function simEsim(capable){
+  simEsimCapable=capable;
+  document.getElementById('sim-no-esim').style.border=!capable?'1.5px solid var(--ink)':'1.5px solid var(--border)';
+  document.getElementById('sim-yes-esim').style.border=capable?'1.5px solid var(--ink)':'1.5px solid var(--border)';
+  const opts=document.getElementById('sim-options');
+  if(opts)opts.style.display='block';
+  const oneWeek=document.getElementById('sim-1week');
+  if(oneWeek)oneWeek.style.display=capable?'none':'flex';
+  if(capable&&S.simWeeks==='1week'){S.simWeeks=null;['sim-1week','sim-2week'].forEach(o=>{const el=document.getElementById(o);if(el)el.classList.remove('chosen');});}
+}
+
+function chooseSim(opt){
+  S.simWeeks=opt;
+  ['1week','2week'].forEach(o=>{const el=document.getElementById('sim-'+o);if(el)el.classList.toggle('chosen',o===opt);});
+  updateExtrasTotal();
+}
+
+function calcTourPrice(){
+  const p=parseInt(document.getElementById('tour-people')?.value)||0;
+  S.tourPeople=p;
+  const display=document.getElementById('tour-price-display');
+  const label=document.getElementById('tour-price-label');
+  const amt=document.getElementById('tour-price-amt');
+  const foodWrap=document.getElementById('tour-food-wrap');
+  const maxNotice=document.getElementById('tour-max-notice');
+  if(p<=0){if(display)display.style.display='none';if(foodWrap)foodWrap.style.display='none';if(maxNotice)maxNotice.style.display='none';updateExtrasTotal();return;}
+  if(p>10){if(display)display.style.display='none';if(foodWrap)foodWrap.style.display='none';if(maxNotice)maxNotice.style.display='block';S.tourPeople=0;updateExtrasTotal();return;}
+  if(maxNotice)maxNotice.style.display='none';
+  const price=TOUR_PRICES[p];
+  if(display)display.style.display='flex';
+  if(label)label.textContent=`${p} person${p!==1?'s':''} · 9 hour tour · All entrance fees included`;
+  if(amt)amt.textContent=`$${price} AUD`;
+  if(foodWrap)foodWrap.style.display='block';
+  const foodPrice=document.getElementById('tour-food-price');
+  if(foodPrice)foodPrice.textContent=`+$${p*45}`;
+  updateExtrasTotal();
+}
+
+function toggleTourFood(on){
+  S.tourFood=on;
+  const el=document.getElementById('tour-food-yes');
+  if(el)el.classList.toggle('chosen',on);
+  updateExtrasTotal();
+}
+
 function chooseBreakfastOption(){
   const g=S.guests;
   const steps=[20,18,16,14,12,10,10];
@@ -1088,33 +1201,12 @@ function chooseBreakfastOption(){
   if(amt)amt.textContent=`$${price} AUD`;
   updateExtrasTotal();
 }
-function chooseBabyOption(opt,price){S.babyOption=opt;S.babyPrice=price;['1','2','3'].forEach(o=>document.getElementById('baby-'+o).classList.toggle('chosen',o===opt));updateExtrasTotal();}
-function updateExtrasTotal(){
-  let total=0;
-  if(S.carOption&&S.nights>0)total+=CAR_PRICES[S.carOption]*S.nights;
-  const bfDays=parseInt(document.getElementById('breakfast-days')?.value)||0;S.breakfastDays=bfDays;
-  if(S.breakfastOption&&bfDays>0)total+=S.breakfastPrice*bfDays;
-  const bbDays=parseInt(document.getElementById('baby-days')?.value)||0;S.babyDays=bbDays;
-  if(S.babyOption&&bbDays>0)total+=S.babyPrice*bbDays;
-  S.extrasTotal=total;
-  const bar=document.getElementById('extras-total-bar');
-  if(total>0){bar.style.display='flex';document.getElementById('extras-total-amt').textContent=`$${total} AUD`;}else{bar.style.display='none';}
-}
-function extrasDescription(){
-  const parts=[];
-  if(S.carOption)parts.push(`Car hire: ${S.carOption==='pickup'?'Pickup Truck':'Ford EcoSport'} × ${S.nights} nights ($${CAR_PRICES[S.carOption]*S.nights} AUD)`);
-  if(S.breakfastOption&&S.breakfastDays>0)parts.push(`Breakfast: ${S.breakfastOption} guests × ${S.breakfastDays} services ($${S.breakfastPrice*S.breakfastDays} AUD)`);
-  if(S.babyOption&&S.babyDays>0)parts.push(`Babysitter: ${S.babyOption} child${S.babyOption!=='1'?'ren':''} × ${S.babyDays} days ($${S.babyPrice*S.babyDays} AUD)`);
-  return parts.length>0?parts.join(' | '):'None';
-}
+
 function checkBreakfastEligibility(){
   const card=document.getElementById('extra-breakfast');
   const warn=document.getElementById('breakfast-warning');
   if(warn)warn.style.display='none';
-  card.style.opacity='1';
-  card.style.pointerEvents='auto';
-  chooseBreakfastOption();
-}
+  if(card){card.style.opacity='1
 
 // ── PRICING ──
 function nightlyRate(prop,g){
