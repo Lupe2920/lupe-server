@@ -767,29 +767,21 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--ink);margin-bottom:4px">Enhance your stay · Faaopoopo mea</div>
         <div style="font-size:13px;color:var(--muted);margin-bottom:20px">All optional. We'll confirm details via WhatsApp after booking.</div>
 
-        <!-- CAR HIRE -->
+       <!-- CAR HIRE -->
         <div class="extras-section">
           <div class="extras-title">🚗 Car hire · Lisi ta'avale</div>
-          <div style="font-size:12px;color:var(--muted);margin-bottom:10px">You can book multiple vehicles. Driver must be 25+ with valid licence.</div>
-          <div class="extra-card" id="extra-car-pickup" onclick="toggleCar('pickup')">
-            <div class="extra-card-top"><div class="extra-card-icon">🛻</div><div class="extra-card-info"><div class="extra-card-name">Pickup Truck</div><div class="extra-card-desc">Large & spacious · Families love sitting in the back · Plenty of room for luggage</div></div><div class="extra-card-check">✓</div></div>
-            <div class="extra-card-options"><div style="font-size:1rem;font-weight:700;color:var(--gold);padding:8px 0">$175/day × <span id="pickup-nights">0</span> nights = $<span id="pickup-total">0</span> AUD</div><div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div></div>
-          </div>
-          <div class="extra-card" id="extra-car-ecosport" onclick="toggleCar('ecosport')">
-            <div class="extra-card-top"><div class="extra-card-icon">🚙</div><div class="extra-card-info"><div class="extra-card-name">Ford EcoSport (5-seater)</div><div class="extra-card-desc">Fuel efficient · Easy to drive around Samoa</div></div><div class="extra-card-check">✓</div></div>
-            <div class="extra-card-options"><div style="font-size:1rem;font-weight:700;color:var(--gold);padding:8px 0">$73/day × <span id="ecosport-nights">0</span> nights = $<span id="ecosport-total">0</span> AUD</div><div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div></div>
-          </div>
-          <div class="extra-card" id="extra-car-van16" onclick="toggleCar('van16')">
-            <div class="extra-card-top"><div class="extra-card-icon">🚐</div><div class="extra-card-info"><div class="extra-card-name">16-Seater Van — Automatic (2023/2024)</div><div class="extra-card-desc">15 people without luggage · 12 people with luggage</div></div><div class="extra-card-check">✓</div></div>
-            <div class="extra-card-options"><div style="font-size:1rem;font-weight:700;color:var(--gold);padding:8px 0">$195/day × <span id="van16-nights">0</span> nights = $<span id="van16-total">0</span> AUD</div><div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div></div>
-          </div>
-          <div class="extra-card" id="extra-car-van15" onclick="toggleCar('van15')">
-            <div class="extra-card-top"><div class="extra-card-icon">🚐</div><div class="extra-card-info"><div class="extra-card-name">15-Seater Van — Manual Standard</div><div class="extra-card-desc">Great for large groups</div></div><div class="extra-card-check">✓</div></div>
-            <div class="extra-card-options"><div style="font-size:1rem;font-weight:700;color:var(--gold);padding:8px 0">$160/day × <span id="van15-nights">0</span> nights = $<span id="van15-total">0</span> AUD</div><div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div></div>
-          </div>
-          <div class="extra-card" id="extra-car-van10" onclick="toggleCar('van10')">
-            <div class="extra-card-top"><div class="extra-card-icon">🚐</div><div class="extra-card-info"><div class="extra-card-name">10-Seater Van — Automatic</div><div class="extra-card-desc">Perfect for medium-sized groups</div></div><div class="extra-card-check">✓</div></div>
-            <div class="extra-card-options"><div style="font-size:1rem;font-weight:700;color:var(--gold);padding:8px 0">$160/day × <span id="van10-nights">0</span> nights = $<span id="van10-total">0</span> AUD</div><div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div></div>
+          <div class="extra-card" id="extra-car" onclick="toggleExtra('car')">
+            <div class="extra-card-top"><div class="extra-card-icon">🚗</div><div class="extra-card-info"><div class="extra-card-name">Add a hire car</div><div class="extra-card-desc">Multiple vehicles available · Driver must be 25+ with valid licence</div></div><div class="extra-card-check">✓</div></div>
+            <div class="extra-card-options">
+              <div style="font-size:12px;color:var(--muted);margin-bottom:12px">Tap to select one or more vehicles.</div>
+              <div class="extra-option" id="car-pickup" onclick="event.stopPropagation();toggleCar('pickup')"><div class="extra-option-radio" id="radio-pickup"></div><div class="extra-option-label"><strong>🛻 Pickup Truck</strong><br><span style="font-size:11px;color:var(--muted)">Spacious · Great for large groups & luggage</span></div><div class="extra-option-price">$175/day</div></div>
+              <div class="extra-option" id="car-ecosport" onclick="event.stopPropagation();toggleCar('ecosport')"><div class="extra-option-radio" id="radio-ecosport"></div><div class="extra-option-label"><strong>🚙 Ford EcoSport (5-seater)</strong><br><span style="font-size:11px;color:var(--muted)">Fuel efficient · Easy to drive around Samoa</span></div><div class="extra-option-price">$73/day</div></div>
+              <div class="extra-option" id="car-van16" onclick="event.stopPropagation();toggleCar('van16')"><div class="extra-option-radio" id="radio-van16"></div><div class="extra-option-label"><strong>🚐 16-Seater Van — Auto (2023/2024)</strong><br><span style="font-size:11px;color:var(--muted)">15 people no luggage · 12 with luggage</span></div><div class="extra-option-price">$195/day</div></div>
+              <div class="extra-option" id="car-van15" onclick="event.stopPropagation();toggleCar('van15')"><div class="extra-option-radio" id="radio-van15"></div><div class="extra-option-label"><strong>🚐 15-Seater Van — Manual</strong><br><span style="font-size:11px;color:var(--muted)">Great for large groups</span></div><div class="extra-option-price">$160/day</div></div>
+              <div class="extra-option" id="car-van10" onclick="event.stopPropagation();toggleCar('van10')"><div class="extra-option-radio" id="radio-van10"></div><div class="extra-option-label"><strong>🚐 10-Seater Van — Auto</strong><br><span style="font-size:11px;color:var(--muted)">Perfect for medium groups</span></div><div class="extra-option-price">$160/day</div></div>
+              <div id="car-total-display" style="display:none;background:var(--fog);border-radius:12px;padding:12px 16px;margin-top:12px;font-size:13px;font-weight:600;color:var(--ink)"></div>
+              <div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div>
+            </div>
           </div>
         </div>
 
@@ -1035,6 +1027,7 @@ function toggleExtra(type){
     if(type==='sim'){S.simWeeks=null;S.simQty=0;const so=document.getElementById('sim-options');if(so)so.style.display='none';}
     if(type==='ferry'){S.ferryPrice=0;}
     if(type==='airport'){S.airportTransfer=null;}
+    if(type==='car'){S.carOptions=[];['pickup','ecosport','van16','van15','van10'].forEach(t=>{const el=document.getElementById('car-'+t);if(el)el.classList.remove('chosen');const r=document.getElementById('radio-'+t);if(r){r.style.borderColor='';r.style.background='';}});const d=document.getElementById('car-total-display');if(d)d.style.display='none';}
     if(type==='tour'){S.tourPeople=0;S.tourFood=false;}
   } else {
     if(type==='breakfast')chooseBreakfastOption();
@@ -1044,13 +1037,27 @@ function toggleExtra(type){
 }
 
 function toggleCar(type){
-  const card=document.getElementById('extra-car-'+type);
-  if(!card)return;
-  const isSelected=card.classList.contains('selected');
-  card.classList.toggle('selected',!isSelected);
+  const isSelected=S.carOptions.includes(type);
   if(isSelected){S.carOptions=S.carOptions.filter(c=>c!==type);}
-  else{if(!S.carOptions.includes(type))S.carOptions.push(type);}
-  updateCarTotals();
+  else{S.carOptions.push(type);}
+  ['pickup','ecosport','van16','van15','van10'].forEach(t=>{
+    const opt=document.getElementById('car-'+t);
+    const radio=document.getElementById('radio-'+t);
+    const on=S.carOptions.includes(t);
+    if(opt)opt.classList.toggle('chosen',on);
+    if(radio){radio.style.borderColor=on?'var(--ink)':'var(--border)';radio.style.background=on?'var(--ink)':'transparent';}
+  });
+  const display=document.getElementById('car-total-display');
+  if(display){
+    if(S.carOptions.length>0&&S.nights>0){
+      const total=S.carOptions.reduce((t,c)=>t+CAR_PRICES[c]*S.nights,0);
+      display.style.display='block';
+      const names={pickup:'Pickup ($175/day)',ecosport:'EcoSport ($73/day)',van16:'16-Seater ($195/day)',van15:'15-Seater ($160/day)',van10:'10-Seater ($160/day)'};
+      display.innerHTML=S.carOptions.map(c=>names[c]).join(' + ')+' × '+S.nights+' nights = <span style="color:var(--gold)">$'+total+' AUD</span>';
+    } else {
+      display.style.display='none';
+    }
+  }
   updateFerryPrice();
   updateExtrasTotal();
 }
