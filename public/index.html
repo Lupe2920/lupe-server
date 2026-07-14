@@ -803,7 +803,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <div class="extras-section">
           <div class="extras-title">Would you like Breakfast served to you at the home?</div>
           <div class="extra-card" id="extra-breakfast" onclick="toggleExtra('breakfast')">
-            <div class="extra-card-top"><div class="extra-card-icon">🍳</div><div class="extra-card-info"><div class="extra-card-name">Local Tropical Island breakfast</div><div class="extra-card-desc">Delivered to your door. Price based on your guest count.</div></div><div class="extra-card-check">✓</div></div>
+            <div class="extra-card-top"><div class="extra-card-icon">🍳</div><div class="extra-card-info"><div class="extra-card-name">Tropical Island breakfast</div><div class="extra-card-desc">Delivered to your door. Price based on your guest count.</div></div><div class="extra-card-check">✓</div></div>
             <div class="extra-card-options">
               <div style="background:var(--fog);border-radius:12px;padding:14px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
                 <div style="font-size:13px;color:var(--muted)" id="bfast-price-label">Price per service</div>
@@ -843,7 +843,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <div class="extras-section">
           <div class="extras-title"> Heading to Savaii Island during your stay?</div>
           <div class="extra-card" id="extra-ferry" onclick="toggleExtra('ferry')">
-            <div class="extra-card-top"><div class="extra-card-icon">⛴️</div><div class="extra-card-info"><div class="extra-card-name">Return ferry: Upolu ↔ Savaii</div><div class="extra-card-desc">Per car & driver · Additional passengers pay $10talapp at the wharf</div></div><div class="extra-card-check">✓</div></div>
+            <div class="extra-card-top"><div class="extra-card-icon">⛴️</div><div class="extra-card-info"><div class="extra-card-name">Return ferry: between Upolu and Savaii</div><div class="extra-card-desc">Per car & driver · Additional passengers pay $10talapp at the wharf</div></div><div class="extra-card-check">✓</div></div>
             <div class="extra-card-options">
               <div style="background:var(--fog);border-radius:12px;padding:14px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
                 <div style="font-size:13px;color:var(--muted)" id="ferry-price-label">Price based on your hire car</div>
@@ -860,9 +860,9 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
           </div>
         </div>
 
-        <!-- UPOLU DAY TOUR -->
+        <!-- Looking to explore a bit of Samoa whilst you are here? -->
         <div class="extras-section">
-          <div class="extras-title">🌴 Upolu day tour · Tafaoga i Upolu</div>
+          <div class="extras-title">Looking to explore a bit of Samoa whilst you are here?</div>
           <div class="extra-card" id="extra-tour" onclick="toggleExtra('tour')">
             <div class="extra-card-top"><div class="extra-card-icon">🌴</div><div class="extra-card-info"><div class="extra-card-name">Full day tour: 9 hours</div><div class="extra-card-desc">All entrance fees covered · Available any day during your stay except Sunday · Food optional add on</div></div><div class="extra-card-check">✓</div></div>
             <div class="extra-card-options">
@@ -883,15 +883,15 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 
         <!-- BABYSITTER -->
         <div class="extras-section">
-          <div class="extras-title">👶 Babysitter · Tausi pepe</div>
+          <div class="extras-title">Wanting a bit of Privacy with your Partner and need a baby sitter for the kids?/div>
           <div class="extra-card" id="extra-baby" onclick="toggleExtra('baby')">
-            <div class="extra-card-top"><div class="extra-card-icon">👶</div><div class="extra-card-info"><div class="extra-card-name">Professional babysitter — 4 hrs/day</div><div class="extra-card-desc">Available 8:00 AM – 9:00 PM. Minimum child age: 12 months.</div></div><div class="extra-card-check">✓</div></div>
+            <div class="extra-card-top"><div class="extra-card-icon">👶</div><div class="extra-card-info"><div class="extra-card-name">Professional babysitter: 4 hrs/day</div><div class="extra-card-desc">Available 8:00 AM – 9:00 PM. Minimum child age: 12 months.</div></div><div class="extra-card-check">✓</div></div>
             <div class="extra-card-options">
               <div class="extra-option" id="baby-1" onclick="event.stopPropagation();chooseBabyOption('1',55)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>1 child</strong><br><span style="font-size:11px;color:var(--muted)">Must be 12 months or older</span></div><div class="extra-option-price">$55/day</div></div>
               <div class="extra-option" id="baby-2" onclick="event.stopPropagation();chooseBabyOption('2',78)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>2 children</strong></div><div class="extra-option-price">$78/day</div></div>
               <div class="extra-option" id="baby-3" onclick="event.stopPropagation();chooseBabyOption('3',98)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>3 children</strong></div><div class="extra-option-price">$98/day</div></div>
               <div class="field" style="margin-top:14px;margin-bottom:0"><label>How many days do you need a babysitter?</label><input type="number" id="baby-days" min="1" placeholder="e.g. 2" onclick="event.stopPropagation()" oninput="updateExtrasTotal()"></div>
-              <div class="extra-notice">🕐 Available 8:00 AM – 9:00 PM. Schedule confirmed via WhatsApp.</div>
+              <div class="extra-notice">Available 8:00 AM – 9:00 PM. Schedule confirmed via WhatsApp.</div>
             </div>
           </div>
         </div>
