@@ -810,7 +810,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <div class="extras-section">
           <div class="extras-title">🍳 Breakfast · Taumafataga o le taeao</div>
           <div class="extra-card" id="extra-breakfast" onclick="toggleExtra('breakfast')">
-  <div class="extra-card-top"><div class="extra-card-icon">🍳</div><div class="extra-card-info"><div class="extra-card-name">Samoan-style breakfast</div><div class="extra-card-desc">Available for groups of 6+. Price based on your guest count.</div></div><div class="extra-card-check">✓</div></div>
+  <div class="extra-card-top"><div class="extra-card-icon">🍳</div><div class="extra-card-info"><div class="extra-card-name">Samoan-style breakfast</div><div class="extra-card-desc">Fresh local style breakfast delivered to your door. Dairy free and Sugar free options available</div>
   <div class="extra-card-options">
     <div style="background:var(--fog);border-radius:12px;padding:14px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
       <div style="font-size:13px;color:var(--muted)" id="bfast-price-label">Price per service</div>
@@ -822,8 +822,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
     <div class="extra-notice">📅 Dates confirmed via WhatsApp after booking.</div>
   </div>
 </div>
-          <div id="breakfast-warning" style="display:none;background:rgba(192,57,43,0.06);border:1px solid rgba(192,57,43,0.2);border-radius:10px;padding:10px 13px;font-size:12px;color:var(--ember);margin-top:8px">⚠️ Breakfast is only available for groups of 6 or more guests.</div>
-        </div>
+      <div id="breakfast-warning" style="display:none"></div>     
         <div class="extras-section">
           <div class="extras-title">👶 Babysitter · Tausi pepe</div>
           <div class="extra-card" id="extra-baby" onclick="toggleExtra('baby')">
@@ -964,7 +963,7 @@ function chooseCarOption(opt){S.carOption=opt;['pickup','ecosport'].forEach(o=>d
 function chooseBreakfastOption(){
   const g=S.guests;
   const steps=[20,18,16,14,12,10,10];
-  let price=145;
+  let price=g<=4?110:145;
   if(g>6){for(let i=0;i<Math.min(g-6,steps.length);i++)price+=steps[i];}
   S.breakfastOption=g;S.breakfastPrice=price;
   const label=document.getElementById('bfast-price-label');
@@ -993,9 +992,12 @@ function extrasDescription(){
   return parts.length>0?parts.join(' | '):'None';
 }
 function checkBreakfastEligibility(){
-  const warn=document.getElementById('breakfast-warning');const card=document.getElementById('extra-breakfast');
-  if(S.guests<6){warn.style.display='block';card.style.opacity='0.5';card.style.pointerEvents='none';}
-  else{warn.style.display='none';card.style.opacity='1';card.style.pointerEvents='auto';chooseBreakfastOption();}
+  const card=document.getElementById('extra-breakfast');
+  const warn=document.getElementById('breakfast-warning');
+  if(warn)warn.style.display='none';
+  card.style.opacity='1';
+  card.style.pointerEvents='auto';
+  chooseBreakfastOption();
 }
 
 // ── PRICING ──
