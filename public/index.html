@@ -794,55 +794,169 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <button class="btn-back" onclick="bmGoStep(0)">← Back</button>
       </div>
       <div class="flow-step" id="fs2">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--ink);margin-bottom:4px">Enhance your stay · Faaopoopo mea</div>
-        <div style="font-size:13px;color:var(--muted);margin-bottom:20px">All optional. We'll confirm details via WhatsApp after booking.</div>
-        <div class="extras-section">
-          <div class="extras-title">🚗 Car hire · Lisi ta'avale</div>
-          <div class="extra-card" id="extra-car" onclick="toggleExtra('car')">
-            <div class="extra-card-top"><div class="extra-card-icon">🚗</div><div class="extra-card-info"><div class="extra-card-name">Add a hire car</div><div class="extra-card-desc">Full stay. Driver must be 25+ with a valid licence.</div></div><div class="extra-card-check">✓</div></div>
-            <div class="extra-card-options">
-              <div class="extra-option" id="car-pickup" onclick="event.stopPropagation();chooseCarOption('pickup')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Pickup Truck</strong><br><span style="font-size:11px;color:var(--muted)">Large and Spacious, great for families who enjou sitting in the back(trunk) plenty of room for luggage</span></div><div class="extra-option-price">$175/day</div></div>
-              <div class="extra-option" id="car-ecosport" onclick="event.stopPropagation();chooseCarOption('ecosport')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Ford EcoSport (5-seater)</strong><br><span style="font-size:11px;color:var(--muted)">Fuel efficient, easy around Samoa</span></div><div class="extra-option-price">$73/day</div></div>
-              <div class="extra-notice">⚠️ Driver must be 25+ with a valid licence. Any damage charged to guest.</div>
-            </div>
-          </div>
-        </div>
-        <div class="extras-section">
-          <div class="extras-title">🍳 Breakfast · Taumafataga o le taeao</div>
-          <div class="extra-card" id="extra-breakfast" onclick="toggleExtra('breakfast')">
-  <div class="extra-card-top"><div class="extra-card-icon">🍳</div><div class="extra-card-info"><div class="extra-card-name">Samoan-style breakfast</div><div class="extra-card-desc">Fresh local style breakfast delivered to your door. Dairy free and Sugar free options available</div>
-  <div class="extra-card-options">
-    <div style="background:var(--fog);border-radius:12px;padding:14px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
-      <div style="font-size:13px;color:var(--muted)" id="bfast-price-label">Price per service</div>
-      <div style="font-size:1.2rem;font-weight:700;color:var(--gold)" id="bfast-price-amt"></div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--ink);margin-bottom:4px">Enhance your stay · Faaopoopo mea</div>
+  <div style="font-size:13px;color:var(--muted);margin-bottom:20px">All optional. We'll confirm details via WhatsApp after booking.</div>
+
+  <!-- CAR HIRE -->
+  <div class="extras-section">
+    <div class="extras-title">🚗 Car hire · Lisi ta'avale</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px">You can book multiple vehicles. Driver must be 25+ with valid licence.</div>
+    <div class="extra-card" id="extra-car-pickup" onclick="toggleCar('pickup')">
+      <div class="extra-card-top"><div class="extra-card-icon">🛻</div><div class="extra-card-info"><div class="extra-card-name">Pickup Truck</div><div class="extra-card-desc">Large & spacious · Families love sitting in the back · Plenty of room for luggage</div></div><div class="extra-card-check" id="check-car-pickup">✓</div></div>
+      <div class="extra-card-options"><div style="font-size:1.1rem;font-weight:700;color:var(--gold);padding:8px 0">$175/day × <span id="pickup-nights">0</span> nights = $<span id="pickup-total">0</span> AUD</div><div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div></div>
     </div>
-    <div class="field" style="margin-bottom:0"><label>How many breakfast services?</label>
-      <input type="number" id="breakfast-days" min="1" placeholder="e.g. 3" onclick="event.stopPropagation()" oninput="updateExtrasTotal()">
+    <div class="extra-card" id="extra-car-ecosport" onclick="toggleCar('ecosport')">
+      <div class="extra-card-top"><div class="extra-card-icon">🚙</div><div class="extra-card-info"><div class="extra-card-name">Ford EcoSport (5-seater)</div><div class="extra-card-desc">Fuel efficient · Easy to drive around Samoa</div></div><div class="extra-card-check" id="check-car-ecosport">✓</div></div>
+      <div class="extra-card-options"><div style="font-size:1.1rem;font-weight:700;color:var(--gold);padding:8px 0">$73/day × <span id="ecosport-nights">0</span> nights = $<span id="ecosport-total">0</span> AUD</div><div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div></div>
     </div>
-    <div class="extra-notice">📅 Dates confirmed via WhatsApp after booking.</div>
+    <div class="extra-card" id="extra-car-van16" onclick="toggleCar('van16')">
+      <div class="extra-card-top"><div class="extra-card-icon">🚐</div><div class="extra-card-info"><div class="extra-card-name">16-Seater Van — Automatic (2023/2024)</div><div class="extra-card-desc">15 people without luggage · 12 people with luggage</div></div><div class="extra-card-check" id="check-car-van16">✓</div></div>
+      <div class="extra-card-options"><div style="font-size:1.1rem;font-weight:700;color:var(--gold);padding:8px 0">$195/day × <span id="van16-nights">0</span> nights = $<span id="van16-total">0</span> AUD</div><div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div></div>
+    </div>
+    <div class="extra-card" id="extra-car-van15" onclick="toggleCar('van15')">
+      <div class="extra-card-top"><div class="extra-card-icon">🚐</div><div class="extra-card-info"><div class="extra-card-name">15-Seater Van — Manual Standard</div><div class="extra-card-desc">Great for large groups</div></div><div class="extra-card-check" id="check-car-van15">✓</div></div>
+      <div class="extra-card-options"><div style="font-size:1.1rem;font-weight:700;color:var(--gold);padding:8px 0">$160/day × <span id="van15-nights">0</span> nights = $<span id="van15-total">0</span> AUD</div><div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div></div>
+    </div>
+    <div class="extra-card" id="extra-car-van10" onclick="toggleCar('van10')">
+      <div class="extra-card-top"><div class="extra-card-icon">🚐</div><div class="extra-card-info"><div class="extra-card-name">10-Seater Van — Automatic</div><div class="extra-card-desc">Perfect for medium-sized groups</div></div><div class="extra-card-check" id="check-car-van10">✓</div></div>
+      <div class="extra-card-options"><div style="font-size:1.1rem;font-weight:700;color:var(--gold);padding:8px 0">$160/day × <span id="van10-nights">0</span> nights = $<span id="van10-total">0</span> AUD</div><div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest.</div></div>
+    </div>
   </div>
-</div>
-      <div id="breakfast-warning" style="display:none"></div>     
-        <div class="extras-section">
-          <div class="extras-title">👶 Babysitter · Tausi pepe</div>
-          <div class="extra-card" id="extra-baby" onclick="toggleExtra('baby')">
-            <div class="extra-card-top"><div class="extra-card-icon">👶</div><div class="extra-card-info"><div class="extra-card-name">Professional babysitter — 4 hrs/day</div><div class="extra-card-desc">Available 8:00 AM – 9:00 PM. Minimum child age: 12 months.</div></div><div class="extra-card-check">✓</div></div>
-            <div class="extra-card-options">
-              <div class="extra-option" id="baby-1" onclick="event.stopPropagation();chooseBabyOption('1',55)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>1 child</strong><br><span style="font-size:11px;color:var(--muted)">Must be 12 months or older</span></div><div class="extra-option-price">$55/day</div></div>
-              <div class="extra-option" id="baby-2" onclick="event.stopPropagation();chooseBabyOption('2',78)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>2 children</strong></div><div class="extra-option-price">$78/day</div></div>
-              <div class="extra-option" id="baby-3" onclick="event.stopPropagation();chooseBabyOption('3',98)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>3 children</strong></div><div class="extra-option-price">$98/day</div></div>
-              <div class="field" style="margin-top:14px;margin-bottom:0"><label>How many days do you need a babysitter?</label><input type="number" id="baby-days" min="1" placeholder="e.g. 2" onclick="event.stopPropagation()" oninput="updateExtrasTotal()"></div>
-              <div class="extra-notice">🕐 Available 8:00 AM – 9:00 PM. Schedule confirmed via WhatsApp.</div>
-            </div>
+
+  <!-- AIRPORT TRANSFER -->
+  <div class="extras-section">
+    <div class="extras-title">✈️ Airport transfer · Fe'au i le malae vaalele</div>
+    <div class="extra-card" id="extra-airport" onclick="toggleExtra('airport')">
+      <div class="extra-card-top"><div class="extra-card-icon">✈️</div><div class="extra-card-info"><div class="extra-card-name">Airport transfer</div><div class="extra-card-desc">Pickup or drop off service between the airport and your home.</div></div><div class="extra-card-check">✓</div></div>
+      <div class="extra-card-options">
+        <div class="extra-option" id="airport-pickup" onclick="event.stopPropagation();chooseAirport('pickup')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Airport pickup → house</strong><br><span style="font-size:11px;color:var(--muted)">We pick you up from the airport and take you home in your hire car</span></div><div class="extra-option-price">$75</div></div>
+        <div class="extra-option" id="airport-dropoff" onclick="event.stopPropagation();chooseAirport('dropoff')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Drop off at airport</strong><br><span style="font-size:11px;color:var(--muted)">We drop you off at the airport at the end of your stay</span></div><div class="extra-option-price">$68</div></div>
+        <div class="extra-option" id="airport-return" onclick="event.stopPropagation();chooseAirport('return')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Full return — pickup + drop off</strong><br><span style="font-size:11px;color:var(--muted)">Airport pickup on arrival AND drop off at end of stay</span></div><div class="extra-option-price">$135</div></div>
+        <div class="extra-notice">📅 Transfer times confirmed via WhatsApp after booking.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BREAKFAST -->
+  <div class="extras-section">
+    <div class="extras-title">🍳 Breakfast · Taumafataga o le taeao</div>
+    <div class="extra-card" id="extra-breakfast" onclick="toggleExtra('breakfast')">
+      <div class="extra-card-top"><div class="extra-card-icon">🍳</div><div class="extra-card-info"><div class="extra-card-name">Samoan-style breakfast</div><div class="extra-card-desc">Delivered to your door. Price based on your guest count.</div></div><div class="extra-card-check">✓</div></div>
+      <div class="extra-card-options">
+        <div style="background:var(--fog);border-radius:12px;padding:14px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:13px;color:var(--muted)" id="bfast-price-label">Price per service</div>
+          <div style="font-size:1.2rem;font-weight:700;color:var(--gold)" id="bfast-price-amt"></div>
+        </div>
+        <div class="field" style="margin-bottom:0"><label>How many breakfast services?</label>
+          <input type="number" id="breakfast-days" min="1" placeholder="e.g. 3" onclick="event.stopPropagation()" oninput="updateExtrasTotal()">
+        </div>
+        <div class="extra-notice">📅 Dates confirmed via WhatsApp after booking.</div>
+      </div>
+    </div>
+    <div id="breakfast-warning" style="display:none"></div>
+  </div>
+
+  <!-- SIM CARD -->
+  <div class="extras-section">
+    <div class="extras-title">📱 SIM Card · Kata telefoni</div>
+    <div class="extra-card" id="extra-sim" onclick="toggleExtra('sim')">
+      <div class="extra-card-top"><div class="extra-card-icon">📱</div><div class="extra-card-info"><div class="extra-card-name">Samoa SIM card</div><div class="extra-card-desc">Unlimited local calls & texts · 30 mins international calling to designated countries</div></div><div class="extra-card-check">✓</div></div>
+      <div class="extra-card-options">
+        <div style="margin-bottom:14px">
+          <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px">Does your phone support eSIM?</label>
+          <div style="display:flex;gap:10px">
+            <button onclick="event.stopPropagation();simEsim(false)" id="sim-no-esim" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:10px;background:var(--fog);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s">📲 No — physical SIM only</button>
+            <button onclick="event.stopPropagation();simEsim(true)" id="sim-yes-esim" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:10px;background:var(--fog);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s">✨ Yes — eSIM capable</button>
           </div>
         </div>
-        <div class="extras-total-bar" id="extras-total-bar">
-          <span>Extras total · Aofa'i faaopoopo</span>
-          <span id="extras-total-amt">$0 AUD</span>
+        <div id="sim-options" style="display:none">
+          <div class="extra-option" id="sim-1week" onclick="event.stopPropagation();chooseSim('1week')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>1 week — $20 AUD</strong><br><span style="font-size:11px;color:var(--muted)">20+ GB data · Unlimited local calls & texts · Physical SIM slot required</span></div><div class="extra-option-price">$20</div></div>
+          <div class="extra-option" id="sim-2week" onclick="event.stopPropagation();chooseSim('2week')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>2 weeks — $37 AUD</strong><br><span style="font-size:11px;color:var(--muted)">40+ GB data · Unlimited local calls & texts · Works with eSIM or physical SIM</span></div><div class="extra-option-price">$37</div></div>
+          <div class="field" style="margin-top:14px;margin-bottom:0"><label>How many SIM cards? (max 13)</label>
+            <input type="number" id="sim-qty" min="1" max="13" placeholder="e.g. 4" onclick="event.stopPropagation()" oninput="updateExtrasTotal()">
+          </div>
         </div>
-        <button class="btn-next" onclick="bmGoStep(3)">Continue →</button>
-        <button class="btn-back" onclick="bmGoStep(1)">← Back</button>
+        <div class="extra-notice">📦 SIM cards ready on arrival. Confirmed via WhatsApp.</div>
       </div>
+    </div>
+  </div>
+
+  <!-- FERRY -->
+  <div class="extras-section">
+    <div class="extras-title">⛴️ Ferry to Savaii · Va'a i Savaii</div>
+    <div class="extra-card" id="extra-ferry" onclick="toggleExtra('ferry')">
+      <div class="extra-card-top"><div class="extra-card-icon">⛴️</div><div class="extra-card-info"><div class="extra-card-name">Return ferry — Upolu ↔ Savaii</div><div class="extra-card-desc">Price per car & driver · Additional passengers pay $10pp at the wharf</div></div><div class="extra-card-check">✓</div></div>
+      <div class="extra-card-options">
+        <div id="ferry-price-display" style="background:var(--fog);border-radius:12px;padding:14px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:13px;color:var(--muted)" id="ferry-price-label">Price based on your hire car</div>
+          <div style="font-size:1.2rem;font-weight:700;color:var(--gold)" id="ferry-price-amt"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+          <div class="field" style="margin-bottom:0"><label>Departure date</label><input type="date" id="ferry-go-date" onclick="event.stopPropagation()" onchange="updateFerryTimes('go')"></div>
+          <div class="field" style="margin-bottom:0"><label>Departure time</label>
+            <select id="ferry-go-time" onclick="event.stopPropagation()" onchange="updateExtrasTotal()" style="width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:14px;font-family:'Inter',sans-serif;color:var(--ink);background:var(--fog);outline:none">
+              <option value="">Select time</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:0"><label>Return date</label><input type="date" id="ferry-return-date" onclick="event.stopPropagation()" onchange="updateFerryTimes('return')"></div>
+          <div class="field" style="margin-bottom:0"><label>Return time</label>
+            <select id="ferry-return-time" onclick="event.stopPropagation()" onchange="updateExtrasTotal()" style="width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:14px;font-family:'Inter',sans-serif;color:var(--ink);background:var(--fog);outline:none">
+              <option value="">Select time</option>
+            </select>
+          </div>
+        </div>
+        <div class="extra-notice">⚠️ Price covers car & driver only. Additional passengers pay $10pp at the wharf. Book 2+ weeks in advance for guaranteed spot — less than 2 weeks is subject to availability. In the rare event of maintenance (~5% of the time) you will be placed on the next available service. Confirmed via WhatsApp.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPOLU DAY TOUR -->
+  <div class="extras-section">
+    <div class="extras-title">🌴 Upolu day tour · Tafaoga i Upolu</div>
+    <div class="extra-card" id="extra-tour" onclick="toggleExtra('tour')">
+      <div class="extra-card-top"><div class="extra-card-icon">🌴</div><div class="extra-card-info"><div class="extra-card-name">Full day tour — 9 hours</div><div class="extra-card-desc">All entrance fees covered · Available any day during your stay · Food not included (optional add-on)</div></div><div class="extra-card-check">✓</div></div>
+      <div class="extra-card-options">
+        <div class="field" style="margin-bottom:12px"><label>How many people on the tour?</label>
+          <input type="number" id="tour-people" min="1" max="10" placeholder="e.g. 4" onclick="event.stopPropagation()" oninput="calcTourPrice()">
+        </div>
+        <div id="tour-price-display" style="display:none;background:var(--fog);border-radius:12px;padding:14px 16px;margin-bottom:14px;justify-content:space-between;align-items:center">
+          <div style="font-size:13px;color:var(--muted)" id="tour-price-label"></div>
+          <div style="font-size:1.2rem;font-weight:700;color:var(--gold)" id="tour-price-amt"></div>
+        </div>
+        <div id="tour-food-wrap" style="display:none;margin-bottom:14px">
+          <div class="extra-option" id="tour-food-yes" onclick="event.stopPropagation();toggleTourFood(true)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Add food & drinks</strong><br><span style="font-size:11px;color:var(--muted)">+$45 per person · All meals and drinks included throughout the day</span></div><div class="extra-option-price" id="tour-food-price"></div></div>
+        </div>
+        <div class="field" style="margin-bottom:0"><label>Tour date</label>
+          <input type="date" id="tour-date" onclick="event.stopPropagation()" onchange="updateExtrasTotal()">
+        </div>
+        <div id="tour-max-notice" style="display:none" class="extra-notice">👥 For groups of 10+ please contact us via WhatsApp and we'll arrange a custom tour for your group!</div>
+        <div class="extra-notice">🌺 All entrance fees included · 9 hours · Food & drinks optional at +$45pp · Confirmed via WhatsApp.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BABYSITTER -->
+  <div class="extras-section">
+    <div class="extras-title">👶 Babysitter · Tausi pepe</div>
+    <div class="extra-card" id="extra-baby" onclick="toggleExtra('baby')">
+      <div class="extra-card-top"><div class="extra-card-icon">👶</div><div class="extra-card-info"><div class="extra-card-name">Professional babysitter — 4 hrs/day</div><div class="extra-card-desc">Available 8:00 AM – 9:00 PM. Minimum child age: 12 months.</div></div><div class="extra-card-check">✓</div></div>
+      <div class="extra-card-options">
+        <div class="extra-option" id="baby-1" onclick="event.stopPropagation();chooseBabyOption('1',55)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>1 child</strong><br><span style="font-size:11px;color:var(--muted)">Must be 12 months or older</span></div><div class="extra-option-price">$55/day</div></div>
+        <div class="extra-option" id="baby-2" onclick="event.stopPropagation();chooseBabyOption('2',78)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>2 children</strong></div><div class="extra-option-price">$78/day</div></div>
+        <div class="extra-option" id="baby-3" onclick="event.stopPropagation();chooseBabyOption('3',98)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>3 children</strong></div><div class="extra-option-price">$98/day</div></div>
+        <div class="field" style="margin-top:14px;margin-bottom:0"><label>How many days do you need a babysitter?</label><input type="number" id="baby-days" min="1" placeholder="e.g. 2" onclick="event.stopPropagation()" oninput="updateExtrasTotal()"></div>
+        <div class="extra-notice">🕐 Available 8:00 AM – 9:00 PM. Schedule confirmed via WhatsApp.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extras-total-bar" id="extras-total-bar">
+    <span>Extras total · Aofa'i faaopoopo</span>
+    <span id="extras-total-amt">$0 AUD</span>
+  </div>
+  <button class="btn-next" onclick="bmGoStep(3)">Continue →</button>
+  <button class="btn-back" onclick="bmGoStep(1)">← Back</button>
+</div>
       <div class="flow-step" id="fs3">
         <div class="sum-bar" id="fs3-sumbar"></div>
         <div class="field-row" style="margin-bottom:16px">
@@ -932,11 +1046,13 @@ function parseIcal(ical,prop){
 function parseIcalDate(s){return new Date(s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8)+'T00:00:00');}
 
 // ── STATE ──
-const S={prop:null,cin:null,cout:null,guests:1,nights:0,rate:0,subtotal:0,discount:0,promoDiscount:0,total:0,deposit:0,balance:0,promoCode:null,promoLabel:'',discountLabel:'',fullPayNow:false,skipBond:false,cancellationPolicy:'full-refund',cancellationText:'✅ Full refund available.',carOption:null,breakfastOption:null,breakfastPrice:0,breakfastDays:0,babyOption:null,babyPrice:0,babyDays:0,extrasTotal:0};
+const S={prop:null,cin:null,cout:null,guests:1,nights:0,rate:0,subtotal:0,discount:0,promoDiscount:0,total:0,deposit:0,balance:0,promoCode:null,promoLabel:'',discountLabel:'',fullPayNow:false,skipBond:false,cancellationPolicy:'full-refund',cancellationText:'✅ Full refund available.',carOptions:[],airportTransfer:null,breakfastOption:null,breakfastPrice:0,breakfastDays:0,simWeeks:null,simQty:0,ferryPrice:0,tourPeople:0,tourFood:false,babyOption:null,babyPrice:0,babyDays:0,extrasTotal:0};
 const MIN_NIGHTS={heavenly:4,nua:2};
 const MAXG={heavenly:13,nua:6};
 const NAMES={heavenly:'Heavenly Home',nua:"Nua's Oasis"};
-const CAR_PRICES={pickup:175,ecosport:73};
+const CAR_PRICES={pickup:175,ecosport:73,van16:195,van15:160,van10:160};
+const AIRPORT_TRANSFERS={pickup:75,dropoff:68,return:135};
+const TOUR_PRICES=[0,175,275,365,445,520,595,670,745,820,895];
 let stripeInited=false,stripe,elements,cardEl;
 const galIdx={h:0,n:0};
 let calViewMonth=new Date();calViewMonth.setDate(1);
@@ -1381,9 +1497,13 @@ async function sendEmail(){
 }
 
 function resetAll(){
-  Object.assign(S,{prop:null,cin:null,cout:null,guests:1,nights:0,rate:0,subtotal:0,discount:0,promoDiscount:0,total:0,deposit:0,balance:0,promoCode:null,promoLabel:'',skipBond:false,carOption:null,breakfastOption:null,breakfastPrice:0,breakfastDays:0,babyOption:null,babyPrice:0,babyDays:0,extrasTotal:0});
-  ['bm-fname','bm-lname','bm-email','bm-phone','bm-requests','breakfast-days','baby-days'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  ['extra-car','extra-breakfast','extra-baby'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('selected');});
+Object.assign(S,{prop:null,cin:null,cout:null,guests:1,nights:0,rate:0,subtotal:0,discount:0,promoDiscount:0,total:0,deposit:0,balance:0,promoCode:null,promoLabel:'',skipBond:false,carOptions:[],airportTransfer:null,breakfastOption:null,breakfastPrice:0,breakfastDays:0,simWeeks:null,simQty:0,ferryPrice:0,tourPeople:0,tourFood:false,babyOption:null,babyPrice:0,babyDays:0,extrasTotal:0});
+  ['bm-fname','bm-lname','bm-email','bm-phone','bm-requests','breakfast-days','baby-days','sim-qty','ferry-go-date','ferry-go-time','ferry-return-date','ferry-return-time','tour-people','tour-date'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['extra-car-pickup','extra-car-ecosport','extra-car-van16','extra-car-van15','extra-car-van10','extra-airport','extra-breakfast','extra-sim','extra-ferry','extra-tour','extra-baby'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('selected');});
+  simEsimCapable=null;
+  const simOpts=document.getElementById('sim-options');if(simOpts)simOpts.style.display='none';
+  const tourDisplay=document.getElementById('tour-price-display');if(tourDisplay)tourDisplay.style.display='none';
+  const tourFood=document.getElementById('tour-food-wrap');if(tourFood)tourFood.style.display='none';
   document.getElementById('success-flow').style.display='none';
   document.getElementById('flow-dots').style.display='flex';
   stripeInited=false;bmGoStep(0);
