@@ -24,7 +24,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
 .hero-bg-art::before{content:'';position:absolute;top:-20%;right:-10%;width:70%;height:140%;background:radial-gradient(ellipse,rgba(44,95,74,0.4) 0%,transparent 70%)}
 .hero-bg-art::after{content:'';position:absolute;bottom:-30%;left:-5%;width:80%;height:100%;background:radial-gradient(ellipse,rgba(184,134,60,0.15) 0%,transparent 65%)}
 .hero-gradient{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,25,35,0.2) 0%,rgba(15,25,35,0.05) 30%,rgba(15,25,35,0.55) 70%,rgba(15,25,35,0.92) 100%)}
-.hero-content{position:relative;z-index:2;padding:0 28px 52px}
+.hero-content{position:relative;z-index:2;padding:0 28px 52px} @media(min-width:768px){.hero-content{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;max-width:1200px;margin:0 auto;width:100%}} .hero-text{flex:1} .hero-photo{display:none} @media(min-width:768px){.hero-photo{display:block;flex:1;border-radius:20px;overflow:hidden;margin-bottom:52px;box-shadow:0 20px 60px rgba(0,0,0,0.4);max-height:420px}} .hero-photo img{width:100%;height:420px;object-fit:cover;border-radius:20px}
 .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.2);border-radius:100px;padding:6px 14px;font-size:11px;color:rgba(255,255,255,0.85);letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:1.2rem}
 .hero-dot{width:6px;height:6px;border-radius:50%;background:#4CAF50;animation:pulse-dot 2s infinite}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
@@ -300,6 +300,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
   <div class="hero-bg-art"></div>
   <div class="hero-gradient"></div>
   <div class="hero-content">
+  <div class="hero-text">
     <div class="hero-tag"><div class="hero-dot"></div> Let us help you </div>
     <h1>Find and secure your<br><em>holiday home</em><br>in Samoa</h1>
     <p class="hero-samoan">Mana'omia se fale e malu puipuia ai oe ma si ou aiga i Samoa?</p>
@@ -316,6 +317,10 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
     </div>
     <div class="hero-proof"><span class="stars">★★★★★</span> 4.97 · 80+ aiga fiafia · happy families</div>
   </div>
+  <div class="hero-photo">
+    <img src="https://res.cloudinary.com/djusgrmfu/image/upload/w_800,q_auto,f_auto/v1778067043/IMG_5377_xvs4sk.jpg" alt="Heavenly Home Samoa">
+  </div>
+</div>
 </section>
 
 <div class="proof-strip">
