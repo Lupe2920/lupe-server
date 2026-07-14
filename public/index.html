@@ -1139,7 +1139,7 @@ function calcTourPrice(){
   const price=TOUR_PRICES[p];
   if(display)display.style.display='flex';
   if(label)label.textContent=p+' person'+(p!==1?'s':'')+' · 9 hour tour · All entrance fees included';
-  if(amt)amt.textContent='$'+price+'/service';
+  if(amt)amt.textContent='$'+price+'/tour';
   if(foodWrap)foodWrap.style.display='block';
   const foodPrice=document.getElementById('tour-food-price');
   if(foodPrice)foodPrice.textContent='+$'+(p*45);
