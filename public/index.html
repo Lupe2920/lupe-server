@@ -780,7 +780,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
               <div class="extra-option" id="car-van15" onclick="event.stopPropagation();toggleCar('van15')"><div class="extra-option-radio" id="radio-van15"></div><div class="extra-option-label"><strong>🚐 15 Seater Van: Manual</strong><br><span style="font-size:11px;color:var(--muted)">Great for large groups</span></div><div class="extra-option-price">$160/day</div></div>
               <div class="extra-option" id="car-van10" onclick="event.stopPropagation();toggleCar('van10')"><div class="extra-option-radio" id="radio-van10"></div><div class="extra-option-label"><strong>🚐 10 Seater Van: Automatic</strong><br><span style="font-size:11px;color:var(--muted)">Perfect for medium groups</span></div><div class="extra-option-price">$160/day</div></div>
               <div id="car-total-display" style="display:none;background:var(--fog);border-radius:12px;padding:12px 16px;margin-top:12px;font-size:13px;font-weight:600;color:var(--ink)"></div>
-              <div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest. Permit License for 1 driver will be included in all car bookings. Your car will be waiting for you at the accommodation.</div>
+              <div class="extra-notice">⚠️ Driver must be 25+ with valid licence. Any damage charged to guest. Permit License for 1 driver will be included in all car bookings. Your car will be waiting for you at the accommodation. Please note that your date for the car will start at whatever time it was rented out.</div>
             </div>
           </div>
         </div>
@@ -794,7 +794,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
               <div class="extra-option" id="airport-pickup" onclick="event.stopPropagation();chooseAirport('pickup')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Airport pickup → house</strong><br><span style="font-size:11px;color:var(--muted)">We pick you up from the airport and take you home</span></div><div class="extra-option-price">$75</div></div>
               <div class="extra-option" id="airport-dropoff" onclick="event.stopPropagation();chooseAirport('dropoff')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Drop off at airport</strong><br><span style="font-size:11px;color:var(--muted)">We drop you off at the airport at end of stay</span></div><div class="extra-option-price">$68</div></div>
               <div class="extra-option" id="airport-return" onclick="event.stopPropagation();chooseAirport('return')"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>Return Transfer: pickup + drop off</strong><br><span style="font-size:11px;color:var(--muted)">Airport pickup on arrival AND drop off at end of stay</span></div><div class="extra-option-price">$135</div></div>
-              <div class="extra-notice">📅 Transfer times confirmed via WhatsApp after booking.</div>
+              <div class="extra-notice">Please include your checkin and checkout times if flights have been booked otherwise please confirm via WhatsApp once your flights have been confirmed. Also please note that if you're checking in at 1am</div>
             </div>
           </div>
         </div>
@@ -825,8 +825,8 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
               <div style="margin-bottom:14px">
                 <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px">Does your phone have a SIM card tray,(please check)?</label>
                 <div style="display:flex;gap:10px">
-                  <button onclick="event.stopPropagation();simEsim(false)" id="sim-no-esim" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:10px;background:var(--fog);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s">📲 Yes, it does</button>
-                  <button onclick="event.stopPropagation();simEsim(true)" id="sim-yes-esim" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:10px;background:var(--fog);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s">✨ No, it doesn't, I can only use an eSIM </button>
+                  <button onclick="event.stopPropagation();simEsim(false)" id="sim-no-esim" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:10px;background:var(--fog);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s"> Yes, it does</button>
+                  <button onclick="event.stopPropagation();simEsim(true)" id="sim-yes-esim" style="flex:1;padding:10px;border:1.5px solid var(--border);border-radius:10px;background:var(--fog);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s"> No, it doesn't, I can only use an eSIM </button>
                 </div>
               </div>
               <div id="sim-options" style="display:none">
