@@ -810,18 +810,7 @@ body{font-family:'Inter',sans-serif;background:var(--fog);color:var(--ink);overf
         <div class="extras-section">
           <div class="extras-title">🍳 Breakfast · Taumafataga o le taeao</div>
           <div class="extra-card" id="extra-breakfast" onclick="toggleExtra('breakfast')">
-            <div class="extra-card-top"><div class="extra-card-icon">🍳</div><div class="extra-card-info"><div class="extra-card-name">Samoan-style breakfast</div><div class="extra-card-desc">Available for groups of 6+. Dates confirmed via WhatsApp.</div></div><div class="extra-card-check">✓</div></div>
-            <div class="extra-card-options">
-              <div class="extra-option" id="bfast-6" onclick="event.stopPropagation();chooseBreakfastOption(6,100)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>6 guests</strong></div><div class="extra-option-price">$100/service</div></div>
-              <div class="extra-option" id="bfast-7" onclick="event.stopPropagation();chooseBreakfastOption(7,112)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>7 guests</strong></div><div class="extra-option-price">$112/service</div></div>
-              <div class="extra-option" id="bfast-8" onclick="event.stopPropagation();chooseBreakfastOption(8,124)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>8 guests</strong></div><div class="extra-option-price">$124/service</div></div>
-              <div class="extra-option" id="bfast-9" onclick="event.stopPropagation();chooseBreakfastOption(9,136)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>9 guests</strong></div><div class="extra-option-price">$136/service</div></div>
-              <div class="extra-option" id="bfast-10" onclick="event.stopPropagation();chooseBreakfastOption(10,148)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>10 guests</strong></div><div class="extra-option-price">$148/service</div></div>
-              <div class="extra-option" id="bfast-11" onclick="event.stopPropagation();chooseBreakfastOption(11,160)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>11 guests</strong></div><div class="extra-option-price">$160/service</div></div>
-              <div class="extra-option" id="bfast-12" onclick="event.stopPropagation();chooseBreakfastOption(12,172)"><div class="extra-option-radio"></div><div class="extra-option-label"><strong>12 guests</strong></div><div class="extra-option-price">$172/service</div></div>
-              <div class="field" style="margin-top:14px;margin-bottom:0"><label>Number of breakfast services</label><input type="number" id="breakfast-days" min="1" placeholder="e.g. 3" onclick="event.stopPropagation()" oninput="updateExtrasTotal()"></div>
-              <div class="extra-notice">📅 Dates confirmed via WhatsApp after booking.</div>
-            </div>
+            c
           </div>
           <div id="breakfast-warning" style="display:none;background:rgba(192,57,43,0.06);border:1px solid rgba(192,57,43,0.2);border-radius:10px;padding:10px 13px;font-size:12px;color:var(--ember);margin-top:8px">⚠️ Breakfast is only available for groups of 6 or more guests.</div>
         </div>
@@ -962,7 +951,18 @@ function toggleExtra(type){
   updateExtrasTotal();
 }
 function chooseCarOption(opt){S.carOption=opt;['pickup','ecosport'].forEach(o=>document.getElementById('car-'+o).classList.toggle('chosen',o===opt));updateExtrasTotal();}
-function chooseBreakfastOption(guests,price){S.breakfastOption=guests;S.breakfastPrice=price;['6','7','8','9','10','11','12'].forEach(o=>document.getElementById('bfast-'+o).classList.toggle('chosen',String(guests)===o));updateExtrasTotal();}
+function chooseBreakfastOption(){
+  const g=S.guests;
+  const steps=[20,18,16,14,12,10,10];
+  let price=145;
+  if(g>6){for(let i=0;i<Math.min(g-6,steps.length);i++)price+=steps[i];}
+  S.breakfastOption=g;S.breakfastPrice=price;
+  const label=document.getElementById('bfast-price-label');
+  const amt=document.getElementById('bfast-price-amt');
+  if(label)label.textContent=`${g} guest${g!==1?'s':''} · per service`;
+  if(amt)amt.textContent=`$${price} AUD`;
+  updateExtrasTotal();
+}
 function chooseBabyOption(opt,price){S.babyOption=opt;S.babyPrice=price;['1','2','3'].forEach(o=>document.getElementById('baby-'+o).classList.toggle('chosen',o===opt));updateExtrasTotal();}
 function updateExtrasTotal(){
   let total=0;
